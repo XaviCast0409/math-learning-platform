@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    /* 1. Configuración de Directorios */
+    "rootDir": "./src",           /* Dónde está tu código TS */
+    "outDir": "./dist",           /* Dónde se guardará el JS compilado */
+
+    /* 2. Configuración de Módulos (VITAL para Node/Express) */
+    "target": "es2020",           /* Versión de JS moderna pero soportada por Node */
+    "module": "commonjs",         /* El estándar de Node.js. Evita problemas de importación */
+    "moduleResolution": "node",
+    "esModuleInterop": true,      /* Permite importar librerías viejas (como express) sin problemas */
+    
+    /* 3. Librerías Disponibles */
+    "lib": ["es2020", "esnext.asynciterable"], /* Habilita funciones modernas de JS */
+    
+
+    /* 4. Estrictez y Calidad de Código */
+    "strict": true,               /* Activa todas las reglas estrictas de tipo */
+    "noImplicitAny": true,        /* No permite variables sin tipo definido */
+    "skipLibCheck": true,         /* Salta chequeo de tipos en node_modules (ahorra tiempo) */
+    "forceConsistentCasingInFileNames": true, /* Evita errores entre Windows/Mac por mayúsculas */
+
+    /* 5. Opciones Adicionales útiles para Backend */
+    "resolveJsonModule": true,    /* Permite importar archivos .json */
+    "removeComments": true,       /* Limpia comentarios en el código final */
+    "sourceMap": true             /* Ayuda a depurar errores indicando la línea en el TS original */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
