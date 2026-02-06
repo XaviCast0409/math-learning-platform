@@ -59,6 +59,10 @@ export interface AuthResponse {
   data: {
     user: User;
   };
+  streak_reward?: {
+    xp: number;
+    gems: number;
+  };
 }
 
 export interface AdminAuthResponse {

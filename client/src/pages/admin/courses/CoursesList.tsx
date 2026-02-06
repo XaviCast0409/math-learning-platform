@@ -14,7 +14,7 @@ export default function CoursesList() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
   
-  const [page, setPage] = useState(1);
+  const [page, /* setPage */] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [levelFilter, setLevelFilter] = useState('');
 

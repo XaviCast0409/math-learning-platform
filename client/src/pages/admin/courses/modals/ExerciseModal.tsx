@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { X, HelpCircle, CheckCircle, AlertCircle } from 'lucide-react';
+import { X, HelpCircle, CheckCircle } from 'lucide-react';
 import { Button } from '../../../../components/common/Button';
 import { Input } from '../../../../components/common/Input';
 import type { Exercise } from '../../../../types/admin.types';
