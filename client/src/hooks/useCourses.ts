@@ -1,6 +1,5 @@
 import useSWR from 'swr';
 import { adminCoursesApi } from '../api/admin/courses.api';
-import type { Course } from '../types/admin.types';
 
 interface UseCoursesParams {
     page: number;

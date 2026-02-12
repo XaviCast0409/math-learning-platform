@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, ChevronRight, Sparkles, GraduationCap } from 'lucide-react';
-import { type CourseSummary } from '../../api/course.api';
 import { StatsHeader } from '../../components/layout/StatsHeader';
 import { GlobalLoading } from '../../components/common/GlobalLoading';
 import { clsx } from 'clsx';

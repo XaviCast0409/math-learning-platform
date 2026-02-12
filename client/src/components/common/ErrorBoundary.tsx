@@ -1,4 +1,4 @@
-import { Component, ErrorInfo, ReactNode } from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 import { RefreshCw, AlertTriangle } from 'lucide-react';
 import { Button } from './Button';
 
