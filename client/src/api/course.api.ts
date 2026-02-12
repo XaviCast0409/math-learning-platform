@@ -31,9 +31,9 @@ export const courseApi = {
     const response = await axiosClient.get<{ status: string; data: { course: { units: UnitMap[] } } }>(
       `/courses/${courseId}/map`
     );
-    return response.data.data.course;
+    return response.data.data.course.units;
   },
-  
+
   getAllCourses: async () => {
     const response = await axiosClient.get<{ status: string; data: CourseSummary[] }>(
       '/courses'

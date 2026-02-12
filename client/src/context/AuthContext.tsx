@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode, useMemo } from 'react';
 import type { User, AuthResponse } from '../types'; // Ensure AuthResponse is imported
 import { authApi } from '../api/auth.api';
 
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkAuth = async () => {
     const token = localStorage.getItem('token');
-    
+
     if (!token) {
       setIsLoading(false);
       return;
@@ -47,13 +47,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const login = async (credentials: { email: string; password: string }) => {
     try {
       const response = await authApi.login(credentials);
-      
-      localStorage.setItem('token', response.token);
+
+      localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      
+
       setUser(response.data.user);
 
-      return response; 
+      return response;
     } catch (error) {
       throw error;
     }
@@ -62,10 +62,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const register = async (data: { username: string; email: string; password: string }) => {
     try {
       const response = await authApi.register(data);
-      
-      localStorage.setItem('token', response.token);
+
+      localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
-      
+
       setUser(response.data.user);
     } catch (error) {
       throw error;
@@ -90,20 +90,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const value = useMemo(() => ({
+    user,
+    isAuthenticated: !!user,
+    isLoading,
+    login,
+    register,
+    logout,
+    updateUserStats,
+    refreshUser: checkAuth,
+    setSession
+  }), [user, isLoading]);
+
   return (
-    <AuthContext.Provider 
-      value={{ 
-        user, 
-        isAuthenticated: !!user,
-        isLoading, 
-        login, 
-        register, 
-        logout,
-        updateUserStats,
-        refreshUser: checkAuth,
-        setSession
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );

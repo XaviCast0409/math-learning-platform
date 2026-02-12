@@ -1,37 +1,17 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useAuth } from '../context/AuthContext'; 
+import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { shopApi } from '../api/shop.api';
 import type { Product, UserItem } from '../types';
+import { useShopData } from './useShopData';
+import { toast } from 'react-hot-toast';
 
 export const useShop = () => {
     const { user, refreshUser } = useAuth();
     const [activeTab, setActiveTab] = useState<'shop' | 'inventory'>('shop');
-    const [loading, setLoading] = useState(true);
     const [processingId, setProcessingId] = useState<number | null>(null);
 
-    const [products, setProducts] = useState<Product[]>([]);
-    const [inventory, setInventory] = useState<UserItem[]>([]);
-
-    const loadData = useCallback(async () => {
-        setLoading(true);
-        try {
-            if (activeTab === 'shop') {
-                const data = await shopApi.getProducts();
-                setProducts(data);
-            } else {
-                const data = await shopApi.getInventory();
-                setInventory(data);
-            }
-        } catch (error) {
-            console.error("Error cargando datos del mercado", error);
-        } finally {
-            setLoading(false);
-        }
-    }, [activeTab]);
-
-    useEffect(() => {
-        loadData();
-    }, [loadData]);
+    // Use SWR Hook
+    const { products, inventory, isLoading, mutateInventory } = useShopData();
 
     const buyProduct = async (product: Product) => {
         if (!user) return;
@@ -40,10 +20,12 @@ export const useShop = () => {
         setProcessingId(product.id);
         try {
             await shopApi.buyProduct(product.id);
-            alert(`¡Compraste ${product.name}! 🎉`);
+            toast.success(`¡Compraste ${product.name}! 🎉`);
+            // Refresh User (gems) and Inventory
             if (refreshUser) refreshUser();
+            mutateInventory();
         } catch (error: any) {
-            alert(error.response?.data?.message || 'Error en la compra');
+            toast.error(error.response?.data?.message || 'Error en la compra');
         } finally {
             setProcessingId(null);
         }
@@ -53,20 +35,16 @@ export const useShop = () => {
         setProcessingId(item.id);
         try {
             await shopApi.equipItem(item.id);
-            
-            // Actualización optimista
-            setInventory(prev => prev.map(i => {
-                if (i.id === item.id) return { ...i, is_equipped: true };
-                if (i.Product.type === item.Product.type && i.id !== item.id && i.is_equipped) {
-                    return { ...i, is_equipped: false };
-                }
-                return i;
-            }));
+            toast.success('Objeto equipado');
+
+            // Optimistic update via mutate is complex here because of the "unequip others" logic.
+            // For now, we rely on revalidation or simple re-fetch.
+            // Ideally trigger revalidation:
+            mutateInventory();
 
             if (refreshUser) refreshUser();
         } catch (error: any) {
-            alert('No se pudo equipar el objeto');
-            loadData(); // Revertir si falla
+            toast.error('No se pudo equipar el objeto');
         } finally {
             setProcessingId(null);
         }
@@ -78,11 +56,11 @@ export const useShop = () => {
         setProcessingId(item.id);
         try {
             const res = await shopApi.useItem(item.id);
-            alert(res.message || 'Objeto utilizado correctamente');
-            setInventory(prev => prev.filter(i => i.id !== item.id));
+            toast.success(res.message || 'Objeto utilizado correctamente');
+            mutateInventory(); // Refresh inventory
             if (refreshUser) refreshUser();
         } catch (error: any) {
-            alert('Error al usar el objeto');
+            toast.error('Error al usar el objeto');
         } finally {
             setProcessingId(null);
         }
@@ -91,7 +69,7 @@ export const useShop = () => {
     return {
         activeTab,
         setActiveTab,
-        loading,
+        loading: isLoading,
         processingId,
         products,
         inventory,

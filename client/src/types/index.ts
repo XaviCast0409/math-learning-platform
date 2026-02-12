@@ -55,13 +55,13 @@ export interface ApiResponse<T> {
 // Respuesta específica de Autenticación (Login/Register)
 export interface AuthResponse {
   status: 'success' | 'fail' | 'error';
-  token: string;
   data: {
     user: User;
-  };
-  streak_reward?: {
-    xp: number;
-    gems: number;
+    token: string;
+    streak_reward?: {
+      xp: number;
+      gems: number;
+    };
   };
 }
 

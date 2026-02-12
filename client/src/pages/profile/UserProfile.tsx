@@ -5,6 +5,7 @@ import { Card } from '../../components/common/Card';
 import { Trophy, Flame, Zap, LogOut, Gem, TrendingUp, ChevronRight } from 'lucide-react'; // Agregué ChevronRight
 import { getLeagueInfo } from '../../config/pvp.constants';
 import { clsx } from 'clsx';
+import { toast } from 'react-hot-toast';
 
 // API y Utils
 import { shopApi } from '../../api/shop.api';
@@ -20,7 +21,7 @@ import { RankingModal } from './RankingModal'; // 👈 IMPORTANTE: Importamos el
 const DEFAULT_AVATAR: AvatarConfig = {
   id: 0,
   name: 'Novato',
-  url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/11.gif', 
+  url: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/11.gif',
   type: 'gif'
 };
 
@@ -31,18 +32,18 @@ const GROWTH_FACTOR = 1.1;
 const calculateTotalXpForLevel = (level: number): number => {
   if (level <= 1) return 0;
   const n = level - 1;
-  return Math.floor(BASE_XP * ( (Math.pow(GROWTH_FACTOR, n) - 1) / (GROWTH_FACTOR - 1) ));
+  return Math.floor(BASE_XP * ((Math.pow(GROWTH_FACTOR, n) - 1) / (GROWTH_FACTOR - 1)));
 };
 
 export default function UserProfile() {
   const { user, logout } = useAuth();
-  
+
   // --- ESTADOS ---
   const [currentAvatar, setCurrentAvatar] = useState<AvatarConfig>(DEFAULT_AVATAR);
   const [myAvatars, setMyAvatars] = useState<AvatarConfig[]>([]);
   const [isWardrobeOpen, setIsWardrobeOpen] = useState(false);
   const [loadingWardrobe, setLoadingWardrobe] = useState(false);
-  
+
   // 👇 NUEVO ESTADO PARA EL RANKING
   const [showRanking, setShowRanking] = useState(false);
 
@@ -55,7 +56,7 @@ export default function UserProfile() {
     try {
       const equippedItems = await shopApi.getAvatar();
       const activeSkin = equippedItems.find(item => item.Product?.type === 'cosmetic_avatar');
-      
+
       if (activeSkin) {
         setCurrentAvatar(productToAvatarConfig(activeSkin));
       } else {
@@ -72,8 +73,8 @@ export default function UserProfile() {
     setLoadingWardrobe(true);
     try {
       const allItems = await shopApi.getInventory();
-      const avatarItems = allItems.filter(item => 
-         item.Product?.category === 'cosmetic' && item.Product?.type === 'cosmetic_avatar'
+      const avatarItems = allItems.filter(item =>
+        item.Product?.category === 'cosmetic' && item.Product?.type === 'cosmetic_avatar'
       );
       const visualList = avatarItems.map(productToAvatarConfig);
       setMyAvatars(visualList);
@@ -88,11 +89,13 @@ export default function UserProfile() {
   const handleEquipAvatar = async (visualAvatar: AvatarConfig) => {
     setCurrentAvatar(visualAvatar);
     setIsWardrobeOpen(false);
+
     try {
       await shopApi.equipItem(visualAvatar.id);
+      toast.success("Avatar equipado");
     } catch (error) {
-      alert("Error al equipar el avatar.");
-      loadCurrentLook(); 
+      toast.error("Error al equipar el avatar.");
+      loadCurrentLook();
     }
   };
 
@@ -116,8 +119,8 @@ export default function UserProfile() {
     value?: string | number;
     subValue?: string;
     colorClass?: string;
-    image?: string; 
-    leagueTheme?: string; 
+    image?: string;
+    leagueTheme?: string;
   }
 
   const StatBox = ({ icon: Icon, label, value, colorClass, subValue, image, leagueTheme }: StatBoxProps) => {
@@ -129,18 +132,18 @@ export default function UserProfile() {
           "rounded-3xl flex items-center justify-center relative overflow-hidden shadow-sm hover:shadow-md transition-all h-32 p-0",
           bgClass
         )}>
-           <div className="w-full h-full flex items-center justify-center p-2">
-             <img 
-               src={image} 
-               alt="League Icon" 
-               className="w-full h-full object-contain mix-blend-multiply drop-shadow-sm hover:scale-110 transition-transform duration-500"
-               onError={(e) => { e.currentTarget.src = '/assets/pvpElo/pollito.jpeg'; }}
-             />
-           </div>
-           
-           <div className="absolute top-2 right-2 opacity-30 text-black">
-              <Trophy size={16} />
-           </div>
+          <div className="w-full h-full flex items-center justify-center p-2">
+            <img
+              src={image}
+              alt="League Icon"
+              className="w-full h-full object-contain mix-blend-multiply drop-shadow-sm hover:scale-110 transition-transform duration-500"
+              onError={(e) => { e.currentTarget.src = '/assets/pvpElo/pollito.jpeg'; }}
+            />
+          </div>
+
+          <div className="absolute top-2 right-2 opacity-30 text-black">
+            <Trophy size={16} />
+          </div>
         </div>
       );
     }
@@ -161,8 +164,8 @@ export default function UserProfile() {
 
   return (
     <div className="min-h-screen bg-brand-light p-4 pt-8 pb-24 max-w-md mx-auto relative overflow-hidden">
-      
-      <WardrobeModal 
+
+      <WardrobeModal
         isOpen={isWardrobeOpen}
         onClose={() => setIsWardrobeOpen(false)}
         avatars={myAvatars}
@@ -175,7 +178,7 @@ export default function UserProfile() {
         <h1 className="text-3xl font-black italic tracking-tighter text-gray-900">MI PERFIL</h1>
       </div>
 
-      <UserIdentityCard 
+      <UserIdentityCard
         user={user}
         leagueName={currentLeague.name}
         currentAvatar={currentAvatar}
@@ -185,27 +188,27 @@ export default function UserProfile() {
       {/* Barra de Progreso */}
       <Card className="mb-6 border-0 shadow-sm ring-1 ring-gray-100 bg-white" title="">
         <div className="px-2 pt-2 pb-1">
-            <div className="flex justify-between items-end mb-2">
-              <span className="text-sm font-black text-brand-blue flex items-center gap-1.5">
-                <div className="p-1 bg-blue-50 rounded-md">
-                  <Zap size={14} fill="currentColor" /> 
-                </div>
-                Nivel {currentLevel}
-              </span>
-              <span className="text-xs font-bold text-gray-400">
-                {xpProgressInLevel.toLocaleString()} / {xpRequiredForLevel.toLocaleString()} XP
-              </span>
-            </div>
-            
-            <div className="w-full h-4 bg-gray-100 rounded-full overflow-hidden relative">
-              <div 
-                 className="h-full bg-gradient-to-r from-brand-blue to-cyan-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]" 
-                 style={{ width: `${progressPercent}%` }} 
-              />
-            </div>
-            <p className="text-[10px] text-gray-400 text-right mt-1.5 font-medium">
-              ¡Te faltan {(xpRequiredForLevel - xpProgressInLevel).toLocaleString()} XP para subir!
-            </p>
+          <div className="flex justify-between items-end mb-2">
+            <span className="text-sm font-black text-brand-blue flex items-center gap-1.5">
+              <div className="p-1 bg-blue-50 rounded-md">
+                <Zap size={14} fill="currentColor" />
+              </div>
+              Nivel {currentLevel}
+            </span>
+            <span className="text-xs font-bold text-gray-400">
+              {xpProgressInLevel.toLocaleString()} / {xpRequiredForLevel.toLocaleString()} XP
+            </span>
+          </div>
+
+          <div className="w-full h-4 bg-gray-100 rounded-full overflow-hidden relative">
+            <div
+              className="h-full bg-gradient-to-r from-brand-blue to-cyan-400 rounded-full transition-all duration-700 ease-out shadow-[0_0_10px_rgba(59,130,246,0.5)]"
+              style={{ width: `${progressPercent}%` }}
+            />
+          </div>
+          <p className="text-[10px] text-gray-400 text-right mt-1.5 font-medium">
+            ¡Te faltan {(xpRequiredForLevel - xpProgressInLevel).toLocaleString()} XP para subir!
+          </p>
         </div>
       </Card>
 
@@ -218,14 +221,14 @@ export default function UserProfile() {
       </div>
 
       {/* 👇 3. BOTÓN DE CLASIFICACIÓN (RANKING) - DISEÑO INTEGRADO */}
-      <button 
+      <button
         onClick={() => setShowRanking(true)}
         className="w-full mb-4 bg-white rounded-2xl p-4 flex items-center gap-4 shadow-sm border-2 border-gray-100 active:scale-[0.98] transition-transform hover:border-yellow-400 hover:shadow-md group"
       >
         <div className="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center group-hover:bg-yellow-400 group-hover:text-white transition-colors">
           <Trophy size={24} fill="currentColor" />
         </div>
-        
+
         <div className="flex-1 text-left">
           <h3 className="font-black text-gray-800 text-lg leading-none mb-1">Clasificación</h3>
           <p className="text-xs font-bold text-gray-400">Ver ranking global</p>
@@ -235,10 +238,10 @@ export default function UserProfile() {
       </button>
 
       {/* Botón Cerrar Sesión */}
-      <Button 
-        variant="danger" 
-        className="w-full py-4 text-sm font-bold shadow-none border-red-100 bg-red-50 text-red-500 hover:bg-red-100 hover:border-red-200" 
-        onClick={logout} 
+      <Button
+        variant="danger"
+        className="w-full py-4 text-sm font-bold shadow-none border-red-100 bg-red-50 text-red-500 hover:bg-red-100 hover:border-red-200"
+        onClick={logout}
         icon={<LogOut size={18} />}
       >
         CERRAR SESIÓN
@@ -255,9 +258,9 @@ export default function UserProfile() {
 
       {/* 👇 MODAL DE RANKING RENDERIZADO AQUÍ */}
       {showRanking && (
-          <RankingModal onClose={() => setShowRanking(false)} />
+        <RankingModal onClose={() => setShowRanking(false)} />
       )}
-      
+
     </div>
   );
 }

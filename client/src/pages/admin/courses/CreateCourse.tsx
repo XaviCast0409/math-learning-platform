@@ -6,6 +6,7 @@ import { adminCoursesApi } from '../../../api/admin/courses.api';
 import { Button } from '../../../components/common/Button';
 import { Input } from '../../../components/common/Input';
 import { Card } from '../../../components/common/Card';
+import { toast } from 'react-hot-toast';
 
 export default function CreateCourse() {
   const navigate = useNavigate();
@@ -17,14 +18,14 @@ export default function CreateCourse() {
     try {
       // 1. Crear el curso en el backend
       const newCourse = await adminCoursesApi.createCourse(data);
-      
+
       // 2. Redirigir inmediatamente a la vista de "Estructura" (Árbol) 
       // para que empieces a agregarle unidades.
       navigate(`/admin/courses/${newCourse.id}/structure`);
-      
+
     } catch (error) {
       console.error(error);
-      alert("Error al crear el curso. Revisa la consola.");
+      toast.error("Error al crear el curso. Revisa la consola.");
     } finally {
       setLoading(false);
     }
@@ -32,8 +33,8 @@ export default function CreateCourse() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
-      <button 
-        onClick={() => navigate('/admin/courses')} 
+      <button
+        onClick={() => navigate('/admin/courses')}
         className="flex items-center gap-2 text-gray-500 hover:text-gray-800 transition-colors"
       >
         <ArrowLeft size={20} /> Volver a la lista
@@ -51,7 +52,7 @@ export default function CreateCourse() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <Input 
+          <Input
             label="Título del Curso"
             {...register("title", { required: "El título es obligatorio" })}
             placeholder="Ej: Aritmética Avanzada"
@@ -59,41 +60,41 @@ export default function CreateCourse() {
           />
 
           <div>
-             <label className="block text-sm font-bold text-gray-700 mb-1">Descripción</label>
-             <textarea 
-               {...register("description", { required: "La descripción es obligatoria" })}
-               rows={3}
-               className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-sans"
-               placeholder="¿De qué trata este curso?"
-             />
-             {errors.description && <p className="text-xs text-red-500 mt-1">{errors.description.message as string}</p>}
+            <label className="block text-sm font-bold text-gray-700 mb-1">Descripción</label>
+            <textarea
+              {...register("description", { required: "La descripción es obligatoria" })}
+              rows={3}
+              className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition-all font-sans"
+              placeholder="¿De qué trata este curso?"
+            />
+            {errors.description && <p className="text-xs text-red-500 mt-1">{errors.description.message as string}</p>}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1">Nivel Académico</label>
-                <select 
-                  {...register("level", { required: true })}
-                  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                >
-                  <option value="secundaria">Secundaria</option>
-                  <option value="pre_universitario">Pre-Universitario</option>
-                  <option value="universitario">Universitario</option>
-                </select>
-             </div>
+            <div>
+              <label className="block text-sm font-bold text-gray-700 mb-1">Nivel Académico</label>
+              <select
+                {...register("level", { required: true })}
+                className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 transition-all"
+              >
+                <option value="secundaria">Secundaria</option>
+                <option value="pre_universitario">Pre-Universitario</option>
+                <option value="universitario">Universitario</option>
+              </select>
+            </div>
 
-             <Input 
-               label="URL de Imagen (Portada)"
-               {...register("img_url")}
-               placeholder="https://..."
-               icon={<ImageIcon size={18} />}
-             />
+            <Input
+              label="URL de Imagen (Portada)"
+              {...register("img_url")}
+              placeholder="https://..."
+              icon={<ImageIcon size={18} />}
+            />
           </div>
 
           <div className="pt-4 flex justify-end">
-            <Button 
-              type="submit" 
-              variant="primary" 
+            <Button
+              type="submit"
+              variant="primary"
               className="w-full md:w-auto"
               disabled={loading}
               icon={<Save size={18} />}

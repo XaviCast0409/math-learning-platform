@@ -18,3 +18,5 @@ public/build/
 *.local
 *.env.local
 *.env.development.local
+.agent/
+.agents/

@@ -2,7 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import sequelize from '../config/database';
 import { getLeagueFromElo } from '../config/pvp.config';
 // ✅ NUEVO: Importamos la calculadora de niveles
-import { calculateLevelFromXP } from '../config/gamification.config'; 
+import { calculateLevelFromXP } from '../config/gamification.config';
 import type Clan from './Clan';
 
 class User extends Model {
@@ -14,9 +14,9 @@ class User extends Model {
 
   // Gamification
   public xp_total!: number;
-  public level!: number; 
+  public level!: number;
   // ✅ NUEVO: Propiedad de TypeScript para el nivel calculado
-  public readonly current_level_calc!: number; 
+  public readonly current_level_calc!: number;
 
   public gems!: number;
   public lives!: number;
@@ -35,7 +35,7 @@ class User extends Model {
 
   // Config extra
   public metadata!: object;
-  public clan_id!: number | null; 
+  public clan_id!: number | null;
   public readonly clan?: Clan;
 }
 
@@ -47,9 +47,9 @@ User.init({
   role: { type: DataTypes.ENUM('student', 'admin', 'moderator'), defaultValue: 'student' },
 
   xp_total: { type: DataTypes.INTEGER, defaultValue: 0 },
-  
+
   // Nivel guardado en base de datos (se actualizará solo gracias al hook de abajo)
-  level: { type: DataTypes.INTEGER, defaultValue: 1 }, 
+  level: { type: DataTypes.INTEGER, defaultValue: 1 },
 
   // ✅ NUEVO: CAMPO VIRTUAL (Calculadora Automática)
   // Este campo usa tu fórmula matemática cada vez que consultas el usuario.
@@ -84,15 +84,14 @@ User.init({
 
   clan_id: {
     type: DataTypes.INTEGER,
-    allowNull: true,
-    defaultValue: null
+    allowNull: true
   },
 
   metadata: { type: DataTypes.JSONB, defaultValue: {} }
-}, { 
-  sequelize, 
-  tableName: 'users', 
-  timestamps: true, 
+}, {
+  sequelize,
+  tableName: 'users',
+  timestamps: true,
   paranoid: true,
   // ✅ NUEVO: Hooks para mantener sincronizado el nivel
   hooks: {

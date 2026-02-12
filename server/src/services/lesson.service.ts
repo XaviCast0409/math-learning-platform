@@ -1,13 +1,14 @@
 import { Lesson, Exercise, UserProgress, User, Unit } from '../models';
 import AppError from '../utils/AppError';
-import { LifeService } from './life.service'; 
-import { UserService } from './user.service'; 
-import { RewardService } from './reward.service';
+import { lifeService } from './life.service';
+import { userService } from './user.service';
+import { rewardService } from './reward.service';
+import { GAME_CONFIG } from '../config/game.config';
 
 export class LessonService {
 
   // 1. Obtener Teoría y Ejercicios (Igual)
-  static async getLessonContent(lessonId: number) {
+  async getLessonContent(lessonId: number) {
     const lesson = await Lesson.findByPk(lessonId, {
       attributes: ['id', 'title', 'theory_content', 'xp_reward']
     });
@@ -24,7 +25,7 @@ export class LessonService {
   }
 
   // 2. Completar Lección (CORREGIDO)
-  static async completeLesson(userId: number, lessonId: number, stars: number, remainingLives: number) {
+  async completeLesson(userId: number, lessonId: number, stars: number, remainingLives: number) {
 
     // a) Validar lección
     const currentLesson = await Lesson.findByPk(lessonId);
@@ -37,8 +38,11 @@ export class LessonService {
 
     const isReplay = progress && progress.status === 'completed';
     // DEFINIMOS LOS VALORES BASE
-    const baseXp = isReplay ? 5 : (currentLesson.xp_reward || 20);
-    const baseGems = stars * 5;
+    const baseXp = isReplay
+      ? GAME_CONFIG.REWARDS.LESSON_REPLAY_XP
+      : (currentLesson.xp_reward || GAME_CONFIG.REWARDS.LESSON_COMPLETE_XP);
+
+    const baseGems = stars * GAME_CONFIG.REWARDS.GEMS_PER_STAR;
 
     if (!progress) {
       progress = await UserProgress.create({
@@ -54,37 +58,37 @@ export class LessonService {
 
     // c) ACTUALIZAR USUARIO (NIVELES, GEMAS, CLAN Y VIDAS) 🚀
     // -----------------------------------------------------------------------
-    
+
     // 1. CÁLCULO DE BONOS (Visual y para Gemas)
     // Calculamos aquí para saber cuántas gemas dar y qué mostrar en pantalla.
-    const rewardsCalc = await RewardService.calculateBonuses(userId, baseXp, baseGems);
+    const rewardsCalc = await rewardService.calculateBonuses(userId, baseXp, baseGems);
     const finalGems = rewardsCalc.finalGems;
     const finalXpForDisplay = rewardsCalc.finalXp; // Solo para devolver al front
 
     // 2. PROCESAR XP (Vía UserService)
     // ⚠️ OJO: Pasamos 'baseXp'. UserService aplicará los bonos internamente y sumará al CLAN.
-    const xpResult = await UserService.addExperience(userId, baseXp);
-    const user = xpResult.user; 
+    const xpResult = await userService.addExperience(userId, baseXp);
+    const user = xpResult.user;
 
     // 3. PROCESAR GEMAS (Manual)
     // UserService no gestiona gemas de lecciones, así que las sumamos aquí.
     user.gems += finalGems;
-    await user.save(); 
+    await user.save();
 
     // 4. Gestionar Vidas (LifeService)
     if (!xpResult.leveledUp) {
-        if (remainingLives < user.lives) {
-            const lostAmount = user.lives - remainingLives;
-            await LifeService.loseLife(user, lostAmount);
-        } else {
-            // Sincronización defensiva
-            if (user.lives !== remainingLives) {
-                user.lives = remainingLives;
-                await user.save();
-            }
+      if (remainingLives < user.lives) {
+        const lostAmount = user.lives - remainingLives;
+        await lifeService.loseLife(user, lostAmount);
+      } else {
+        // Sincronización defensiva
+        if (user.lives !== remainingLives) {
+          user.lives = remainingLives;
+          await user.save();
         }
-    } 
-    
+      }
+    }
+
     // -----------------------------------------------------------------------
 
     // d) DESBLOQUEAR SIGUIENTE LECCIÓN (Igual)
@@ -121,8 +125,8 @@ export class LessonService {
     // Unificar lista de bonos para mostrar
     // (Juntamos los que reporta UserService con los que calculamos localmente)
     const allBonuses = [
-        ...(rewardsCalc.appliedBonuses || []),
-        ...(xpResult.rewards.bonusesApplied || [])
+      ...(rewardsCalc.appliedBonuses || []),
+      ...(xpResult.rewards.bonusesApplied || [])
     ];
     // Eliminar duplicados visuales
     const uniqueBonuses = [...new Set(allBonuses)];
@@ -132,15 +136,17 @@ export class LessonService {
       baseXp: baseXp,              // Mostramos la base
       gemsEarned: finalGems,
       appliedBonuses: uniqueBonuses,
-      
+
       newTotalXp: user.xp_total,
       newTotalGems: user.gems,
-      newLives: user.lives, 
+      newLives: user.lives,
       nextLessonId: nextLesson?.id,
-      
+
       leveledUp: xpResult.leveledUp,
       levelRewards: xpResult.rewards,
       newLevel: user.level
     };
   }
 }
+
+export const lessonService = new LessonService();

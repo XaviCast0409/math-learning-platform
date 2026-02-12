@@ -1,6 +1,6 @@
 import { User, UserItem, Product } from '../models';
 import AppError from '../utils/AppError';
-import { UserService } from './user.service';
+import { userService } from './user.service';
 
 export class InventoryService {
 
@@ -8,7 +8,7 @@ export class InventoryService {
   // 1. MÉTODOS EXISTENTES (NO TOCADOS, SOLO TYPE-CHECKING)
   // =========================================================
 
-  static async getInventory(userId: number) {
+  async getInventory(userId: number) {
     const items = await UserItem.findAll({
       where: { user_id: userId, is_used: false },
       include: [{
@@ -20,14 +20,14 @@ export class InventoryService {
     return items;
   }
 
-  static async equipItem(userId: number, userItemId: number) {
+  async equipItem(userId: number, userItemId: number) {
     const itemToEquip = await UserItem.findOne({
       where: { id: userItemId, user_id: userId },
       include: [Product]
     });
 
     if (!itemToEquip) throw new AppError('Ítem no encontrado en tu inventario', 404);
-    
+
     // Casting seguro para TS
     const product = (itemToEquip as any).Product as Product;
 
@@ -51,13 +51,13 @@ export class InventoryService {
     itemToEquip.is_equipped = true;
     await itemToEquip.save();
 
-    return { 
-      message: `Equipado: ${product.name}`, 
-      equippedItem: itemToEquip 
+    return {
+      message: `Equipado: ${product.name}`,
+      equippedItem: itemToEquip
     };
   }
 
-  static async useItem(userId: number, userItemId: number) {
+  async useItem(userId: number, userItemId: number) {
     const itemToUse = await UserItem.findOne({
       where: { id: userItemId, user_id: userId },
       include: [Product]
@@ -74,60 +74,60 @@ export class InventoryService {
     const meta = product.effect_metadata || {};
 
     switch (product.type) {
-        
-        case 'xp_boost_time': 
-            const durationMin = meta.duration_minutes || 30;
-            const expiryXp = new Date();
-            expiryXp.setMinutes(expiryXp.getMinutes() + durationMin);
-            
-            user.xp_boost_expires_at = expiryXp;
-            effectMessage = `¡XP Doble activada por ${durationMin} minutos!`;
-            break;
 
-        case 'gem_boost_time':
-            const durationGem = meta.duration_minutes || 30;
-            const expiryGem = new Date();
-            expiryGem.setMinutes(expiryGem.getMinutes() + durationGem);
-            
-            user.gem_boost_expires_at = expiryGem;
-            effectMessage = `¡Gemas Dobles activadas por ${durationGem} minutos!`;
-            break;
+      case 'xp_boost_time':
+        const durationMin = meta.duration_minutes || 30;
+        const expiryXp = new Date();
+        expiryXp.setMinutes(expiryXp.getMinutes() + durationMin);
 
-        case 'xp_boost_instant': 
-            const amountXP = meta.amount || 100;
-            await UserService.addExperience(userId, amountXP); 
-            await user.reload(); 
-            effectMessage = `¡Obtuviste +${amountXP} XP!`;
-            break;
+        user.xp_boost_expires_at = expiryXp;
+        effectMessage = `¡XP Doble activada por ${durationMin} minutos!`;
+        break;
 
-        case 'refill_health_potion':
-            user.lives = 5;
-            user.last_life_regen = null;
-            effectMessage = '¡Salud restaurada al máximo!';
-            break;
-        
-        case 'real_world_reward':
-            effectMessage = 'Cupón canjeado. ¡Muestra esta pantalla a tu profesor!';
-            break;
+      case 'gem_boost_time':
+        const durationGem = meta.duration_minutes || 30;
+        const expiryGem = new Date();
+        expiryGem.setMinutes(expiryGem.getMinutes() + durationGem);
 
-        default:
-            throw new AppError('No se puede usar este objeto manualmente', 400);
+        user.gem_boost_expires_at = expiryGem;
+        effectMessage = `¡Gemas Dobles activadas por ${durationGem} minutos!`;
+        break;
+
+      case 'xp_boost_instant':
+        const amountXP = meta.amount || 100;
+        await userService.addExperience(userId, amountXP);
+        await user.reload();
+        effectMessage = `¡Obtuviste +${amountXP} XP!`;
+        break;
+
+      case 'refill_health_potion':
+        user.lives = 5;
+        user.last_life_regen = null;
+        effectMessage = '¡Salud restaurada al máximo!';
+        break;
+
+      case 'real_world_reward':
+        effectMessage = 'Cupón canjeado. ¡Muestra esta pantalla a tu profesor!';
+        break;
+
+      default:
+        throw new AppError('No se puede usar este objeto manualmente', 400);
     }
 
-    itemToUse.is_used = true; 
+    itemToUse.is_used = true;
     await itemToUse.save();
-    await user.save(); 
+    await user.save();
 
     return {
-        message: effectMessage,
-        updatedUser: {
-            xp: user.xp_total,
-            lives: user.lives,
-            activeBuffs: { 
-                xpExpires: user.xp_boost_expires_at,
-                gemExpires: user.gem_boost_expires_at
-            }
+      message: effectMessage,
+      updatedUser: {
+        xp: user.xp_total,
+        lives: user.lives,
+        activeBuffs: {
+          xpExpires: user.xp_boost_expires_at,
+          gemExpires: user.gem_boost_expires_at
         }
+      }
     };
   }
 
@@ -136,11 +136,11 @@ export class InventoryService {
   // =========================================================
 
   // A. OBTENER AVATAR (Items equipados)
-  static async getEquippedItems(userId: number) {
+  async getEquippedItems(userId: number) {
     return await UserItem.findAll({
-      where: { 
-        user_id: userId, 
-        is_equipped: true 
+      where: {
+        user_id: userId,
+        is_equipped: true
       },
       include: [{
         model: Product,
@@ -150,7 +150,7 @@ export class InventoryService {
   }
 
   // B. EQUIPAR ÍTEM (Lógica "Uno por Slot")
-  static async equipAvatarItem(userId: number, userItemId: number) {
+  async equipAvatarItem(userId: number, userItemId: number) {
     // 1. Buscar el ítem (SIN filtrar por tipo todavía, porque no sabemos qué tipo es)
     const itemToEquip = await UserItem.findOne({
       where: { id: userItemId, user_id: userId },
@@ -174,9 +174,9 @@ export class InventoryService {
 
     // 3. DES-EQUIPAR CUALQUIER OTRO ÍTEM DEL MISMO SLOT
     const currentEquipped = await UserItem.findAll({
-      where: { 
-        user_id: userId, 
-        is_equipped: true 
+      where: {
+        user_id: userId,
+        is_equipped: true
       },
       include: [{
         model: Product,
@@ -192,21 +192,23 @@ export class InventoryService {
 
     // 4. EQUIPAR EL NUEVO
     let message = 'Ítem equipado';
-    
+
     // Verificamos si acabamos de desequipar EL MISMO ítem (toggle)
     const wasAlreadyEquipped = currentEquipped.some(i => i.id === itemToEquip.id);
-    
+
     if (!wasAlreadyEquipped) {
-       itemToEquip.is_equipped = true;
-       await itemToEquip.save();
+      itemToEquip.is_equipped = true;
+      await itemToEquip.save();
     } else {
-       message = 'Ítem desequipado';
+      message = 'Ítem desequipado';
     }
 
-    return { 
-      message, 
+    return {
+      message,
       item: itemToEquip,
-      updatedAvatar: await this.getEquippedItems(userId) 
+      updatedAvatar: await this.getEquippedItems(userId)
     };
   }
 }
+
+export const inventoryService = new InventoryService();

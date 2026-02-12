@@ -43,7 +43,7 @@ Product.belongsToMany(User, { through: UserItem, foreignKey: 'product_id' });
 User.hasMany(UserItem, { foreignKey: 'user_id' });
 UserItem.belongsTo(User, { foreignKey: 'user_id' });
 Product.hasMany(UserItem, { foreignKey: 'product_id' });
-UserItem.belongsTo(Product, { foreignKey: 'product_id' }); 
+UserItem.belongsTo(Product, { foreignKey: 'product_id' });
 
 // --- 👇 NUEVO SISTEMA DE FLASHCARDS (SRS) ---
 
@@ -75,16 +75,16 @@ ActivityLog.belongsTo(User, { foreignKey: 'user_id' });
 // --- 👇 RELACIONES DE CLANES ---
 
 // Un Usuario pertenece a un Clan
-User.belongsTo(Clan, { 
-    foreignKey: 'clan_id', 
-    as: 'clan',
-    constraints: false // 👈 TRUCO: Desactiva constraints estrictos en la creación inicial
+User.belongsTo(Clan, {
+  foreignKey: 'clan_id',
+  as: 'clan',
+  // constraints: false // 👈 REMOVED: Enforcing strict FK
 });
 
-Clan.hasMany(User, { 
-    foreignKey: 'clan_id', 
-    as: 'members',
-    constraints: false 
+Clan.hasMany(User, {
+  foreignKey: 'clan_id',
+  as: 'members',
+  // constraints: false // 👈 REMOVED: Enforcing strict FK
 });
 
 // El Clan tiene un dueño (User)

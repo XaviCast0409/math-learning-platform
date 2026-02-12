@@ -1,13 +1,10 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { StatsService } from '../../services/admin/StatsService';
+import { catchAsync } from '../../utils/catchAsync';
 
 export class StatsController {
-  static async getDashboard(req: Request, res: Response) {
-    try {
-      const stats = await StatsService.getDashboardStats();
-      res.json(stats);
-    } catch (error: any) {
-      res.status(500).json({ message: error.message });
-    }
-  }
+  static getDashboard = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const stats = await StatsService.getDashboardStats();
+    res.json(stats);
+  });
 }

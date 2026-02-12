@@ -8,10 +8,10 @@ import { DeckCard } from '../../components/study/DeckCard';
 // Interfaz para el filtro
 interface CourseOption { id: number; title: string; }
 
-export const StudyHub = () => {
+export default function StudyHub() {
   const [decks, setDecks] = useState<DeckSummary[]>([]);
   const [loading, setLoading] = useState(true);
-  
+
   // Paginación y Búsqueda
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -26,10 +26,10 @@ export const StudyHub = () => {
     const loadCourses = async () => {
       try {
         // Asegúrate de tener este método o usa uno equivalente de tu API
-        const allCourses = await studyApi.getCoursesList(); 
+        const allCourses = await studyApi.getCoursesList();
         setCourses(allCourses);
-      } catch (e) { 
-        console.error("Error cargando cursos para filtro", e); 
+      } catch (e) {
+        console.error("Error cargando cursos para filtro", e);
       }
     };
     loadCourses();
@@ -39,7 +39,7 @@ export const StudyHub = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       fetchDecks();
-    }, 500); 
+    }, 500);
     return () => clearTimeout(timer);
   }, [page, searchTerm, selectedCourseId]); // 👈 Se recarga si cambia el curso
 
@@ -48,10 +48,10 @@ export const StudyHub = () => {
     try {
       // Pasamos el curso seleccionado a la API
       const data = await studyApi.getAllDecks(page, searchTerm, selectedCourseId);
-      
+
       setDecks(data.decks);
       setTotalPages(data.totalPages);
-      
+
       // Reset a página 1 si el filtro actual no tiene resultados en la página actual
       if (data.totalItems > 0 && data.decks.length === 0 && page > 1) {
         setPage(1);
@@ -132,8 +132,8 @@ export const StudyHub = () => {
             <Book size={48} className="mx-auto mb-2 opacity-50" />
             <p>No encontramos mazos.</p>
             {(searchTerm || selectedCourseId) && (
-              <button 
-                onClick={() => { setSearchTerm(''); handleCourseChange(undefined); }} 
+              <button
+                onClick={() => { setSearchTerm(''); handleCourseChange(undefined); }}
                 className="text-brand-blue font-bold text-sm mt-2 hover:underline"
               >
                 Limpiar filtros
@@ -158,7 +158,7 @@ export const StudyHub = () => {
             >
               <ArrowLeft size={24} />
             </button>
-            
+
             <span className="font-bold text-gray-400 text-sm">
               Página {page} de {totalPages}
             </span>

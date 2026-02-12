@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback, useMemo, type ReactNode } from 'react';
 import { io, Socket } from 'socket.io-client';
 import { useAuth } from './AuthContext';
 import type { MatchStartPayload } from '../types/pvp.types';
+import { toast } from 'react-hot-toast';
 
 // 1. Definimos la interfaz de Usuario Online
 export interface OnlineUser {
@@ -23,15 +24,15 @@ interface SocketContextProps {
   isConnected: boolean;
   isSearching: boolean;
   matchData: MatchStartPayload | null;
-  
+
   // 🆕 3. CAMBIO: Array de retos en lugar de uno solo
-  onlineUsers: OnlineUser[]; 
+  onlineUsers: OnlineUser[];
   incomingChallenges: ChallengeRequest[]; // <-- Antes era incomingChallenge singular
 
   joinQueue: () => void;
   leaveQueue: () => void;
   clearMatchData: () => void;
-  
+
   // 4. Funciones para retar
   sendChallenge: (targetUserId: number) => void;
   respondToChallenge: (targetUserId: number, accept: boolean) => void;
@@ -43,7 +44,7 @@ const SOCKET_URL = envUrl.replace('/api', '');
 
 export const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const { isAuthenticated } = useAuth();
-  
+
   const [socket, setSocket] = useState<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
@@ -71,9 +72,9 @@ export const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     if (socket && socket.connected) return;
 
     console.log("🔌 Conectando al servicio PvP...");
-    
+
     const newSocket = io(SOCKET_URL, {
-      auth: { token }, 
+      auth: { token },
       transports: ['websocket'],
       autoConnect: true,
     });
@@ -93,20 +94,20 @@ export const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) 
 
     // --- EVENTOS DE BÚSQUEDA AUTOMÁTICA ---
     newSocket.on('queue_status', (data: { status: string }) => {
-       if (data.status === 'waiting') setIsSearching(true);
-       else setIsSearching(false);
+      if (data.status === 'waiting') setIsSearching(true);
+      else setIsSearching(false);
     });
 
     newSocket.on('match_start', (data: MatchStartPayload) => {
-        console.log("⚔️ ¡PARTIDA ENCONTRADA!", data);
-        setIsSearching(false);
-        setIncomingChallenges([]); // Limpiamos todos los retos al empezar
-        setMatchData(data);
+      console.log("⚔️ ¡PARTIDA ENCONTRADA!", data);
+      setIsSearching(false);
+      setIncomingChallenges([]); // Limpiamos todos los retos al empezar
+      setMatchData(data);
     });
 
     // 6. EVENTOS DE LISTA DE USUARIOS Y RETOS
     newSocket.on('online_users_update', (users: OnlineUser[]) => {
-        setOnlineUsers(users);
+      setOnlineUsers(users);
     });
 
     // 👇 CAMBIO CLAVE: Cuando llega 'incoming_challenge', lo agregamos a la lista
@@ -114,16 +115,16 @@ export const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     // Si tu backend emite 'challenge_received', cambia el nombre del evento aquí.
     // Asumiré que tu backend emite 'incoming_challenge' basado en tu código anterior.
     newSocket.on('incoming_challenge', (data: ChallengeRequest) => {
-        console.log("🔔 Reto recibido de:", data.challengerName);
-        setIncomingChallenges(prev => {
-            // Evitar duplicados por seguridad
-            if (prev.find(c => c.challengerId === data.challengerId)) return prev;
-            return [...prev, data];
-        });
+      console.log("🔔 Reto recibido de:", data.challengerName);
+      setIncomingChallenges(prev => {
+        // Evitar duplicados por seguridad
+        if (prev.find(c => c.challengerId === data.challengerId)) return prev;
+        return [...prev, data];
+      });
     });
 
     newSocket.on('challenge_declined', (data: { message: string }) => {
-        alert(data.message); 
+      toast.error(data.message);
     });
 
     setSocket(newSocket);
@@ -131,63 +132,69 @@ export const SocketProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     return () => {
       newSocket.disconnect();
     };
-  }, [isAuthenticated]); 
+  }, [isAuthenticated]);
 
   // --- FUNCIONES ---
 
-  const joinQueue = () => {
+  // --- FUNCIONES (MEMOIZED) ---
+
+  const joinQueue = useCallback(() => {
     if (socket && isConnected) {
       console.log("🔍 Buscando partida...");
       setMatchData(null);
       socket.emit('join_queue');
-      setIsSearching(true); 
+      setIsSearching(true);
     }
-  };
+  }, [socket, isConnected]);
 
-  const leaveQueue = () => {
+  const leaveQueue = useCallback(() => {
     if (socket && isConnected) {
       console.log("Kb Cancelando búsqueda...");
       socket.emit('leave_queue');
       setIsSearching(false);
     }
-  };
+  }, [socket, isConnected]);
 
-  const clearMatchData = () => {
+  const clearMatchData = useCallback(() => {
     setMatchData(null);
-  };
+  }, []);
 
   // 7. FUNCIONES DE RETO
-  const sendChallenge = (targetUserId: number) => {
+  const sendChallenge = useCallback((targetUserId: number) => {
     if (socket && isConnected) {
-        console.log(`⚔️ Retando al usuario ${targetUserId}`);
-        socket.emit('challenge_player', { targetUserId });
+      console.log(`⚔️ Retando al usuario ${targetUserId}`);
+      socket.emit('challenge_player', { targetUserId });
     }
-  };
+  }, [socket, isConnected]);
 
-  const respondToChallenge = (targetUserId: number, accept: boolean) => {
+  const respondToChallenge = useCallback((targetUserId: number, accept: boolean) => {
     if (socket && isConnected) {
-        console.log(`📩 Respondiendo reto: ${accept ? 'SI' : 'NO'}`);
-        socket.emit('challenge_response', { targetUserId, accept });
-        
-        // 👇 CAMBIO: Removemos solo este reto específico de la lista
-        setIncomingChallenges(prev => prev.filter(c => c.challengerId !== targetUserId));
+      console.log(`📩 Respondiendo reto: ${accept ? 'SI' : 'NO'}`);
+      socket.emit('challenge_response', { targetUserId, accept });
+      setIncomingChallenges(prev => prev.filter(c => c.challengerId !== targetUserId));
     }
-  };
+  }, [socket, isConnected]);
+
+  // 8. MEMOIZED CONTEXT VALUE
+  const contextValue = useMemo(() => ({
+    socket,
+    isConnected,
+    isSearching,
+    matchData,
+    onlineUsers,
+    incomingChallenges,
+    joinQueue,
+    leaveQueue,
+    clearMatchData,
+    sendChallenge,
+    respondToChallenge,
+  }), [
+    socket, isConnected, isSearching, matchData, onlineUsers, incomingChallenges,
+    joinQueue, leaveQueue, clearMatchData, sendChallenge, respondToChallenge
+  ]);
 
   return (
-    <SocketContext.Provider value={{ 
-      socket, 
-      isConnected, 
-      isSearching, 
-      matchData, 
-      onlineUsers,
-      incomingChallenges, // Exportamos la lista
-      joinQueue, 
-      leaveQueue,
-      clearMatchData,
-      sendChallenge,
-      respondToChallenge,
-    }}>
+    <SocketContext.Provider value={contextValue}>
       {children}
     </SocketContext.Provider>
   );

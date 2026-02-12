@@ -15,7 +15,7 @@ import { StudyControls } from '../../components/study/session/StudyControls';
 
 import { SessionSummaryModal } from '../../components/study/session/SessionSummaryModal'; // 👈 IMPORTAR
 
-export const StudySession = () => {
+export default function StudySession() {
   const { deckId } = useParams();
   const navigate = useNavigate();
 

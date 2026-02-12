@@ -8,7 +8,7 @@ export class LogService {
    * @param details - Detalles extra
    * @param ip - IP del usuario (opcional)
    */
-  static async log(userId: number, action: string, details: string = '', ip: string = '') {
+  async log(userId: number, action: string, details: string = '', ip: string = '') {
     try {
       await ActivityLog.create({
         user_id: userId,
@@ -22,3 +22,5 @@ export class LogService {
     }
   }
 }
+
+export const logService = new LogService();

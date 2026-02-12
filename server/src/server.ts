@@ -2,7 +2,7 @@ import { createServer } from 'http'; // 👈 1. IMPORTANTE: Importamos esto
 import app from './app';
 import sequelize from './config/database';
 import dotenv from 'dotenv';
-import './models/index'; 
+import './models/index';
 
 // 👇 2. Importamos nuestro servicio de Sockets
 import SocketService from './services/socket.service';

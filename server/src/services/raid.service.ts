@@ -1,25 +1,25 @@
-import { RaidBoss, RaidParticipation, Exercise, Lesson, User } from '../models'; 
+import { RaidBoss, RaidParticipation, Exercise, Lesson, User } from '../models';
 import { Sequelize, Op } from 'sequelize';
-// 👇 IMPORTACIONES CLAVE
-import { UserService } from './user.service';
-import { RewardService } from './reward.service';
+import { userService } from './user.service';
+import { rewardService } from './reward.service';
+import { GAME_CONFIG } from '../config/game.config';
 
 export class RaidService {
 
   // 1. Obtener el Boss Activo actual (Igual)
-  static async getActiveBoss() {
+  async getActiveBoss() {
     return await RaidBoss.findOne({
       where: {
         status: 'active',
-        end_time: { [Op.gt]: new Date() } 
+        end_time: { [Op.gt]: new Date() }
       }
     });
   }
 
   // 2. Atacar al Boss (Igual)
-  static async attackBoss(userId: number, damage: number) {
+  async attackBoss(userId: number, damage: number) {
     const boss = await this.getActiveBoss();
-    if (!boss) return null; 
+    if (!boss) return null;
 
     await boss.decrement('current_hp', { by: damage });
     await boss.reload();
@@ -43,7 +43,7 @@ export class RaidService {
   }
 
   // 3. Admin: Invocar Boss Manualmente (Igual)
-  static async spawnBoss(name: string, hp: number, durationHours: number, imageUrl: string) {
+  async spawnBoss(name: string, hp: number, durationHours: number, imageUrl: string) {
     await RaidBoss.update({ status: 'expired' }, { where: { status: 'active' } });
 
     const endTime = new Date();
@@ -57,52 +57,52 @@ export class RaidService {
       start_time: new Date(),
       end_time: endTime,
       status: 'active',
-      rewards_pool: { xp: 500, gems: 50 } 
+      rewards_pool: { xp: GAME_CONFIG.REWARDS.RAID_PARTICIPATION_XP, gems: GAME_CONFIG.REWARDS.RAID_PARTICIPATION_GEMS }
     });
   }
 
   // Obtener preguntas (Igual)
-  static async getRaidQuestions(limit: number = 20, excludeIds: number[] = []) {
+  async getRaidQuestions(limit: number = GAME_CONFIG.RAID.QUESTIONS_LIMIT, excludeIds: number[] = []) {
     return await Exercise.findAll({
       where: {
         type: { [Op.in]: ['multiple_choice', 'true_false'] },
         id: { [Op.notIn]: excludeIds }
       },
-      order: [Sequelize.fn('RANDOM')], 
+      order: [Sequelize.fn('RANDOM')],
       limit: limit,
-      include: [{ model: Lesson, attributes: ['title'] }] 
+      include: [{ model: Lesson, attributes: ['title'] }]
     });
   }
 
   // 👇 FUNCIÓN CORREGIDA Y OPTIMIZADA
-  static async grantRaidRewards(userIds: number[]) {
+  async grantRaidRewards(userIds: number[]) {
     if (userIds.length === 0) return { xp: 0, gems: 0 };
 
-    const BASE_XP = 500;
-    const BASE_GEMS = 50;
+    const BASE_XP = GAME_CONFIG.REWARDS.RAID_PARTICIPATION_XP;
+    const BASE_GEMS = GAME_CONFIG.REWARDS.RAID_PARTICIPATION_GEMS;
 
     console.log(`🎁 Entregando premios a ${userIds.length} héroes...`);
 
     // Iteramos por cada usuario para aplicar sus bonos INDIVIDUALES
     for (const userId of userIds) {
-        try {
-            // 1. XP + CLAN + NIVELES (Todo en uno con UserService)
-            // Esto suma la XP, revisa si sube de nivel y le da la XP al Clan.
-            await UserService.addExperience(userId, BASE_XP);
+      try {
+        // 1. XP + CLAN + NIVELES (Todo en uno con UserService)
+        // Esto suma la XP, revisa si sube de nivel y le da la XP al Clan.
+        await userService.addExperience(userId, BASE_XP);
 
-            // 2. GEMAS (Calculadas con RewardService)
-            // UserService no da gemas "arbitrarias", así que las calculamos aquí.
-            const gemResult = await RewardService.calculateBonuses(userId, 0, BASE_GEMS);
-            
-            // Sumamos las gemas finales
-            await User.increment(
-                { gems: gemResult.finalGems }, 
-                { where: { id: userId } }
-            );
+        // 2. GEMAS (Calculadas con RewardService)
+        // UserService no da gemas "arbitrarias", así que las calculamos aquí.
+        const gemResult = await rewardService.calculateBonuses(userId, 0, BASE_GEMS);
 
-        } catch (error) {
-            console.error(`Error premiando usuario ${userId}:`, error);
-        }
+        // Sumamos las gemas finales
+        await User.increment(
+          { gems: gemResult.finalGems },
+          { where: { id: userId } }
+        );
+
+      } catch (error) {
+        console.error(`Error premiando usuario ${userId}:`, error);
+      }
     }
 
     // Retornamos la BASE para mostrarla en el Socket (Frontend)
@@ -110,3 +110,5 @@ export class RaidService {
     return { xp: BASE_XP, gems: BASE_GEMS };
   }
 }
+
+export const raidService = new RaidService();

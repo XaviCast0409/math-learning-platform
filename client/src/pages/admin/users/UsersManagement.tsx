@@ -1,58 +1,41 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // 👈 IMPORTANTE
-import { 
-  Search, UserX, UserCheck, Shield, GraduationCap, 
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {
+  Search, UserX, UserCheck, Shield, GraduationCap,
   KeyRound, Ban, RefreshCcw, ChevronLeft, ChevronRight,
-  Eye // 👈 IMPORTANTE
+  Eye
 } from 'lucide-react';
 import { adminUsersApi } from '../../../api/admin/users.api';
 import type { User } from '../../../types';
 import { ChangePasswordModal } from './ChangePasswordModal';
+import { useUsers } from '../../../hooks/useUsers';
+import { useDebounce } from '../../../hooks/useDebounce';
+import { toast } from 'react-hot-toast';
 
 // Components
 import { Button } from '../../../components/common/Button';
 
 export default function UsersManagement() {
-  const navigate = useNavigate(); // 👈 IMPORTANTE
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
-  
-  // Paginación y Filtros
+  const navigate = useNavigate();
+
+  // Paginación y Filtros Local State
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [roleFilter, setRoleFilter] = useState('');
+
+  // Debounce search
+  const debouncedSearch = useDebounce(searchTerm, 500);
+
+  // Data Fetching Hook (SWR)
+  const { users, pagination, isLoading, mutate } = useUsers({
+    page,
+    search: debouncedSearch,
+    role: roleFilter
+  });
 
   // Modal State
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-
-  // Cargar Usuarios
-  const fetchUsers = async () => {
-    setLoading(true);
-    try {
-      const response = await adminUsersApi.getAll({
-        page,
-        search: searchTerm,
-        role: roleFilter
-      });
-      setUsers(response.data);
-      setTotalPages(response.pages);
-    } catch (error) {
-      console.error("Error cargando usuarios", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Efecto para recargar cuando cambian filtros o página
-  useEffect(() => {
-    // Debounce manual simple para búsqueda
-    const timer = setTimeout(() => {
-      fetchUsers();
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [page, searchTerm, roleFilter]);
 
   // --- ACCIONES ---
 
@@ -62,12 +45,14 @@ export default function UsersManagement() {
     try {
       if (user.deletedAt) {
         await adminUsersApi.unbanUser(user.id);
+        toast.success(`Usuario ${user.username} reactivado`);
       } else {
         await adminUsersApi.banUser(user.id);
+        toast.success(`Usuario ${user.username} baneado`);
       }
-      fetchUsers(); // Recargar lista
+      mutate(); // Recargar lista (optimista o revalidación)
     } catch (error) {
-      alert("Error al cambiar estado del usuario");
+      toast.error("Error al cambiar estado del usuario");
     }
   };
 
@@ -75,10 +60,10 @@ export default function UsersManagement() {
     if (!selectedUser) return;
     try {
       await adminUsersApi.forcePasswordChange(selectedUser.id, newPass);
-      alert("Contraseña actualizada correctamente");
+      toast.success("Contraseña actualizada correctamente");
       setModalOpen(false);
     } catch (error) {
-      alert("Error al actualizar contraseña");
+      toast.error("Error al actualizar contraseña");
     }
   };
 
@@ -89,9 +74,9 @@ export default function UsersManagement() {
 
   return (
     <div className="space-y-6">
-      <ChangePasswordModal 
-        isOpen={modalOpen} 
-        onClose={() => setModalOpen(false)} 
+      <ChangePasswordModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
         username={selectedUser?.username || ''}
         onSubmit={handlePasswordChange}
       />
@@ -104,39 +89,39 @@ export default function UsersManagement() {
         </div>
 
         <div className="flex gap-2 w-full md:w-auto">
-           {/* Buscador */}
-           <div className="relative flex-1 md:w-64">
-             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
-             <input 
-               type="text" 
-               placeholder="Buscar por usuario o email..." 
-               className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-               value={searchTerm}
-               onChange={(e) => {
-                 setSearchTerm(e.target.value);
-                 setPage(1); // Reset a pág 1 al buscar
-               }}
-             />
-           </div>
-           
-           {/* Filtro Rol */}
-           <select 
-              className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none cursor-pointer"
-              value={roleFilter}
-              onChange={(e) => setRoleFilter(e.target.value)}
-           >
-             <option value="">Todos los Roles</option>
-             <option value="student">Estudiantes</option>
-             <option value="moderator">Moderadores</option>
-             <option value="admin">Admins</option>
-           </select>
+          {/* Buscador */}
+          <div className="relative flex-1 md:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+            <input
+              type="text"
+              placeholder="Buscar por usuario o email..."
+              className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setPage(1); // Reset a pág 1 al buscar
+              }}
+            />
+          </div>
+
+          {/* Filtro Rol */}
+          <select
+            className="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none cursor-pointer"
+            value={roleFilter}
+            onChange={(e) => setRoleFilter(e.target.value)}
+          >
+            <option value="">Todos los Roles</option>
+            <option value="student">Estudiantes</option>
+            <option value="moderator">Moderadores</option>
+            <option value="admin">Admins</option>
+          </select>
         </div>
       </div>
 
       {/* 2. Tabla de Usuarios */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        {loading ? (
-           <div className="p-10 flex justify-center"><div className="animate-spin h-8 w-8 border-4 border-brand-blue border-t-transparent rounded-full"></div></div>
+        {isLoading ? (
+          <div className="p-10 flex justify-center"><div className="animate-spin h-8 w-8 border-4 border-brand-blue border-t-transparent rounded-full"></div></div>
         ) : (
           <table className="w-full text-left text-sm">
             <thead className="bg-gray-50 border-b border-gray-100 text-gray-500 uppercase tracking-wider font-bold text-xs">
@@ -151,7 +136,7 @@ export default function UsersManagement() {
             <tbody className="divide-y divide-gray-100">
               {users.map((user) => (
                 <tr key={user.id} className={`hover:bg-gray-50 transition-colors ${user.deletedAt ? 'bg-red-50/50' : ''}`}>
-                  
+
                   {/* Usuario */}
                   <td className="p-4">
                     <div className="flex items-center gap-3">
@@ -169,17 +154,17 @@ export default function UsersManagement() {
 
                   {/* Rol */}
                   <td className="p-4">
-                    {user.role === 'admin' && <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-100 text-purple-700 font-bold text-xs"><Shield size={12}/> Admin</span>}
-                    {user.role === 'moderator' && <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-100 text-indigo-700 font-bold text-xs"><Shield size={12}/> Mod</span>}
-                    {user.role === 'student' && <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-blue-100 text-blue-700 font-bold text-xs"><GraduationCap size={12}/> Estudiante</span>}
+                    {user.role === 'admin' && <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-purple-100 text-purple-700 font-bold text-xs"><Shield size={12} /> Admin</span>}
+                    {user.role === 'moderator' && <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-indigo-100 text-indigo-700 font-bold text-xs"><Shield size={12} /> Mod</span>}
+                    {user.role === 'student' && <span className="inline-flex items-center gap-1 px-2 py-1 rounded bg-blue-100 text-blue-700 font-bold text-xs"><GraduationCap size={12} /> Estudiante</span>}
                   </td>
 
                   {/* Estado */}
                   <td className="p-4">
                     {user.deletedAt ? (
-                       <span className="inline-flex items-center gap-1 text-red-500 font-bold text-xs"><UserX size={14}/> BANEADO</span>
+                      <span className="inline-flex items-center gap-1 text-red-500 font-bold text-xs"><UserX size={14} /> BANEADO</span>
                     ) : (
-                       <span className="inline-flex items-center gap-1 text-green-500 font-bold text-xs"><UserCheck size={14}/> ACTIVO</span>
+                      <span className="inline-flex items-center gap-1 text-green-500 font-bold text-xs"><UserCheck size={14} /> ACTIVO</span>
                     )}
                   </td>
 
@@ -191,9 +176,9 @@ export default function UsersManagement() {
                   {/* Acciones */}
                   <td className="p-4 text-right">
                     <div className="flex justify-end gap-2">
-                      
+
                       {/* 👇 BOTÓN VER PERFIL (NUEVO) 👇 */}
-                      <button 
+                      <button
                         onClick={() => navigate(`/admin/users/${user.id}`)}
                         className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         title="Ver Perfil Completo"
@@ -201,22 +186,21 @@ export default function UsersManagement() {
                         <Eye size={16} />
                       </button>
 
-                      <button 
+                      <button
                         onClick={() => openPasswordModal(user)}
                         className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         title="Cambiar Contraseña"
                       >
                         <KeyRound size={16} />
                       </button>
-                      
+
                       {user.role !== 'admin' && (
-                        <button 
+                        <button
                           onClick={() => handleBanToggle(user)}
-                          className={`p-2 rounded-lg transition-colors ${
-                            user.deletedAt 
-                              ? 'text-green-500 hover:bg-green-50 hover:text-green-700' 
-                              : 'text-gray-400 hover:text-red-600 hover:bg-red-50'
-                          }`}
+                          className={`p-2 rounded-lg transition-colors ${user.deletedAt
+                            ? 'text-green-500 hover:bg-green-50 hover:text-green-700'
+                            : 'text-gray-400 hover:text-red-600 hover:bg-red-50'
+                            }`}
                           title={user.deletedAt ? "Reactivar Usuario" : "Banear Usuario"}
                         >
                           {user.deletedAt ? <RefreshCcw size={16} /> : <Ban size={16} />}
@@ -227,8 +211,8 @@ export default function UsersManagement() {
 
                 </tr>
               ))}
-              
-              {users.length === 0 && !loading && (
+
+              {users.length === 0 && !isLoading && (
                 <tr>
                   <td colSpan={5} className="p-8 text-center text-gray-400">
                     No se encontraron usuarios con estos filtros.
@@ -243,22 +227,22 @@ export default function UsersManagement() {
       {/* 3. Paginación */}
       <div className="flex justify-between items-center bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
         <span className="text-sm text-gray-500">
-          Página <span className="font-bold text-black">{page}</span> de {totalPages}
+          Página <span className="font-bold text-black">{page}</span> de {pagination.totalPages}
         </span>
         <div className="flex gap-2">
-          <Button 
-            variant="outline" 
-            className="h-8 px-3" 
+          <Button
+            variant="outline"
+            className="h-8 px-3"
             disabled={page === 1}
             onClick={() => setPage(p => Math.max(1, p - 1))}
           >
             <ChevronLeft size={16} /> Anterior
           </Button>
-          <Button 
-            variant="outline" 
-            className="h-8 px-3" 
-            disabled={page === totalPages}
-            onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+          <Button
+            variant="outline"
+            className="h-8 px-3"
+            disabled={page === pagination.totalPages}
+            onClick={() => setPage(p => Math.min(pagination.totalPages, p + 1))}
           >
             Siguiente <ChevronRight size={16} />
           </Button>

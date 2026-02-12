@@ -2,23 +2,23 @@ import { Star, Check, Lock } from 'lucide-react';
 import { clsx } from 'clsx';
 // import { useNavigate } from 'react-router-dom'; // ❌ ELIMINAR ESTO
 
-interface Lesson {
-  id: number;
-  title: string;
-  status: 'locked' | 'active' | 'completed';
-}
-
 interface LessonNodeProps {
-  lesson: Lesson;
+  lesson: {
+    id: number;
+    title: string;
+    status: 'locked' | 'active' | 'completed';
+    // Permitimos otras props opcionales para compatibilidad
+    [key: string]: any;
+  };
   index: number;
-  onClick: (lesson: Lesson) => void; // 👈 NUEVO: Recibimos la función de click
+  onClick: (lesson: any) => void;
 }
 
 export const LessonNode = ({ lesson, index, onClick }: LessonNodeProps) => {
   // const navigate = useNavigate(); // ❌ YA NO USAMOS NAVIGATE AQUÍ
 
   // Cálculo de posición en zig-zag (Sin cambios)
-  const offset = Math.sin(index) * 60; 
+  const offset = Math.sin(index) * 60;
 
   const getNodeStyles = () => {
     switch (lesson.status) {
@@ -33,14 +33,14 @@ export const LessonNode = ({ lesson, index, onClick }: LessonNodeProps) => {
   };
 
   return (
-    <div 
+    <div
       className="relative z-10 transition-transform hover:scale-110 active:scale-95"
       style={{ transform: `translateX(${offset}px)` }}
     >
       <button
         // 👇 AHORA SOLO LLAMAMOS A LA FUNCIÓN DEL PADRE
-        onClick={() => onClick(lesson)} 
-        
+        onClick={() => onClick(lesson)}
+
         className={clsx(
           "w-20 h-20 rounded-full border-b-8 flex items-center justify-center relative",
           getNodeStyles()
@@ -49,7 +49,7 @@ export const LessonNode = ({ lesson, index, onClick }: LessonNodeProps) => {
         {lesson.status === 'completed' && <Check size={40} strokeWidth={4} />}
         {lesson.status === 'active' && <Star size={40} fill="currentColor" />}
         {lesson.status === 'locked' && <Lock size={32} />}
-        
+
         {/* Reflejo decorativo (Brillo) */}
         <div className="absolute top-2 right-3 w-4 h-2 bg-white/40 rounded-full rotate-45"></div>
       </button>

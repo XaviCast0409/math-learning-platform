@@ -1,33 +1,29 @@
 import { Request, Response, NextFunction } from 'express';
-import { ShopService } from '../services/shop.service';
-import { LogService } from '../services/admin/LogService';
+import { shopService } from '../services/shop.service';
+import { logService } from '../services/admin/LogService';
+import AppError from '../utils/AppError';
+import { catchAsync } from '../utils/catchAsync';
 
-export const getShopItems = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const products = await ShopService.getProducts();
-    res.status(200).json({ status: 'success', data: { products } });
-  } catch (error) {
-    next(error);
-  }
-};
+export const getShopItems = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const products = await shopService.getProducts();
+  res.status(200).json({ status: 'success', data: { products } });
+});
 
-export const buyItem = async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const userId = (req as any).user.id;
-    const { productId } = req.body;
+export const buyItem = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+  const userId = req.user?.id;
+  if (!userId) throw new AppError('No autenticado', 401);
 
-    if (!productId) return res.status(400).json({ status: 'fail', message: 'Falta productId' });
+  const { productId } = req.body;
 
-    const result = await ShopService.buyProduct(userId, productId);
+  if (!productId) return res.status(400).json({ status: 'fail', message: 'Falta productId' });
 
-    await LogService.log(userId, 'PURCHASE', `Compró ${result.product.name} por ${result.product.cost_gems} gemas`);
+  const result = await shopService.buyProduct(userId, productId);
 
-    res.status(200).json({
-      status: 'success',
-      message: result.message,
-      data: { user: result.updatedUser }
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+  await logService.log(userId, 'PURCHASE', `Compró ${result.product.name} por ${result.product.cost_gems} gemas`);
+
+  res.status(200).json({
+    status: 'success',
+    message: result.message,
+    data: { user: result.updatedUser }
+  });
+});

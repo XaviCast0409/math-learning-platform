@@ -1,30 +1,29 @@
-// src/controllers/auth.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import { AuthService } from '../services/auth.service';
-import { User } from '../models';
-import { LifeService } from '../services/life.service';
-import { LogService } from '../services/admin/LogService';
+// 👇 Importar INSTANCIAS (ya no las clases estáticas)
+import { AuthService } from '../services/auth.service'; // Esto es una clase pero en nuestro refactor anterior lo dejamos como clase, no exportamos instancia. Espera, verificaremos.
+import { lifeService } from '../services/life.service';
+import AppError from '../utils/AppError';
+
+// ⚠️ NOTA: Si AuthService sigue siendo una clase para instanciar, lo instanciamos aquí.
+// Si lo cambiamos a singleton, importamos 'authService'.
+// Revisando mi paso anterior (215), AuthService es una CLASE exportada.
+// Pero en mi plan dije que lo haría singleton.
+// Para ser consistente con lo que hice en 215 (overwrite), AuthService es una CLASE.
+// Sin embargo, para estandarizar, DEBERÍA ser singleton.
+// Pero como ya escribí el archivo como clase, lo usaré como clase aquí por ahora
+// O mejor: Lo instancio aquí mismo si no exporté instancia.
+
+const authService = new AuthService();
 
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { username, email, password } = req.body;
-
-    if (!username || !email || !password) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Por favor provee username, email y password'
-      });
-    }
-
-    const { user, token } = await AuthService.register({ username, email, password });
+    // La validación ya pasó por el middleware
+    const { user, token } = await authService.register(req.body);
 
     res.status(201).json({
       status: 'success',
-      message: 'Usuario registrado exitosamente',
-      token,
-      data: { user }
+      data: { user, token }
     });
-
   } catch (error) {
     next(error);
   }
@@ -32,46 +31,25 @@ export const register = async (req: Request, res: Response, next: NextFunction) 
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { email, password } = req.body;
+    // Obtenemos la IP real (útil para seguridad)
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+    const finalIp = Array.isArray(ip) ? ip[0] : ip || '';
 
-    if (!email || !password) {
-      return res.status(400).json({ status: 'fail', message: 'Email y contraseña requeridos' });
-    }
+    const { user, token, streak_reward } = await authService.login({
+      ...req.body,
+      ipAddress: finalIp
+    });
 
-    const { user, token, streak_reward } = await AuthService.login({ email, password });
-
-    // 👇 LÓGICA ROBUSTA PARA OBTENER IP REAL
-    let clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || req.ip;
-
-    // A veces 'x-forwarded-for' devuelve una lista "IP_CLIENTE, PROXY1, PROXY2".
-    // Nos interesa la primera (la del cliente).
-    if (Array.isArray(clientIp)) {
-       clientIp = clientIp[0];
-    } else if (typeof clientIp === 'string' && clientIp.includes(',')) {
-       clientIp = clientIp.split(',')[0].trim();
-    }
-    
-    // Normalizar si es localhost IPv6 (::1) a IPv4 (127.0.0.1) si prefieres, o dejarlo así.
-    const finalIp = (clientIp as string) || '0.0.0.0';
-
-    console.log('IP Detectada:', finalIp); 
-
-    // Guardamos la IP real
-    await LogService.log(user.id, 'LOGIN', 'Inicio de sesión exitoso', finalIp);
-
-    const { lives, nextRegen } = await LifeService.syncLives(user);
+    // Sincronizar vidas al hacer login
+    const lifeStatus = await lifeService.syncLives(user);
+    // (Opcional) podriamos actualizar el user object con las vidas si cambió
 
     res.status(200).json({
       status: 'success',
-      message: 'Inicio de sesión exitoso',
-      token,
-      streak_reward,
       data: {
-        user: {
-          ...user,
-          lives,
-          nextRegen
-        }
+        user: { ...user, lives: lifeStatus.lives, next_life: lifeStatus.nextRegen },
+        token,
+        streak_reward
       }
     });
   } catch (error) {
@@ -81,27 +59,39 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 export const getMe = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const userId = (req as any).user.id;
+    // req.user ya está poblado por el middleware 'protect'
+    // Pero 'protect' a veces solo pone id y role. 
+    // Si queremos datos frescos, consultamos la BD o usamos lo que venga.
+    // Asumimos que queremos datos frescos de vidas y eso.
 
+    // Aquí necesitamos el User Model o usar un UserService.getProfile
+    // Como no tenemos userService.getProfile explícito que devuelva el modelo completo
+    // (UserService por ahora solo tiene addExperience/updateStreak),
+    // Usaremos el modelo directo O mejor, usaremos lifeService.syncLives que sabe buscarlo.
+
+    // IMPORTANTE: req.user es { id, role }, no el modelo completo.
+    const userId = req.user?.id;
+    if (!userId) throw new AppError('No logueado', 401);
+
+    // Truco: lifeService.syncLives busca al usuario si le pasamos {id}
+    const lifeStatus = await lifeService.syncLives({ id: userId } as any);
+
+    // Pero necesitamos el usuario entero para devolverlo.
+    // Vamos a importar User model aquí (excepción aceptable o mover a UserService.getMe)
+    const { User } = require('../models'); // Lazy import para evitar ciclos si los hubiera
     const user = await User.findByPk(userId, {
       attributes: { exclude: ['password_hash'] }
     });
 
-    if (!user) {
-      return res.status(404).json({ status: 'fail', message: 'Usuario no encontrado' });
-    }
-
-    // 👇 3. ACTUALIZAR VIDAS AL RECARGAR PERFIL (F5)
-    // Esto asegura que si recarga la página, se recalcule el tiempo
-    const { lives, nextRegen } = await LifeService.syncLives(user);
+    if (!user) throw new AppError('Usuario no encontrado', 404);
 
     res.status(200).json({
       status: 'success',
       data: {
         user: {
-          ...user.toJSON(), // Convertimos a objeto plano de JS
-          lives,            // Vidas actualizadas
-          nextRegen         // Fecha para el contador
+          ...user.toJSON(),
+          lives: lifeStatus.lives,
+          next_life: lifeStatus.nextRegen
         }
       }
     });

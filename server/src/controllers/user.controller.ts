@@ -1,76 +1,71 @@
 // src/controllers/user.controller.ts
 import { Request, Response, NextFunction } from 'express';
-import { UserService } from '../services/user.service';
-import { User } from '../models'; // Importa tu modelo
-import { LogService } from '../services/admin/LogService'
+import { userService } from '../services/user.service';
+import { User } from '../models';
+import { logService } from '../services/admin/LogService';
+import AppError from '../utils/AppError';
+import { catchAsync } from '../utils/catchAsync';
 
 // Para pruebas o admin: dar XP manual
-export const addXpManually = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const userId = (req as any).user.id; 
-        const { amount } = req.body; 
+export const addXpManually = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.user?.id;
+    if (!userId) throw new AppError('No autenticado', 401);
 
-        if (!amount || amount <= 0) {
-            return res.status(400).json({ message: 'La cantidad debe ser positiva' });
-        }
+    const { amount } = req.body;
 
-        const result = await UserService.addExperience(userId, Number(amount));
-
-        // 👇 AGREGAR ESTO:
-        await LogService.log(userId, 'MANUAL_XP', `Se agregaron manualmente ${amount} XP`);
-
-        res.status(200).json({
-            status: 'success',
-            data: {
-                level: result.user.level,
-                xp_total: result.user.xp_total,
-                leveled_up: result.leveledUp,
-                rewards: result.leveledUp ? result.rewards : null 
-            }
-        });
-    } catch (error) {
-        next(error);
+    if (!amount || amount <= 0) {
+        return res.status(400).json({ message: 'La cantidad debe ser positiva' });
     }
-};
+
+    const result = await userService.addExperience(userId, Number(amount));
+
+    await logService.log(userId, 'MANUAL_XP', `Se agregaron manualmente ${amount} XP`);
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            level: result.user.level,
+            xp_total: result.user.xp_total,
+            leveled_up: result.leveledUp,
+            rewards: result.leveledUp ? result.rewards : null
+        }
+    });
+});
 
 // Obtener info de progreso (nivel, barra de XP)
-export const getUserProgress = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const userId = (req as any).user.id;
-        const user = await User.findByPk(userId);
-        
-        if (!user) return res.status(404).json({message: 'User not found'});
+export const getUserProgress = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.user?.id;
+    if (!userId) throw new AppError('No autenticado', 401);
 
-        const progress = UserService.getProgressInfo(user);
+    const user = await User.findByPk(userId);
 
-        res.status(200).json({
-            status: 'success',
-            data: progress
-        });
-    } catch (error) {
-        next(error);
-    }
-};
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    const progress = userService.getProgressInfo(user);
+
+    res.status(200).json({
+        status: 'success',
+        data: progress
+    });
+});
 
 // Nuevo método para obtener estado de racha (si quisieras una llamada separada)
-export const getStreakStatus = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-        const userId = (req as any).user.id;
-        const user = await User.findByPk(userId, {
-            attributes: ['current_streak', 'highest_streak', 'last_activity_date']
-        });
+export const getStreakStatus = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const userId = req.user?.id;
+    if (!userId) throw new AppError('No autenticado', 401);
 
-        if (!user) return res.status(404).json({ message: 'User not found' });
+    const user = await User.findByPk(userId, {
+        attributes: ['current_streak', 'highest_streak', 'last_activity_date']
+    });
 
-        res.status(200).json({
-            status: 'success',
-            data: {
-                current_streak: user.current_streak,
-                highest_streak: user.highest_streak,
-                last_activity: user.last_activity_date
-            }
-        });
-    } catch (error) {
-        next(error);
-    }
-};
+    if (!user) return res.status(404).json({ message: 'User not found' });
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            current_streak: user.current_streak,
+            highest_streak: user.highest_streak,
+            last_activity: user.last_activity_date
+        }
+    });
+});

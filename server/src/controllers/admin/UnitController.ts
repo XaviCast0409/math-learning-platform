@@ -1,35 +1,24 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { UnitService } from '../../services/admin/UnitService';
+import { catchAsync } from '../../utils/catchAsync';
 
 export class UnitController {
 
-  static async createUnit(req: Request, res: Response) {
-    try {
-      // Se espera { course_id, title, order_index, description }
-      const unit = await UnitService.create(req.body);
-      res.status(201).json(unit);
-    } catch (error: any) {
-      res.status(400).json({ message: error.message });
-    }
-  }
+  static createUnit = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    // Se espera { course_id, title, order_index, description }
+    const unit = await UnitService.create(req.body);
+    res.status(201).json(unit);
+  });
 
-  static async updateUnit(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      const unit = await UnitService.update(Number(id), req.body);
-      res.json(unit);
-    } catch (error: any) {
-      res.status(404).json({ message: error.message });
-    }
-  }
+  static updateUnit = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const unit = await UnitService.update(Number(id), req.body);
+    res.json(unit);
+  });
 
-  static async deleteUnit(req: Request, res: Response) {
-    try {
-      const { id } = req.params;
-      const result = await UnitService.delete(Number(id));
-      res.json(result);
-    } catch (error: any) {
-      res.status(404).json({ message: error.message });
-    }
-  }
+  static deleteUnit = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const { id } = req.params;
+    const result = await UnitService.delete(Number(id));
+    res.json(result);
+  });
 }

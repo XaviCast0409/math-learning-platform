@@ -2,7 +2,7 @@ import { Op } from 'sequelize';
 import { Course, Unit, Lesson, Exercise } from '../../models'; // Importar desde tu index.ts
 
 interface CourseFilters {
-  title?: string;
+  search?: string;
   level?: string;
 }
 
@@ -17,8 +17,8 @@ export class CourseService {
     const whereClause: any = {};
 
     // Filtros dinámicos (Buscador y Dropdown de nivel)
-    if (filters?.title) {
-      whereClause.title = { [Op.iLike]: `%${filters.title}%` }; // Búsqueda insensible a mayúsculas
+    if (filters?.search) {
+      whereClause.title = { [Op.iLike]: `%${filters.search}%` }; // Búsqueda insensible a mayúsculas
     }
     if (filters?.level) {
       whereClause.level = filters.level;
@@ -52,8 +52,8 @@ export class CourseService {
         model: Unit,
         as: 'units',
         // 'separate: true' optimiza la consulta haciendo sub-queries en lugar de un join gigante
-        separate: true, 
-        order: [['order_index', 'ASC']], 
+        separate: true,
+        order: [['order_index', 'ASC']],
         include: [{
           model: Lesson,
           as: 'lessons',
@@ -85,14 +85,14 @@ export class CourseService {
   static async deleteCourse(id: number) {
     const course = await Course.findByPk(id);
     if (!course) throw new Error('Curso no encontrado');
-    await course.destroy(); 
+    await course.destroy();
     return { message: 'Curso deshabilitado correctamente' };
   }
-  
+
   /**
    * 4. RESTORE (Para recuperar un curso borrado por error)
    */
   static async restoreCourse(id: number) {
-      return await Course.restore({ where: { id } });
+    return await Course.restore({ where: { id } });
   }
 }

@@ -43,8 +43,8 @@ export default function Login() {
 
       // Verificamos si la respuesta trae una recompensa por racha
       // (Asegúrate de haber actualizado el AuthContext como vimos en el paso anterior)
-      if (response && response.streak_reward) {
-        setStreakReward(response.streak_reward);
+      if (response && response.data.streak_reward) {
+        setStreakReward(response.data.streak_reward);
         // No navegamos todavía, esperamos a que el usuario cierre el modal
       } else {
         navigate('/learn');
