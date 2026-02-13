@@ -23,6 +23,10 @@
     "removeComments": true, /* Limpia comentarios en el código final */
     "sourceMap": true /* Ayuda a depurar errores indicando la línea en el TS original */
   },
+  "typeRoots": [
+    "./node_modules/@types",
+    "./src/types"
+  ],
   "include": [
     "src/**/*"
   ],
