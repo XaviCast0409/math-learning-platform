@@ -39,6 +39,8 @@ class User extends Model {
   public metadata!: object;
   public clan_id!: number | null;
   public readonly clan?: Clan;
+  public readonly user_items?: any[]; // Cambiar 'any' por UserItem[] cuando importes UserItem para evitar dependencia circular si no está en index
+  public readonly inventory?: any[]; // Cambiar 'any' por UserItem[] cuando importes UserItem para evitar dependencia circular si no está en index
 }
 
 User.init({

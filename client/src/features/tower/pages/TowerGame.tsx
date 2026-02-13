@@ -17,11 +17,31 @@ interface Props {
 export function TowerGame({ gameState, onAnswer, submitting, lastResult, onExit }: Props) {
 	const { run, question } = gameState;
 	const [inputAnswer, setInputAnswer] = useState('');
+	const [localSubmitting, setLocalSubmitting] = useState(false);
 
 	// Reset input when question changes
 	useEffect(() => {
 		setInputAnswer('');
+		setLocalSubmitting(false);
 	}, [question.id]);
+
+	// Mandatory 1s cooldown after answer
+	useEffect(() => {
+		let timeout: ReturnType<typeof setTimeout>;
+		if (localSubmitting) {
+			timeout = setTimeout(() => {
+				// Only unlock if parent finished submitting
+				if (!submitting) {
+					setLocalSubmitting(false);
+				}
+			}, 1000);
+		} else if (!submitting) {
+			// If not local submitting but parent finished, ensure unlocked
+			setLocalSubmitting(false);
+		}
+
+		return () => clearTimeout(timeout);
+	}, [localSubmitting, submitting]);
 
 	// Boss Floor Logic
 	const isBossFloor = run.current_floor % 5 === 0;
@@ -162,7 +182,14 @@ export function TowerGame({ gameState, onAnswer, submitting, lastResult, onExit 
 
 						{/* Input Area (Fill-in) vs Options Grid (Choice) */}
 						{question.type === 'fill_in' ? (
-							<form onSubmit={handleSubmitInput} className="w-full flex flex-col gap-4">
+							<form onSubmit={(e) => {
+								if (submitting || localSubmitting) {
+									e.preventDefault();
+									return;
+								}
+								setLocalSubmitting(true);
+								handleSubmitInput(e);
+							}} className="w-full flex flex-col gap-4">
 								<div className="relative">
 									<input
 										type="text"
@@ -171,6 +198,7 @@ export function TowerGame({ gameState, onAnswer, submitting, lastResult, onExit 
 										placeholder="Escribe tu respuesta..."
 										className="w-full p-6 text-2xl font-bold text-center bg-gray-800 border-2 border-gray-600 rounded-2xl focus:border-purple-500 focus:ring-4 focus:ring-purple-500/20 outline-none transition-all placeholder-gray-600 text-white"
 										autoFocus
+										disabled={submitting || localSubmitting}
 									/>
 									<div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm font-bold">
 										ENTER ↵
@@ -178,11 +206,11 @@ export function TowerGame({ gameState, onAnswer, submitting, lastResult, onExit 
 								</div>
 								<Button
 									type="submit"
-									disabled={submitting || !inputAnswer}
+									disabled={submitting || !inputAnswer || localSubmitting}
 									variant={isBossFloor ? "danger" : "primary"}
-									className="w-full py-4 text-xl font-bold shadow-lg"
+									className="w-full py-4 text-xl font-bold shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
 								>
-									{submitting ? 'Verificando...' : 'Enviar Respuesta'} <Sword className="ml-2" size={20} />
+									{submitting || localSubmitting ? 'Verificando...' : 'Enviar Respuesta'} <Sword className="ml-2" size={20} />
 								</Button>
 							</form>
 						) : (
@@ -190,10 +218,14 @@ export function TowerGame({ gameState, onAnswer, submitting, lastResult, onExit 
 								{Object.entries(options || {}).map(([key, val]: any, idx) => (
 									<Button
 										key={idx}
-										onClick={() => onAnswer(key)}
-										disabled={submitting}
+										onClick={() => {
+											if (submitting || localSubmitting) return; // Prevent multiple clicks
+											setLocalSubmitting(true);
+											onAnswer(key);
+										}}
+										disabled={submitting || localSubmitting}
 										variant="secondary"
-										className={`w-full py-6 text-lg md:text-xl font-bold border-2 border-gray-700 bg-gray-800 text-white hover:bg-gray-700 ${isBossFloor ? 'hover:border-red-500 hover:text-red-400' : 'hover:border-purple-500 hover:text-purple-400'} transition-all transform hover:-translate-y-1 active:translate-y-0 rounded-2xl shadow-lg flex items-center justify-start px-6 gap-4`}
+										className={`w-full py-6 text-lg md:text-xl font-bold border-2 border-gray-700 bg-gray-800 text-white hover:bg-gray-700 ${isBossFloor ? 'hover:border-red-500 hover:text-red-400' : 'hover:border-purple-500 hover:text-purple-400'} transition-all transform hover:-translate-y-1 active:translate-y-0 rounded-2xl shadow-lg flex items-center justify-start px-6 gap-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
 									>
 										<span className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-black shrink-0 ${isBossFloor ? 'bg-red-900/50 text-red-200' : 'bg-gray-700 text-gray-300'}`}>
 											{String.fromCharCode(65 + idx)}

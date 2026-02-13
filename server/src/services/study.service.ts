@@ -107,7 +107,7 @@ export class StudyService {
 
       // 👇 Use instance methods
       const gemResult = await rewardService.calculateBonuses(userId, 0, gemsToAdd);
-      totalFinalGems = gemResult.finalGems;
+      totalFinalGems = gemResult.finalXaviCoins;
 
       if (gemResult.appliedBonuses) {
         allBonuses.push(...gemResult.appliedBonuses);

@@ -96,7 +96,7 @@ export class RaidService {
 
         // Sumamos las gemas finales
         await User.increment(
-          { gems: gemResult.finalGems },
+          { gems: gemResult.finalXaviCoins },
           { where: { id: userId } }
         );
 

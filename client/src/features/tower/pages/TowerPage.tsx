@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { TowerLeaderboard } from './TowerLeaderboard';
 
 export default function TowerPage() {
-    const { gameState, loading, actions, lastResult } = useTower();
+    const { gameState, loading, actions, lastResult, submitting } = useTower();
     const { user, refreshUser } = useAuth();
     const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ export default function TowerPage() {
             <TowerGame
                 gameState={gameState}
                 onAnswer={actions.submitAnswer}
-                submitting={false}
+                submitting={submitting}
                 lastResult={lastResult}
                 onExit={() => {
                     actions.reset();
@@ -96,8 +96,8 @@ export default function TowerPage() {
                         onClick={handleStartGame}
                         disabled={!canAfford}
                         className={`w-full py-4 text-xl font-black border-none hover:scale-105 transition-transform shadow-lg ${canAfford
-                                ? 'bg-gradient-to-r from-purple-600 to-pink-600'
-                                : 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                            ? 'bg-gradient-to-r from-purple-600 to-pink-600'
+                            : 'bg-gray-700 text-gray-400 cursor-not-allowed'
                             }`}
                     >
                         {hasTicket ? (

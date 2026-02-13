@@ -62,7 +62,7 @@ export class LessonService {
     // 1. CÁLCULO DE BONOS (Visual y para Gemas)
     // Calculamos aquí para saber cuántas gemas dar y qué mostrar en pantalla.
     const rewardsCalc = await rewardService.calculateBonuses(userId, baseXp, baseGems);
-    const finalGems = rewardsCalc.finalGems;
+    const finalGems = rewardsCalc.finalXaviCoins;
     const finalXpForDisplay = rewardsCalc.finalXp; // Solo para devolver al front
 
     // 2. PROCESAR XP (Vía UserService)

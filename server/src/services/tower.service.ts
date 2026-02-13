@@ -1,4 +1,5 @@
-import { TowerRun, TowerHistory, User, Exercise, Lesson, Unit } from '../models';
+import { rewardService } from './reward.service';
+import { TowerRun, TowerHistory, User, Exercise, Lesson, Unit, Clan, UserItem, Product } from '../models';
 import { Op, QueryTypes } from 'sequelize';
 import sequelize from '../config/database';
 import AppError from '../utils/AppError';
@@ -122,36 +123,54 @@ export class TowerService {
 				run.is_active = false;
 				await run.save();
 
-				// Calcular Recompensas
+				// Calcular Recompensas Base
 				const floorsCleared = run.current_floor;
-				const xpEarned = floorsCleared * 10;
-				const gemsEarned = floorsCleared * 5;
+				const baseXp = floorsCleared * 10;
+				const baseXaviCoins = floorsCleared * 5;
 
-				// Actualizar Usuario
-				const user = await User.findByPk(userId);
-				if (user) {
-					user.xp_total += xpEarned;
-					user.gems += gemsEarned;
-					await user.save();
-				}
-
-				// Guardar en historial
-				await TowerHistory.create({
-					user_id: userId,
-					floor_reached: run.current_floor,
-					score_achieved: run.score
+				// Obtener Usuario COMPLETO para el servicio de recompensas
+				// Optimizacion: Traemos todo en una query para no hacerla dentro del servicio
+				const user = await User.findByPk(userId, {
+					include: [
+						{ model: Clan, as: 'clan' },
+						{
+							model: UserItem,
+							as: 'user_items',
+							where: { is_equipped: true },
+							required: false, // Left join
+							include: [{ model: Product, where: { category: 'cosmetic' } }]
+						}
+					]
 				});
 
-				return {
-					correct: false,
-					gameOver: true,
-					rewards: {
-						xp: xpEarned,
-						gems: gemsEarned,
-						floor: run.current_floor,
-						score: run.score
-					}
-				};
+				if (user) {
+					// Calcular Bonificaciones (Clan, Cosméticos, Pociones)
+					// Pasamos el user ya cargado
+					const { finalXp, finalXaviCoins, appliedBonuses } = await rewardService.calculateBonuses(userId, baseXp, baseXaviCoins, user);
+
+					user.xp_total += finalXp;
+					user.gems += finalXaviCoins;
+					await user.save();
+
+					// Guardar en historial
+					await TowerHistory.create({
+						user_id: userId,
+						floor_reached: run.current_floor,
+						score_achieved: run.score
+					});
+
+					return {
+						correct: false,
+						gameOver: true,
+						rewards: {
+							xp: finalXp,
+							gems: finalXaviCoins, // Mantenemos key gems para compatibilidad frontend, o cambiamos si quieres
+							floor: run.current_floor,
+							score: run.score,
+							bonuses: appliedBonuses
+						}
+					};
+				}
 			}
 
 			await run.save(); // Guardar vida perdida si no es Game Over

@@ -42,7 +42,7 @@ UserProgress.belongsTo(Lesson, { foreignKey: 'lesson_id', as: 'lesson' });
 User.belongsToMany(Product, { through: UserItem, foreignKey: 'user_id', as: 'inventory' });
 Product.belongsToMany(User, { through: UserItem, foreignKey: 'product_id' });
 // Relaciones directas (Inventario)
-User.hasMany(UserItem, { foreignKey: 'user_id' });
+User.hasMany(UserItem, { foreignKey: 'user_id', as: 'user_items' });
 UserItem.belongsTo(User, { foreignKey: 'user_id' });
 Product.hasMany(UserItem, { foreignKey: 'product_id' });
 UserItem.belongsTo(Product, { foreignKey: 'product_id' });

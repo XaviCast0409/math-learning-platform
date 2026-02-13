@@ -206,9 +206,9 @@ export class MatchManager {
                 const winXpResult = await userService.addExperience(winner.id, baseWinXp);
                 const realWinnerXp = winXpResult.user.xp_total - startWinnerXp;
                 const winGemsCalc = await rewardService.calculateBonuses(winner.id, 0, baseWinGems);
-                winner.gems += winGemsCalc.finalGems;
+                winner.gems += winGemsCalc.finalXaviCoins;
                 const uniqueWinnerBonuses = [...new Set([...(winXpResult.rewards.bonusesApplied || []), ...(winGemsCalc.appliedBonuses || [])])];
-                winnerRewards = { xp: realWinnerXp, gems: winGemsCalc.finalGems, bonuses: uniqueWinnerBonuses };
+                winnerRewards = { xp: realWinnerXp, gems: winGemsCalc.finalXaviCoins, bonuses: uniqueWinnerBonuses };
 
                 // 3. XP (Loser)
                 const startLoserXp = loser.xp_total;

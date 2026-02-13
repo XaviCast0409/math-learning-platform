@@ -151,14 +151,14 @@ export class UserService {
 			const milestone = GAME_CONFIG.STREAKS.MILESTONES[user.current_streak];
 			if (milestone) {
 				// 👇 using instance method
-				const { finalXp, finalGems, appliedBonuses } = await rewardService.calculateBonuses(
+				const { finalXp, finalXaviCoins, appliedBonuses } = await rewardService.calculateBonuses(
 					user.id,
 					milestone.xp,
 					milestone.gems
 				);
 
 				user.xp_total += finalXp;
-				user.gems += finalGems;
+				user.gems += finalXaviCoins;
 
 				if (user.clan_id) {
 					clanService.addClanXp(user.clan_id, finalXp).catch(console.error);
@@ -167,7 +167,7 @@ export class UserService {
 				rewardEarned = {
 					streak: user.current_streak,
 					xp: finalXp,
-					gems: finalGems,
+					gems: finalXaviCoins,
 					message: milestone.message,
 					bonuses: appliedBonuses
 				};

@@ -31,6 +31,7 @@ export interface TowerAnswerResponse {
         gems: number;
         floor: number;
         score: number;
+        bonuses?: string[];
     };
 }
 
