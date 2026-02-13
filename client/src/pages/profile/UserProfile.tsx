@@ -8,7 +8,7 @@ import { clsx } from 'clsx';
 import { toast } from 'react-hot-toast';
 
 // API y Utils
-import { shopApi } from '../../api/shop.api';
+import { shopApi } from '../../features/shop/api/shop.api';
 import { productToAvatarConfig } from '../../utils/avatarAdapter';
 import type { AvatarConfig } from '../../types/avatar.types';
 

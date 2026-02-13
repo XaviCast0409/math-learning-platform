@@ -11,48 +11,47 @@ import AdminLayout from '../layouts/AdminLayout'; // 👈 Layout del Admin
 import { GlobalLoading } from '../components/common/GlobalLoading';
 
 // --- Páginas de Autenticación (Eager Loading para rapidez) ---
-import Login from '../pages/auth/Login';
-import Register from '../pages/auth/Register';
-// Admin Login también puede ser lazy si se prefiere, pero dejémoslo eager por ahora o lazy
-const AdminLogin = lazy(() => import('../pages/admin/AdminLogin'));
-
+import Login from '../features/auth/pages/Login';
+import Register from '../features/auth/pages/Register';
+const AdminLogin = lazy(() => import('../features/admin/pages/AdminLogin'));
 // --- Páginas de Admin (Lazy Loading) ---
-const Dashboard = lazy(() => import('../pages/admin/Dashboard'));
-const UsersManagement = lazy(() => import('../pages/admin/users/UsersManagement'));
-const CourseStructure = lazy(() => import('../pages/admin/courses/CourseStructure'));
-const CoursesList = lazy(() => import('../pages/admin/courses/CoursesList'));
-const LessonContentEditor = lazy(() => import('../pages/admin/courses/LessonContentEditor'));
-const CreateCourse = lazy(() => import('../pages/admin/courses/CreateCourse'));
-const ProductList = lazy(() => import('../pages/admin/products/ProductList'));
-const DecksList = lazy(() => import('../pages/admin/study/DecksList'));
-const DeckDetail = lazy(() => import('../pages/admin/study/DeckDetail'));
-const UserDetail = lazy(() => import('../pages/admin/users/tabs/UserDetail'));
+const Dashboard = lazy(() => import('../features/admin/pages/Dashboard'));
+const UsersManagement = lazy(() => import('../features/admin/pages/users/UsersManagement'));
+const CourseStructure = lazy(() => import('../features/admin/pages/courses/CourseStructure'));
+const CoursesList = lazy(() => import('../features/admin/pages/courses/CoursesList'));
+const LessonContentEditor = lazy(() => import('../features/admin/pages/courses/LessonContentEditor'));
+const CreateCourse = lazy(() => import('../features/admin/pages/courses/CreateCourse'));
+const ProductList = lazy(() => import('../features/admin/pages/products/ProductList'));
+const DecksList = lazy(() => import('../features/admin/pages/study/DecksList'));
+const DeckDetail = lazy(() => import('../features/admin/pages/study/DeckDetail'));
+const UserDetail = lazy(() => import('../features/admin/pages/users/tabs/UserDetail'));
 
 // --- Páginas Principales (Estudiante) ---
 // CoursesLobby y LearnMap son el "núcleo", podrían ser eager o lazy. Lazy para mejorar TTI general.
 const CoursesLobby = lazy(() => import('../pages/learn/CoursesLobby'));
 const LearnMap = lazy(() => import('../pages/learn/LearnMap'));
-const LessonContainer = lazy(() => import('../pages/lesson/LessonContainer'));
+const LessonContainer = lazy(() => import('../features/lesson/pages/LessonContainer'));
 const UserProfile = lazy(() => import('../pages/profile/UserProfile'));
-const GemShop = lazy(() => import('../pages/shop/GemShop'));
+const GemShop = lazy(() => import('../features/shop/pages/GemShop'));
 
 // --- Páginas de Estudio ---
-const StudyHub = lazy(() => import('../pages/study/StudyHub'));
-const StudySession = lazy(() => import('../pages/study/StudySession'));
+const StudyHub = lazy(() => import('../features/study/pages/StudyHub'));
+const StudySession = lazy(() => import('../features/study/pages/StudySession'));
 
 // --- PvP Pages ---
-const PvpLobby = lazy(() => import('../pages/pvp/PvpLobby'));
-const PvpMatchContainer = lazy(() => import('../pages/pvp/PvpMatchContainer'));
-const PvpResults = lazy(() => import('../pages/pvp/PvpResults'));
+const PvpLobby = lazy(() => import('../features/pvp/pages/PvpLobby'));
+const PvpMatchContainer = lazy(() => import('../features/pvp/pages/PvpMatchContainer'));
+const PvpResults = lazy(() => import('../features/pvp/pages/PvpResults'));
 
 // --- Raid Page ---
-const RaidGameContainer = lazy(() => import('../pages/raid/RaidGameContainer'));
+const RaidGameContainer = lazy(() => import('../features/raid/pages/RaidGameContainer'));
 
 // --- Clan Pages ---
-const ClanLobby = lazy(() => import('../pages/clan/ClanLobby'));
-const ClanBrowser = lazy(() => import('../pages/clan/ClanBrowser'));
-const CreateClan = lazy(() => import('../pages/clan/CreateClan'));
-const ClanDetail = lazy(() => import('../pages/clan/ClanDetail'));
+// --- Clan Pages ---
+const ClanLobby = lazy(() => import('../features/clan/pages/ClanLobby'));
+const ClanBrowser = lazy(() => import('../features/clan/pages/ClanBrowser'));
+const CreateClan = lazy(() => import('../features/clan/pages/CreateClan'));
+const ClanDetail = lazy(() => import('../features/clan/pages/ClanDetail'));
 
 // Componente para proteger rutas de admin
 // Usamos React.ReactElement para evitar errores de tipo con JSX
