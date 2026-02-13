@@ -55,3 +55,12 @@ export const submitTowerAnswer = catchAsync(async (req: Request, res: Response, 
         data: result
     });
 });
+
+export const getTowerLeaderboard = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
+    const leaderboard = await towerService.getLeaderboard();
+
+    res.status(200).json({
+        status: 'success',
+        data: leaderboard
+    });
+});

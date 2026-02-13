@@ -101,6 +101,8 @@ export const ExerciseModal = ({ isOpen, onClose, onSubmit, initialData, lessonId
               <option value="1">1 - Fácil (Novato)</option>
               <option value="2">2 - Media (Estándar)</option>
               <option value="3">3 - Difícil (Desafío)</option>
+              <option value="4">4 - Experto (Maestro)</option>
+              <option value="5">5 - Legendario (Maestro)</option>
             </select>
           </div>
         </div>

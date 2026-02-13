@@ -5,8 +5,8 @@ class Exercise extends Model {
   public id!: number;
   public lesson_id!: number;
   public type!: 'multiple_choice' | 'fill_in' | 'true_false';
-  public difficulty!: 1 | 2 | 3; // 1: Facil, 3: Dificil (Para algoritmo adaptativo)
-  
+  public difficulty!: 1 | 2 | 3 | 4 | 5; // 1: Facil, 3: Dificil (Para algoritmo adaptativo)
+
   public prompt!: string; // La pregunta en LaTeX/Markdown
   public options!: object; // JSONB: array de opciones distractores
   public correct_answer!: string; // La respuesta correcta
@@ -18,7 +18,7 @@ Exercise.init({
   lesson_id: { type: DataTypes.INTEGER, allowNull: false },
   type: { type: DataTypes.ENUM('multiple_choice', 'fill_in', 'true_false'), defaultValue: 'multiple_choice' },
   difficulty: { type: DataTypes.INTEGER, defaultValue: 1 },
-  
+
   prompt: { type: DataTypes.TEXT, allowNull: false },
   options: { type: DataTypes.JSONB, defaultValue: [] }, // Ej: ["x=2", "x=5", "x=0"]
   correct_answer: { type: DataTypes.STRING, allowNull: false },

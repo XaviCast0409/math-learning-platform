@@ -25,6 +25,7 @@ const ProductList = lazy(() => import('../features/admin/pages/products/ProductL
 const DecksList = lazy(() => import('../features/admin/pages/study/DecksList'));
 const DeckDetail = lazy(() => import('../features/admin/pages/study/DeckDetail'));
 const UserDetail = lazy(() => import('../features/admin/pages/users/tabs/UserDetail'));
+const BossManagement = lazy(() => import('../features/admin/pages/boss/BossManagement'));
 
 // --- Páginas Principales (Estudiante) ---
 // CoursesLobby y LearnMap son el "núcleo", podrían ser eager o lazy. Lazy para mejorar TTI general.
@@ -106,6 +107,7 @@ export const AppRouter = () => {
           <Route path="study/decks" element={<DecksList />} />
           <Route path="study/decks/:id" element={<DeckDetail />} />
           <Route path="users/:id" element={<UserDetail />} /> {/* 👈 NUEVA RUTA */}
+          <Route path="bosses" element={<BossManagement />} />
         </Route>
 
         {/* =========================================

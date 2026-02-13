@@ -10,5 +10,6 @@ router.use(protect);
 router.post('/start', towerController.startTowerRun);
 router.get('/status', towerController.getTowerStatus);
 router.post('/submit', towerController.submitTowerAnswer);
+router.get('/leaderboard', towerController.getTowerLeaderboard);
 
 export default router;

@@ -50,5 +50,24 @@ export const towerApi = {
     submitAnswer: async (exerciseId: number, answer: string) => {
         const { data } = await axiosClient.post('/tower/submit', { exerciseId, answer });
         return data.data as TowerAnswerResponse;
+    },
+
+    getLeaderboard: async () => {
+        const { data } = await axiosClient.get('/tower/leaderboard');
+        return data.data as TowerLeaderboardEntry[];
     }
 };
+
+export interface TowerLeaderboardEntry {
+    id: number;
+    user_id: number;
+    floor_reached: number;
+    score_achieved: number;
+    ended_at: string;
+    User: {
+        username: string;
+        metadata?: {
+            avatar_url?: string;
+        };
+    };
+}
