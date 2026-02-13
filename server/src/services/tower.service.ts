@@ -91,10 +91,15 @@ export class TowerService {
 
 		const exercise = await Exercise.findByPk(exerciseId);
 		if (!exercise) throw new AppError('Ejercicio no encontrado', 404);
+		console.log(answer);
+		console.log(exercise.correct_answer);
 
 		let isCorrect = false;
 		// Lógica simple de verificación strings (case insensitive trim)
 		if (exercise.correct_answer.trim().toLowerCase() === answer.trim().toLowerCase()) isCorrect = true;
+		console.log(exercise.correct_answer.trim().toLowerCase());
+		console.log(answer.trim().toLowerCase());
+		console.log(isCorrect);
 
 		if (isCorrect) {
 			// AUMENTAR PISO
