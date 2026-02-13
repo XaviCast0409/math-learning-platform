@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, ChevronRight, Sparkles, GraduationCap } from 'lucide-react';
+import { BookOpen, ChevronRight, Sparkles, GraduationCap, Castle } from 'lucide-react';
 import { StatsHeader } from '../../components/layout/StatsHeader';
 import { GlobalLoading } from '../../components/common/GlobalLoading';
 import { clsx } from 'clsx';
@@ -20,6 +20,44 @@ export default function CoursesLobby() {
 
       {/* Contenedor más estrecho para que parezca una lista de app móvil */}
       <div className="max-w-2xl mx-auto pt-24 px-4 relative z-10">
+
+        {/* === BANNER: LA TORRE === */}
+        <div
+          onClick={() => navigate('/tower')}
+          className="mb-8 w-full bg-gradient-to-r from-gray-900 via-purple-900 to-gray-900 rounded-3xl p-6 shadow-2xl relative overflow-hidden cursor-pointer group border-4 border-gray-800 hover:scale-[1.02] transition-transform"
+        >
+          {/* Background visuals */}
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-20"></div>
+          <div className="absolute right-0 top-0 h-full w-1/2 bg-gradient-to-l from-purple-500/20 to-transparent"></div>
+
+          <div className="relative z-10 flex items-center justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="bg-purple-600 text-white text-[10px] font-black px-2 py-0.5 rounded uppercase tracking-widest">
+                  Nuevo Modo
+                </span>
+                <span className="text-purple-300 text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+                  <Sparkles size={12} /> Roguelike
+                </span>
+              </div>
+              <h2 className="text-3xl font-black text-white italic tracking-tighter mb-1 drop-shadow-md">
+                LA TORRE
+              </h2>
+              <p className="text-gray-300 text-sm font-medium max-w-[200px] leading-tight">
+                Sube pisos infinitos. <br />
+                <span className="text-red-400 font-bold">Muerte Permanente.</span>
+              </p>
+            </div>
+
+            {/* Icono con efecto glow */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-purple-500 blur-2xl opacity-40 rounded-full"></div>
+              <div className="bg-gray-800 p-4 rounded-2xl border-4 border-purple-500 shadow-lg relative group-hover:rotate-6 transition-transform">
+                <Castle size={42} className="text-purple-400" />
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Encabezado Simple */}
         <div className="flex items-center gap-3 mb-6 px-2">

@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { clanApi, type Clan, type WarStatus } from '../api/clan.api';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useConfirm } from '../../../context/ConfirmContext';
 
 export const useClan = () => {
   const [myClan, setMyClan] = useState<Clan | null>(null);
@@ -68,6 +69,9 @@ export const useClan = () => {
 
   // --- ACCIONES ---
 
+  /* 👇 INTEGRACIÓN DE CONFIRM CONTEXT */
+  const { confirm } = useConfirm();
+
   // También le ponemos un pequeño delay a la búsqueda para que se sienta "procesando"
   const searchClans = async (query: string) => {
     try {
@@ -113,7 +117,13 @@ export const useClan = () => {
   };
 
   const leaveClan = async () => {
-    if (!window.confirm("¿Seguro que quieres salir?")) return;
+    const ok = await confirm("¿Seguro que quieres salir del clan?", {
+      title: 'Salir del Clan',
+      confirmText: 'Salir',
+      variant: 'danger'
+    });
+    if (!ok) return;
+
     try {
       await clanApi.leaveClan();
       setMyClan(null);
@@ -139,7 +149,13 @@ export const useClan = () => {
   };
 
   const kickMember = async (memberId: number) => {
-    if (!window.confirm("¿Expulsar miembro?")) return;
+    const ok = await confirm("¿Expulsar miembro de forma permanente?", {
+      title: 'Expulsar Miembro',
+      confirmText: 'Expulsar',
+      variant: 'danger'
+    });
+    if (!ok) return;
+
     try {
       await clanApi.kickMember(memberId);
       toast.success("Expulsado");

@@ -20,6 +20,8 @@ import ClanWar from './ClanWar';
 import RaidBoss from './RaidBoss';
 import RaidParticipation from './RaidParticipation';
 
+import { TowerRun, TowerHistory } from './Tower';
+
 // --- Relaciones Académicas (Cursos y Lecciones) ---
 Course.hasMany(Unit, { foreignKey: 'course_id', as: 'units' });
 Unit.belongsTo(Course, { foreignKey: 'course_id' });
@@ -128,5 +130,8 @@ export {
   Clan,
   ClanWar,
   RaidBoss,
-  RaidParticipation
+  RaidParticipation,
+  // 👇 Exportamos Modelo de Torre
+  TowerRun,
+  TowerHistory
 };

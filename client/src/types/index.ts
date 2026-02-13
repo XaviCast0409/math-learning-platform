@@ -13,6 +13,9 @@ export interface User {
   level: number;
   gems: number;
   lives: number;
+  last_life_regen: string | null;
+  tower_tickets: number;
+  last_ticket_regen: string | null;
   elo_rating: number;
 
   nextRegen?: string | null;

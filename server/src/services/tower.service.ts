@@ -1,0 +1,218 @@
+import { TowerRun, TowerHistory, User, Exercise, Lesson, Unit } from '../models';
+import { Op } from 'sequelize';
+import sequelize from '../config/database';
+import AppError from '../utils/AppError';
+
+export class TowerService {
+
+    /**
+     * Inicia una nueva run.
+     * Costo: 1 Ticket (Prioridad) O 250 Gemas.
+     */
+    async startRun(userId: number) {
+        const user = await User.findByPk(userId);
+        if (!user) throw new AppError('Usuario no encontrado', 404);
+
+        // 1. Verificar si ya tiene una run activa
+        const activeRun = await TowerRun.findOne({
+            where: { user_id: userId, is_active: true }
+        });
+
+        if (activeRun) {
+            return activeRun;
+        }
+
+        // 2. Verificar Regeneración de Tickets (Diario)
+        const now = new Date();
+        const lastRegen = user.last_ticket_regen ? new Date(user.last_ticket_regen) : new Date(0);
+
+        // Si ha pasado un día desde la última regen
+        const isSameDay = now.getDate() === lastRegen.getDate() &&
+            now.getMonth() === lastRegen.getMonth() &&
+            now.getFullYear() === lastRegen.getFullYear();
+
+        if (!isSameDay) {
+            // Regenerar 1 ticket si tiene 0
+            if (user.tower_tickets < 1) {
+                user.tower_tickets = 1;
+                user.last_ticket_regen = now;
+                await user.save();
+            }
+        }
+
+        // 3. Cobrar Entrada
+        let costType = '';
+        if (user.tower_tickets > 0) {
+            user.tower_tickets -= 1;
+            costType = 'Ticket Diario';
+        } else if (user.gems >= 250) {
+            user.gems -= 250;
+            costType = '250 Gemas';
+        } else {
+            throw new AppError('No tienes suficientes tickets ni gemas (250) para entrar.', 403);
+        }
+        await user.save();
+
+        // 4. Crear nueva run
+        const newRun = await TowerRun.create({
+            user_id: userId,
+            current_floor: 1,
+            lives_left: 3,
+            is_active: true,
+            score: 0,
+            difficulty_modifier: 1.0
+        });
+
+        return { run: newRun, costType };
+    }
+
+    /**
+     * Obtiene el estado actual + la siguiente pregunta.
+     */
+    async getStatus(userId: number) {
+        const run = await TowerRun.findOne({
+            where: { user_id: userId, is_active: true }
+        });
+
+        if (!run) return null;
+
+        // Generar pregunta basada en el piso
+        const question = await this.generateQuestion(run.current_floor);
+
+        return { run, question };
+    }
+
+    /**
+     * Procesa la respuesta del usuario.
+     */
+    async submitAnswer(userId: number, exerciseId: number, answer: string) {
+        const run = await TowerRun.findOne({ where: { user_id: userId, is_active: true } });
+        if (!run) throw new AppError('No hay partida activa', 404);
+
+        const exercise = await Exercise.findByPk(exerciseId);
+        if (!exercise) throw new AppError('Ejercicio no encontrado', 404);
+
+        let isCorrect = false;
+        // Lógica simple de verificación strings (case insensitive trim)
+        if (exercise.correct_answer.trim().toLowerCase() === answer.trim().toLowerCase()) isCorrect = true;
+
+        if (isCorrect) {
+            // AUMENTAR PISO
+            run.current_floor += 1;
+            run.score += 10 * run.current_floor; // Más piso, más puntos
+            await run.save();
+
+            return {
+                correct: true,
+                lives: run.lives_left,
+                floor: run.current_floor
+            };
+
+        } else {
+            // PERDER VIDA
+            run.lives_left -= 1;
+
+            if (run.lives_left <= 0) {
+                // --- GAME OVER ---
+                run.is_active = false;
+                await run.save();
+
+                // Calcular Recompensas
+                const floorsCleared = run.current_floor;
+                const xpEarned = floorsCleared * 10;
+                const gemsEarned = floorsCleared * 5;
+
+                // Actualizar Usuario
+                const user = await User.findByPk(userId);
+                if (user) {
+                    user.xp_total += xpEarned;
+                    user.gems += gemsEarned;
+                    await user.save();
+                }
+
+                // Guardar en historial
+                await TowerHistory.create({
+                    user_id: userId,
+                    floor_reached: run.current_floor,
+                    score_achieved: run.score
+                });
+
+                return {
+                    correct: false,
+                    gameOver: true,
+                    rewards: {
+                        xp: xpEarned,
+                        gems: gemsEarned,
+                        floor: run.current_floor,
+                        score: run.score
+                    }
+                };
+            }
+
+            await run.save(); // Guardar vida perdida si no es Game Over
+
+            return {
+                correct: false,
+                lives: run.lives_left,
+                floor: run.current_floor
+            };
+        }
+    }
+
+    // --- PRIVATE HELPERS ---
+
+    private async generateQuestion(floor: number) {
+        // Lógica de Dificultad:
+        // Pisos 1-5: Easy
+        // Pisos 6-10: Medium
+        // Pisos 11+: Hard
+
+        let difficultyTarget = 1;
+        if (floor > 5) difficultyTarget = 2;
+        if (floor > 10) difficultyTarget = 3;
+
+        console.log(`[TowerService] Generating question for floor ${floor} (Difficulty: ${difficultyTarget})`);
+
+        try {
+            // Buscar ejercicio aleatorio de esa dificultad
+            const exercise = await Exercise.findOne({
+                where: { difficulty: difficultyTarget },
+                order: sequelize.random(),
+                include: [
+                    {
+                        model: Lesson,
+                        include: [{ model: Unit, as: 'unit', attributes: ['title'] }]
+                    }
+                ],
+                logging: console.log // Ver la query en consola
+            });
+
+            if (exercise) {
+                console.log(`[TowerService] Found exercise ID: ${exercise.id}`);
+                return exercise;
+            }
+
+            console.warn(`[TowerService] No exercise found for difficulty ${difficultyTarget}. Trying fallback...`);
+
+            // Fallback: Cualquier ejercicio
+            const fallback = await Exercise.findOne({
+                order: sequelize.random(),
+                logging: console.log
+            });
+
+            if (fallback) {
+                console.log(`[TowerService] Fallback exercise found ID: ${fallback.id}`);
+                return fallback;
+            }
+
+            console.error('[TowerService] CRITICAL: No exercises in database!');
+            return null; // Manejar esto en el controller
+
+        } catch (error) {
+            console.error('[TowerService] Error generating question:', error);
+            throw error;
+        }
+    }
+}
+
+export const towerService = new TowerService();

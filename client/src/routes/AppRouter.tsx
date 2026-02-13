@@ -47,11 +47,13 @@ const PvpResults = lazy(() => import('../features/pvp/pages/PvpResults'));
 const RaidGameContainer = lazy(() => import('../features/raid/pages/RaidGameContainer'));
 
 // --- Clan Pages ---
-// --- Clan Pages ---
 const ClanLobby = lazy(() => import('../features/clan/pages/ClanLobby'));
 const ClanBrowser = lazy(() => import('../features/clan/pages/ClanBrowser'));
 const CreateClan = lazy(() => import('../features/clan/pages/CreateClan'));
 const ClanDetail = lazy(() => import('../features/clan/pages/ClanDetail'));
+
+// --- Tower Page ---
+const TowerPage = lazy(() => import('../features/tower/pages/TowerPage'));
 
 // Componente para proteger rutas de admin
 // Usamos React.ReactElement para evitar errores de tipo con JSX
@@ -145,6 +147,9 @@ export const AppRouter = () => {
           <Route path="/clan/:id" element={<ClanDetail />} />
 
           <Route path="/clan/create" element={<CreateClan />} />
+
+          {/* 👇 TOWER (Nueva Ruta) */}
+          <Route path="/tower" element={<TowerPage />} />
 
         </Route>
 

@@ -4,18 +4,28 @@ import { shopApi } from '../api/shop.api';
 import type { Product, UserItem } from '../../../types';
 import { useShopData } from './useShopData';
 import { toast } from 'react-hot-toast';
+import { useConfirm } from '../../../context/ConfirmContext';
 
 export const useShop = () => {
     const { user, refreshUser } = useAuth();
     const [activeTab, setActiveTab] = useState<'shop' | 'inventory'>('shop');
     const [processingId, setProcessingId] = useState<number | null>(null);
+    const { confirm } = useConfirm();
 
     // Use SWR Hook
     const { products, inventory, isLoading, mutateInventory } = useShopData();
 
     const buyProduct = async (product: Product) => {
         if (!user) return;
-        if (!confirm(`¿Comprar ${product.name} por ${product.cost_gems} gemas?`)) return;
+
+        const ok = await confirm(`¿Comprar ${product.name} por ${product.cost_gems} gemas?`, {
+            title: 'Confirmar Compra',
+            confirmText: 'Comprar',
+            cancelText: 'Cancelar',
+            variant: 'info'
+        });
+
+        if (!ok) return;
 
         setProcessingId(product.id);
         try {
@@ -51,7 +61,13 @@ export const useShop = () => {
     };
 
     const useItem = async (item: UserItem) => {
-        if (!confirm(`¿Consumir ${item.Product.name}?`)) return;
+        const ok = await confirm(`¿Consumir ${item.Product.name}?`, {
+            title: 'Usar Objeto',
+            confirmText: 'Usar',
+            variant: 'info'
+        });
+
+        if (!ok) return;
 
         setProcessingId(item.id);
         try {

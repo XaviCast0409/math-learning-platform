@@ -27,7 +27,7 @@ export class ShopService {
     // 2. LÓGICA DE ENTREGA (Switch simple vs Genérico)
 
     // CASO A: Vidas (Es especial porque toca el Core Loop)
-    if (product.type === 'life_refill') {
+    if (product.type === 'life_refill' || product.type === 'refill_health_potion') {
       if (user.lives >= 5) throw new AppError('¡Salud llena!', 400);
       user.lives = 5;
       user.last_life_regen = null;

@@ -21,6 +21,8 @@ class User extends Model {
   public gems!: number;
   public lives!: number;
   public last_life_regen!: Date | null;
+  public tower_tickets!: number;
+  public last_ticket_regen!: Date | null;
 
   // Streaks
   public current_streak!: number;
@@ -64,6 +66,8 @@ User.init({
   gems: { type: DataTypes.INTEGER, defaultValue: 0 },
   lives: { type: DataTypes.INTEGER, defaultValue: 5 },
   last_life_regen: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+  tower_tickets: { type: DataTypes.INTEGER, defaultValue: 1 },
+  last_ticket_regen: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 
   current_streak: { type: DataTypes.INTEGER, defaultValue: 0 },
   highest_streak: { type: DataTypes.INTEGER, defaultValue: 0 },

@@ -11,6 +11,7 @@ import adminRoutes from './admin.routes';
 import raidRoutes from './raid.routes';
 import clanRoutes from './clan.routes';
 import rankingRoutes from './ranking.routes';
+import towerRoutes from './tower.routes';
 
 const router = Router();
 
@@ -26,5 +27,6 @@ router.use('/user', userRoutes);
 router.use('/raids', raidRoutes);
 router.use('/clans', clanRoutes);
 router.use('/ranking', rankingRoutes);
+router.use('/tower', towerRoutes);
 
 export default router;
