@@ -45,7 +45,7 @@ export const useClan = () => {
   );
 
   // 3. Obtener retos pendientes (Para todos los miembros, aunque solo líder acepte)
-  const isLeader = myClan?.my_role === 'leader';
+  //const isLeader = myClan?.my_role === 'leader';
 
   const {
     data: pendingWars = [],
