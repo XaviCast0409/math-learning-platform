@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login, getMe } from '../controllers/auth.controller';
+import { register, login, getMe, verifyEmail, resendCode } from '../controllers/auth.controller';
 import { validateResult } from '../middlewares/validate.middleware';
 import { registerValidators, loginValidators } from '../middlewares/auth.validators';
 // Assuming protect middleware exists and works
@@ -12,6 +12,16 @@ router.post(
   registerValidators,
   validateResult,
   register
+);
+
+router.post(
+  '/verify-email',
+  verifyEmail
+);
+
+router.post(
+  '/resend-code',
+  resendCode
 );
 
 router.post(

@@ -1,4 +1,5 @@
 import { rewardService } from './reward.service';
+import { userService } from './user.service';
 import { TowerRun, TowerHistory, User, Exercise, Lesson, Unit, Clan, UserItem, Product } from '../models';
 import { Op, QueryTypes } from 'sequelize';
 import sequelize from '../config/database';
@@ -148,9 +149,14 @@ export class TowerService {
 					// Pasamos el user ya cargado
 					const { finalXp, finalXaviCoins, appliedBonuses } = await rewardService.calculateBonuses(userId, baseXp, baseXaviCoins, user);
 
-					user.xp_total += finalXp;
-					user.gems += finalXaviCoins;
-					await user.save();
+					// Usamos userService para añadir XP y gestionar nivel
+					const xpResult = await userService.addExperience(userId, finalXp);
+
+					// Añadimos gemas manualmente (o podríamos moverlo a userService si quisiéramos centralizar todo)
+					if (finalXaviCoins > 0) {
+						xpResult.user.gems += finalXaviCoins;
+						await xpResult.user.save();
+					}
 
 					// Guardar en historial
 					await TowerHistory.create({
@@ -159,16 +165,28 @@ export class TowerService {
 						score_achieved: run.score
 					});
 
+					// Construimos LevelRewardsPayload para el frontend
+					const levelRewardsPayload = xpResult.leveledUp ? {
+						...xpResult.rewards,
+						previousLevel: xpResult.previousLevel,
+						currentLevel: xpResult.currentLevel
+					} : undefined;
+
 					return {
 						correct: false,
 						gameOver: true,
 						rewards: {
 							xp: finalXp,
-							gems: finalXaviCoins, // Mantenemos key gems para compatibilidad frontend, o cambiamos si quieres
+							gems: finalXaviCoins,
 							floor: run.current_floor,
 							score: run.score,
 							bonuses: appliedBonuses
-						}
+						},
+						leveledUp: xpResult.leveledUp,
+						levelRewards: levelRewardsPayload, // 👈 IMPORTANTE para el modal global
+						newTotalXp: xpResult.user.xp_total, // Para actualizar contexto
+						newTotalGems: xpResult.user.gems,   // Para actualizar contexto
+						newLevel: xpResult.user.level       // Para actualizar contexto
 					};
 				}
 			}

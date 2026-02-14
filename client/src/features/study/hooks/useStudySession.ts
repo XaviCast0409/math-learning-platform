@@ -6,12 +6,20 @@ import { useActivity } from '../../../hooks/useActivity';
 
 // --- ⚙️ CONFIGURACIÓN DE LA SESIÓN ---
 const SESSION_CONFIG = {
-  // Intervalos de recompensa (Checkpoints)
-  CHECKPOINT_INTERVAL_SECONDS: 30,
+  // Intervalos de recompensa (Checkpoints cada 1 minuto)
+  CHECKPOINT_INTERVAL_SECONDS: 60,
 
-  // Cantidad de premios por intervalo
-  XP_PER_INTERVAL: 20,
-  GEMS_PER_INTERVAL: 10,
+  // Cantidad de premios por intervalo (tiempo)
+  XP_PER_INTERVAL: 15,
+  GEMS_PER_INTERVAL: 5,
+
+  // Recompensa por carta completada
+  XP_PER_CARD: 5,
+
+  // 🎁 Milestone de 20 minutos
+  MILESTONE_20MIN_SECONDS: 1200,  // 20 * 60
+  BONUS_20MIN_XP: 200,
+  BONUS_20MIN_GEMS: 100,
 
   // Anti-Spam (Tiempo mínimo para voltear carta)
   MIN_READ_TIME_MS: 2000
@@ -28,13 +36,18 @@ export const useStudySession = (deckId: string | undefined) => {
   const [loading, setLoading] = useState(true);
   const [cards, setCards] = useState<FlashcardData[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [cardsCompleted, setCardsCompleted] = useState(0); // NEW: Track progress
   const [isFlipped, setIsFlipped] = useState(false);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
   // Feedback Visual
   const [showMilestone, setShowMilestone] = useState(false);
   const [canInteract, setCanInteract] = useState(false);
-  const [levelRewards, setLevelRewards] = useState<{ gems: number, lives: number, items: string[] } | null>(null);
+
+  // Animation states
+  const [isExiting, setIsExiting] = useState(false);
+  const [xpEarned, setXpEarned] = useState(0);
+  const [milestone20Reached, setMilestone20Reached] = useState(false);
 
   // Estado para el Modal de Resumen Final
   const [sessionSummary, setSessionSummary] = useState<{ xpEarned: number, gemsEarned: number, bonuses: string[] } | null>(null);
@@ -99,11 +112,6 @@ export const useStudySession = (deckId: string | undefined) => {
         gemsToAdd: gemsToSend
       });
 
-      // Manejo de Level Up
-      if (data.leveledUp && data.levelRewards) {
-        setLevelRewards(data.levelRewards);
-      }
-
       // Actualizar contexto global
       updateUserStats({
         xp_total: data.newTotalXp,
@@ -137,10 +145,23 @@ export const useStudySession = (deckId: string | undefined) => {
       if (isActive) {
         setSecondsElapsed(prev => {
           const next = prev + 1;
-          // Usamos la configuración centralizada
+
+          // Checkpoint cada minuto
           if (next > 0 && next % SESSION_CONFIG.CHECKPOINT_INTERVAL_SECONDS === 0) {
             triggerCheckpoint();
           }
+
+          // 🎁 Milestone de 20 minutos
+          if (next === SESSION_CONFIG.MILESTONE_20MIN_SECONDS && !milestone20Reached) {
+            rewardsQueue.current.xp += SESSION_CONFIG.BONUS_20MIN_XP;
+            rewardsQueue.current.gems += SESSION_CONFIG.BONUS_20MIN_GEMS;
+            setMilestone20Reached(true);
+
+            // Mostrar celebración grande
+            setShowMilestone(true);
+            setTimeout(() => setShowMilestone(false), 6000); // 6 segundos para milestone
+          }
+
           return next;
         });
       }
@@ -148,7 +169,7 @@ export const useStudySession = (deckId: string | undefined) => {
 
     const autoSave = setInterval(() => pushSync(), 30000);
     return () => { clearInterval(timer); clearInterval(autoSave); };
-  }, [loading, isActive, triggerCheckpoint, pushSync]);
+  }, [loading, isActive, triggerCheckpoint, pushSync, milestone20Reached]);
 
   // 5. Acciones del Usuario
   const handleRate = (quality: number) => {
@@ -157,13 +178,28 @@ export const useStudySession = (deckId: string | undefined) => {
     const currentCard = cards[currentIndex];
     syncQueue.current.push({ cardId: currentCard.id, quality });
 
+    // Increment cards completed
+    setCardsCompleted(prev => prev + 1);
+
+    // Give XP per card (REAL reward, not just visual)
+    const earnedXP = SESSION_CONFIG.XP_PER_CARD;
+    rewardsQueue.current.xp += earnedXP;
+    setXpEarned(earnedXP);
+
+    // Trigger exit animation
+    setIsExiting(true);
+
     if (quality < 3) setCards(prev => [...prev, currentCard]);
 
-    setIsFlipped(false);
+    // Wait for animation, then advance
     setTimeout(() => {
+      setIsFlipped(false);
+      setIsExiting(false);
+      setXpEarned(0);
+
       if (currentIndex + 1 >= cards.length) setCurrentIndex(0);
       else setCurrentIndex(prev => prev + 1);
-    }, 200);
+    }, 400); // Match animation duration
   };
 
   // 6. Salida con Modal de Resumen
@@ -193,13 +229,19 @@ export const useStudySession = (deckId: string | undefined) => {
     loading,
     cards,
     activeCard: cards[currentIndex],
+    currentIndex,
+    cardsCompleted,
+    totalCards: cards.length,
     isFlipped,
     setIsFlipped,
     secondsElapsed,
     showMilestone,
     canInteract,
-    levelRewards,
-    setLevelRewards,
+
+    // Animation states
+    isExiting,
+    xpEarned,
+    milestone20Reached,
 
     // 👇 Esto es vital para el Modal en StudySession.tsx
     sessionSummary,

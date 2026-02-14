@@ -5,14 +5,14 @@ import { clsx } from 'clsx';
 import type { CourseSummary } from '../../api/course.api';
 
 interface StatsHeaderProps {
-  currentCourse?: CourseSummary; 
+  currentCourse?: CourseSummary;
   onOpenCourseSelector?: () => void;
 }
 
 export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeaderProps) => {
-  const { user, refreshUser } = useAuth(); 
+  const { user, refreshUser } = useAuth();
   const [livesTimer, setLivesTimer] = useState<string | null>(null);
-  
+
   // 👇 ESTADO PARA LOS BUFFS
   const [activeBuffs, setActiveBuffs] = useState<{ xp: string | null, gem: string | null }>({ xp: null, gem: null });
 
@@ -24,7 +24,26 @@ export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeader
       setLivesTimer(null);
       return;
     }
-    // ... (Tu lógica de intervalo de vidas aquí, igual que antes) ...
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const nextRegen = new Date(user.nextRegen!).getTime();
+      const diff = nextRegen - now;
+
+      if (diff <= 0) {
+        refreshUser(); // Refrescar cuando se regenera una vida
+        setLivesTimer(null);
+        return;
+      }
+
+      const minutes = Math.floor(diff / 60000);
+      const seconds = Math.floor((diff % 60000) / 1000);
+      setLivesTimer(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
   }, [user, refreshUser]);
 
   // 👇 2. NUEVO EFECTO: CRONÓMETRO DE BUFFS (Pociones)
@@ -62,10 +81,23 @@ export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeader
     return () => clearInterval(interval);
   }, [user]);
 
+  // 👇 3. NUEVO: Escuchar cambios en localStorage (cuando otras pestañas/componentes actualizan)
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'user' && e.newValue) {
+        // Refrescar cuando localStorage cambia
+        refreshUser();
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [refreshUser]);
+
   return (
     <header className="fixed top-0 left-0 right-0 p-4 z-40 pointer-events-none">
       <div className="max-w-md mx-auto flex items-start justify-between pointer-events-auto">
-        
+
         {/* --- IZQUIERDA (GEMAS + XP BUFF) --- */}
         <div className="flex flex-col items-start gap-1">
           <div className="flex items-center gap-2">
@@ -75,7 +107,7 @@ export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeader
                 {user?.gems ?? 0}
               </span>
             </div>
-            
+
             {/* 👇 INDICADOR DE BUFF DE GEMAS */}
             {activeBuffs.gem && (
               <div className="bg-purple-100 border-2 border-purple-200 text-purple-600 px-2 py-1 rounded-lg flex items-center gap-1 text-xs font-bold animate-pulse">
@@ -86,20 +118,20 @@ export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeader
 
           {/* 👇 INDICADOR DE BUFF DE XP (Debajo de las gemas o al lado) */}
           {activeBuffs.xp && (
-             <div className="bg-orange-100 border-2 border-orange-200 text-orange-600 px-2 py-1 rounded-lg flex items-center gap-1 text-xs font-bold animate-pulse shadow-sm">
-                <Zap size={12} fill="currentColor" /> XP Doble ({activeBuffs.xp})
-             </div>
+            <div className="bg-orange-100 border-2 border-orange-200 text-orange-600 px-2 py-1 rounded-lg flex items-center gap-1 text-xs font-bold animate-pulse shadow-sm">
+              <Zap size={12} fill="currentColor" /> XP Doble ({activeBuffs.xp})
+            </div>
           )}
-          
+
           {/* Selector de Curso (Mantenlo si lo usas) */}
           {currentCourse && (
-            <button 
-                onClick={onOpenCourseSelector}
-                className="hidden md:flex mt-1 items-center gap-2 bg-black/5 px-3 py-2 rounded-xl hover:bg-black/10 transition-colors"
+            <button
+              onClick={onOpenCourseSelector}
+              className="hidden md:flex mt-1 items-center gap-2 bg-black/5 px-3 py-2 rounded-xl hover:bg-black/10 transition-colors"
             >
-                {currentCourse.img_url && <img src={currentCourse.img_url} className="w-5 h-5 object-contain"/>}
-                <span className="font-bold text-gray-600 text-sm uppercase">{currentCourse.title}</span>
-                <ChevronDown size={14} className="text-gray-400" />
+              {currentCourse.img_url && <img src={currentCourse.img_url} className="w-5 h-5 object-contain" />}
+              <span className="font-bold text-gray-600 text-sm uppercase">{currentCourse.title}</span>
+              <ChevronDown size={14} className="text-gray-400" />
             </button>
           )}
         </div>
@@ -110,13 +142,13 @@ export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeader
           "flex items-center gap-3 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border-2 border-gray-200 shadow-sm transition-all duration-300",
           livesTimer ? "pr-5" : ""
         )}>
-          <Heart 
+          <Heart
             className={clsx(
               "transition-colors duration-300",
               (user?.lives || 0) === 0 ? "text-gray-400 fill-gray-200" : "text-brand-red fill-brand-red",
               livesTimer && "animate-pulse"
-            )} 
-            size={26} 
+            )}
+            size={26}
             strokeWidth={3}
           />
           <div className="flex flex-col items-start justify-center h-full">

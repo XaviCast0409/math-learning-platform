@@ -4,9 +4,28 @@ import type { AuthResponse, User, AdminAuthResponse } from '../../../types'; // 
 export const authApi = {
 
   // POST /api/auth/register
-  register: async (userData: { username: string; email: string; password: string }) => {
-    // Axios permite indicar qué tipo de dato devuelve la promesa con <AuthResponse>
-    const response = await axiosClient.post<AuthResponse>('/auth/register', userData);
+  register: async (userData: {
+    username: string;
+    email: string;
+    password: string;
+    full_name: string;
+    age?: number;
+    phone?: string;
+    grade_level: string;
+  }) => {
+    const response = await axiosClient.post<{ status: string; data: { message: string; email: string } }>('/auth/register', userData);
+    return response.data;
+  },
+
+  // POST /api/auth/verify-email
+  verifyEmail: async (email: string, code: string) => {
+    const response = await axiosClient.post<AuthResponse>('/auth/verify-email', { email, code });
+    return response.data;
+  },
+
+  // POST /api/auth/resend-code
+  resendCode: async (email: string) => {
+    const response = await axiosClient.post<{ status: string; message: string }>('/auth/resend-code', { email });
     return response.data;
   },
 

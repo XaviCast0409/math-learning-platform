@@ -33,6 +33,12 @@ export interface TowerAnswerResponse {
         score: number;
         bonuses?: string[];
     };
+    // New fields for global update
+    newTotalXp?: number;
+    newTotalGems?: number;
+    newLevel?: number;
+    leveledUp?: boolean;
+    levelRewards?: any;
 }
 
 export const towerApi = {

@@ -3,7 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Button } from '../../../components/common/Button';
 import { GlobalLoading } from '../../../components/common/GlobalLoading';
-import { LevelUpModal } from '../../../components/gamification/LevelUpModal';
+import { useKeyboardShortcuts } from '../../../hooks/useKeyboardShortcuts';
+import { FloatingXP } from '../../../components/common/FloatingXP';
 
 // Nuevos Imports
 import { useStudySession } from '../hooks/useStudySession';
@@ -23,13 +24,16 @@ export default function StudySession() {
     loading,
     cards,
     activeCard,
+    cardsCompleted,
+    totalCards,
     isFlipped,
     setIsFlipped,
     secondsElapsed,
     showMilestone,
     canInteract,
-    levelRewards,
-    setLevelRewards,
+    isExiting,
+    xpEarned,
+    milestone20Reached,
     handleRate,
     handleExit,
     isActive,
@@ -37,6 +41,16 @@ export default function StudySession() {
     sessionSummary, // 👈 ASEGÚRATE DE QUE TU HOOK RETORNE ESTO
     setSessionSummary, // 👈 Y ESTO PARA CERRARLO
   } = useStudySession(deckId);
+
+  // Keyboard Shortcuts
+  useKeyboardShortcuts({
+    ' ': () => !isFlipped && canInteract && setIsFlipped(true),  // SPACE = flip
+    '1': () => isFlipped && canInteract && handleRate(1),         // 1 = Olvidé
+    '2': () => isFlipped && canInteract && handleRate(3),         // 2 = Difícil
+    '3': () => isFlipped && canInteract && handleRate(4),         // 3 = Bien
+    '4': () => isFlipped && canInteract && handleRate(5),         // 4 = Fácil
+    'Escape': handleExit                                          // ESC = exit
+  }, canInteract);
 
   // Estados de carga y error
   if (loading) return <GlobalLoading />;
@@ -57,6 +71,9 @@ export default function StudySession() {
         secondsElapsed={secondsElapsed}
         isActive={isActive}
         onExit={handleExit}
+        cardsCompleted={cardsCompleted}
+        totalCards={totalCards}
+        milestone20Reached={milestone20Reached}
       />
 
       {/* Pop-up de Hito (Si tienes el componente, si no, puedes dejar el div original) */}
@@ -69,14 +86,15 @@ export default function StudySession() {
         )}
       </AnimatePresence>
 
-      {/* 👇 AGREGAR ESTE MODAL AL FINAL */}
+      {/* 👇 LÓGICA DE MODALES SECUENCIALES - ACTUALIZADO: LevelUp es global ahora */}
       <AnimatePresence>
+        {/* Session Summary (El Level Up sale por encima vía Global Layer) */}
         {sessionSummary && (
           <SessionSummaryModal
             summary={sessionSummary}
             onClose={() => {
               setSessionSummary(null);
-              navigate('/learn'); // 👈 AL CERRAR, NOS VAMOS
+              navigate('/learn');
             }}
           />
         )}
@@ -87,6 +105,14 @@ export default function StudySession() {
         isFlipped={isFlipped}
         canInteract={canInteract}
         onFlip={() => setIsFlipped(!isFlipped)}
+        isExiting={isExiting}
+      />
+
+      {/* FloatingXP Animation */}
+      <FloatingXP
+        xpAmount={xpEarned}
+        show={xpEarned > 0}
+        onComplete={() => { }}
       />
 
       <StudyControls
@@ -95,12 +121,6 @@ export default function StudySession() {
         onReveal={() => setIsFlipped(true)}
         onRate={handleRate}
       />
-
-      <AnimatePresence>
-        {levelRewards && (
-          <LevelUpModal rewards={levelRewards} onClose={() => setLevelRewards(null)} />
-        )}
-      </AnimatePresence>
     </div>
   );
 };

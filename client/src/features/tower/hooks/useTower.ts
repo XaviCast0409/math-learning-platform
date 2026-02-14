@@ -1,14 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
 import { towerApi, type TowerStatusResponse, type TowerAnswerResponse } from '../api/tower.api';
 import { toast } from 'react-hot-toast';
-// import { useConfirm } from '../../../context/ConfirmContext'; // Validar si necesitamos confirmación manual o directo
+import { useAuth } from '../../../context/AuthContext';
 
 export const useTower = () => {
 	const [gameState, setGameState] = useState<TowerStatusResponse | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [submitting, setSubmitting] = useState(false);
 	const [lastResult, setLastResult] = useState<TowerAnswerResponse | null>(null);
-	// const { confirm } = useConfirm();
+	const { updateUserStats } = useAuth();
 
 	// Cargar estado inicial
 	const fetchStatus = useCallback(async () => {
@@ -70,6 +70,15 @@ export const useTower = () => {
 				if (result.gameOver) {
 					toast('GAME OVER', { icon: '💀' });
 					setLastResult(result);
+
+					// 👈 Actualizar contexto global con los nuevos valores del servidor
+					if (result.newTotalXp !== undefined) {
+						updateUserStats({
+							xp_total: result.newTotalXp,
+							gems: result.newTotalGems,
+							level: result.newLevel
+						});
+					}
 
 					// Actualizamos el estado local para reflejar el Game Over sin borrar todo
 					setGameState(prev => prev ? {

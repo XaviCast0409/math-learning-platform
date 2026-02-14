@@ -50,60 +50,85 @@ export default function LearnMap() {
           </span>
         </div>
 
-        {units.map((unit, unitIndex) => (
-          <div key={unit.id} className="mb-12 relative z-10">
+        {units.map((unit, unitIndex) => {
+          // Calculate unit progress
+          const completedLessons = unit.lessons.filter(l => l.status === 'completed').length;
+          const totalLessons = unit.lessons.length;
+          const progressPercent = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
 
-            {/* 🏳️ ENCABEZADO DE UNIDAD (Estilo Banner Flotante) */}
-            <div className={clsx(
-              "sticky top-24 z-30 mb-12 mx-2", // Sticky para que se quede arriba mientras bajas
-              "bg-brand-blue text-white p-5 rounded-3xl",
-              "border-b-[6px] border-blue-700 shadow-xl", // Borde inferior oscuro
-              "flex flex-col items-center text-center transform hover:scale-[1.02] transition-transform"
-            )}>
-              {/* Decoración de estrellas en el banner */}
-              <div className="absolute -top-3 -left-3 text-yellow-400 animate-bounce delay-100"><Star fill="currentColor" size={24} /></div>
-              <div className="absolute -top-2 -right-2 text-yellow-400 animate-bounce"><Star fill="currentColor" size={18} /></div>
+          return (
+            <div key={unit.id} className="mb-12 relative z-10">
 
-              <h2 className="font-black text-xl uppercase tracking-wider mb-1 drop-shadow-md">
-                {unit.title}
-              </h2>
-              <p className="text-sm text-blue-100 font-bold opacity-90 leading-tight max-w-[80%]">
-                {unit.description}
-              </p>
-            </div>
+              {/* 🏳️ ENCABEZADO DE UNIDAD (Estilo Banner Flotante) */}
+              <div className={clsx(
+                "sticky top-24 z-30 mb-12 mx-2", // Sticky para que se quede arriba mientras bajas
+                "bg-brand-blue text-white p-5 rounded-3xl",
+                "border-b-[6px] border-blue-700 shadow-xl", // Borde inferior oscuro
+                "flex flex-col items-center text-center transform hover:scale-[1.02] transition-transform"
+              )}>
+                {/* Decoración de estrellas en el banner */}
+                <div className="absolute -top-3 -left-3 text-yellow-400 animate-bounce delay-100"><Star fill="currentColor" size={24} /></div>
+                <div className="absolute -top-2 -right-2 text-yellow-400 animate-bounce"><Star fill="currentColor" size={18} /></div>
 
-            {/* 🗺️ CAMINO DE NODOS */}
-            <div className="flex flex-col items-center gap-6 relative">
+                <h2 className="font-black text-xl uppercase tracking-wider mb-1 drop-shadow-md">
+                  {unit.title}
+                </h2>
+                <p className="text-sm text-blue-100 font-bold opacity-90 leading-tight max-w-[80%]">
+                  {unit.description}
+                </p>
 
-              {/* Línea conectora de fondo (El Camino) */}
-              <div className="absolute top-0 bottom-0 w-3 bg-gray-200 rounded-full -z-10" />
-
-              {unit.lessons.map((lesson, idx) => {
-                const { container, connector } = getPositionClasses(idx);
-
-                return (
-                  <div key={lesson.id} className={container}>
-                    {/* Pequeño conector horizontal hacia la línea central */}
-                    <div className={connector} />
-
-                    <LessonNode
-                      lesson={lesson}
-                      index={idx}
-                      onClick={(clickedLesson) => setSelectedLesson(clickedLesson as LessonMapNode)}
+                {/* Progress Bar */}
+                <div className="w-full mt-4 space-y-2">
+                  <div className="w-full bg-blue-800/40 rounded-full h-3 overflow-hidden border-2 border-blue-800/60">
+                    <div
+                      className="bg-gradient-to-r from-yellow-400 to-yellow-300 h-full rounded-full transition-all duration-700 ease-out shadow-lg"
+                      style={{ width: `${progressPercent}%` }}
                     />
                   </div>
-                );
-              })}
-            </div>
-
-            {/* Separador de fin de unidad (Icono de candado o meta) */}
-            {unitIndex < units.length - 1 && (
-              <div className="h-24 flex items-center justify-center opacity-20">
-                <div className="w-1 h-12 bg-gray-300 rounded-full border-dashed border-2 border-gray-400"></div>
+                  <div className="flex items-center justify-center gap-2 text-xs font-black text-blue-100">
+                    <span className="bg-blue-800/40 px-2 py-1 rounded-lg">
+                      {completedLessons}/{totalLessons} completadas
+                    </span>
+                    <span className="text-yellow-400">
+                      {Math.round(progressPercent)}%
+                    </span>
+                  </div>
+                </div>
               </div>
-            )}
-          </div>
-        ))}
+
+              {/* 🗺️ CAMINO DE NODOS */}
+              <div className="flex flex-col items-center gap-6 relative">
+
+                {/* Línea conectora de fondo (El Camino) */}
+                <div className="absolute top-0 bottom-0 w-3 bg-gray-200 rounded-full -z-10" />
+
+                {unit.lessons.map((lesson, idx) => {
+                  const { container, connector } = getPositionClasses(idx);
+
+                  return (
+                    <div key={lesson.id} className={container}>
+                      {/* Pequeño conector horizontal hacia la línea central */}
+                      <div className={connector} />
+
+                      <LessonNode
+                        lesson={lesson}
+                        index={idx}
+                        onClick={(clickedLesson) => setSelectedLesson(clickedLesson as LessonMapNode)}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Separador de fin de unidad (Icono de candado o meta) */}
+              {unitIndex < units.length - 1 && (
+                <div className="h-24 flex items-center justify-center opacity-20">
+                  <div className="w-1 h-12 bg-gray-300 rounded-full border-dashed border-2 border-gray-400"></div>
+                </div>
+              )}
+            </div>
+          );
+        })}
 
         {/* Decoración final */}
         <div className="text-center pb-10 pt-4">

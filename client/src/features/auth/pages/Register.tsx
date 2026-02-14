@@ -1,57 +1,180 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import { Sparkles, Mail, Lock, User, Rocket } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Sparkles, Mail, Lock, User, Rocket, Phone, Calendar, ArrowRight, ArrowLeft, CheckCircle } from 'lucide-react';
 import { useAuth } from '../../../context/AuthContext';
+import { authApi } from '../api/auth.api';
+import { toast } from 'react-hot-toast';
 
 // Componentes XaviUI
 import { Button } from '../../../components/common/Button';
 import { Input } from '../../../components/common/Input';
 import { Card } from '../../../components/common/Card';
 import { GlobalLoading } from '../../../components/common/GlobalLoading';
+import { OTPInput } from '../../../components/common/OTPInput';
+import { GradeSelect } from '../components/GradeSelect';
 
 type RegisterFormInputs = {
   username: string;
   email: string;
   password: string;
+  full_name: string;
+  age?: number;
+  phone?: string;
+  grade_level: string;
 };
 
 export default function Register() {
-  const { register: registerUser } = useAuth(); // Renombramos para no chocar con el register de useForm
+  const { setSession } = useAuth();
   const navigate = useNavigate();
+  const [step, setStep] = useState(1);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [otpCode, setOtpCode] = useState('');
+  const [otpError, setOtpError] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState('');
+  const [countdown, setCountdown] = useState(0);
 
   const {
-    register, // Método de hook-form
+    register,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors },
+    trigger,
+    getValues,
+    control
   } = useForm<RegisterFormInputs>();
 
-  const onSubmit = async (data: RegisterFormInputs) => {
+  // Countdown timer for resend code
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => setCountdown(countdown - 1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [countdown]);
+
+  // Load email from localStorage if exists
+  useEffect(() => {
+    const savedEmail = localStorage.getItem('pending_verification_email');
+    if (savedEmail) {
+      setRegisteredEmail(savedEmail);
+      setStep(3);
+    }
+  }, []);
+
+  const handleNext = async () => {
+    let fieldsToValidate: (keyof RegisterFormInputs)[] = [];
+
+    if (step === 1) {
+      fieldsToValidate = ['username', 'email', 'password'];
+    } else if (step === 2) {
+      fieldsToValidate = ['full_name', 'grade_level'];
+    }
+
+    const isValid = await trigger(fieldsToValidate);
+    if (isValid) {
+      if (step === 2) {
+        // Submit registration
+        await handleRegister();
+      } else {
+        setStep(step + 1);
+      }
+    }
+  };
+
+  const handleBack = () => {
     setServerError(null);
+    setStep(step - 1);
+  };
+
+  const handleRegister = async () => {
+    setServerError(null);
+    setIsSubmitting(true);
+
     try {
-      // 1. Promesa de tiempo mínimo para que se vea la animación cool (3s)
-      const minLoadingTime = new Promise(resolve => setTimeout(resolve, 3000));
+      const formData = getValues();
+      await authApi.register(formData);
 
-      // 2. Ejecutar registro y espera en paralelo
-      await Promise.all([
-        registerUser(data),
-        minLoadingTime
-      ]);
-
-      navigate('/learn');
+      // Save email to localStorage
+      localStorage.setItem('pending_verification_email', formData.email);
+      setRegisteredEmail(formData.email);
+      setStep(3);
+      setCountdown(60); // 1 minute cooldown for resend
+      toast.success('📧 Código enviado a tu correo');
     } catch (error: any) {
-      // Manejo de errores comunes del backend
       const msg = error.response?.data?.message;
-      if (msg?.includes('users_email_key')) {
+      if (msg?.includes('users_email_key') || msg?.includes('ya está registrado')) {
         setServerError('¡Ese correo ya está registrado! Intenta iniciar sesión.');
-      } else if (msg?.includes('users_username_key')) {
+      } else if (msg?.includes('users_username_key') || msg?.includes('ya está en uso')) {
         setServerError('¡Ese nombre de usuario ya existe! Elige otro más original.');
       } else {
         setServerError(msg || 'Ocurrió un error al crear la cuenta.');
       }
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [verificationSuccess, setVerificationSuccess] = useState(false);
+
+  const handleVerifyCode = async () => {
+    if (otpCode.length !== 4) {
+      setOtpError(true);
+      return;
+    }
+
+    setIsVerifying(true);
+    setOtpError(false);
+
+    try {
+      const response = await authApi.verifyEmail(registeredEmail, otpCode);
+
+      // Show success state
+      setVerificationSuccess(true);
+      toast.success('¡Código verificado! 🎉');
+
+      // Wait 1.5 seconds to show success animation
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      // Clear localStorage
+      localStorage.removeItem('pending_verification_email');
+
+      // Set session with user and token
+      setSession(response.data.user, response.data.token);
+      toast.success('¡Bienvenido a XaviMath!');
+      navigate('/learn');
+    } catch (error: any) {
+      setOtpError(true);
+      setVerificationSuccess(false);
+      const msg = error.response?.data?.message;
+      toast.error(msg || 'Código incorrecto');
+    } finally {
+      setIsVerifying(false);
+    }
+  };
+
+  const handleResendCode = async () => {
+    if (countdown > 0) return;
+
+    setIsSubmitting(true);
+    try {
+      await authApi.resendCode(registeredEmail);
+      setCountdown(60);
+      toast.success('Código reenviado');
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Error al reenviar código');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Auto-submit OTP when complete
+  useEffect(() => {
+    if (otpCode.length === 4 && step === 3) {
+      handleVerifyCode();
+    }
+  }, [otpCode]);
 
   return (
     <div className="min-h-screen bg-brand-light flex items-center justify-center p-4 font-sans relative overflow-hidden">
@@ -59,20 +182,49 @@ export default function Register() {
       {/* Loading Global Overlay */}
       {isSubmitting && <GlobalLoading />}
 
-      {/* Fondo Decorativo (Diferente al Login para variar un poco) */}
+      {/* Fondo Decorativo */}
       <div className="absolute inset-0 opacity-10"
         style={{ backgroundImage: 'radial-gradient(#22C55E 2px, transparent 2px)', backgroundSize: '25px 25px' }}>
       </div>
 
       <Card className="w-full max-w-md relative z-10">
 
+        {/* Progress Indicator */}
+        <div className="flex justify-between mb-8">
+          {[1, 2, 3].map((s) => (
+            <div key={s} className="flex-1 flex items-center">
+              <div className={`
+                w-10 h-10 rounded-full flex items-center justify-center font-black text-sm
+                transition-all duration-300
+                ${step >= s
+                  ? 'bg-brand-green text-white border-2 border-black shadow-retro-sm'
+                  : 'bg-gray-200 text-gray-400 border-2 border-gray-300'
+                }
+              `}>
+                {step > s ? <CheckCircle size={20} /> : s}
+              </div>
+              {s < 3 && (
+                <div className={`flex-1 h-1 mx-2 rounded ${step > s ? 'bg-brand-green' : 'bg-gray-200'}`} />
+              )}
+            </div>
+          ))}
+        </div>
+
         {/* Cabecera */}
         <div className="text-center mb-6">
           <div className="inline-flex items-center justify-center bg-brand-green text-white p-4 rounded-2xl border-2 border-black shadow-retro mb-4">
             <Rocket size={40} strokeWidth={2.5} className="animate-pulse" />
           </div>
-          <h1 className="text-3xl font-black text-black tracking-tight mb-2">¡Únete a la Aventura!</h1>
-          <p className="text-gray-600 font-medium text-sm">Crea tu cuenta y empieza a ganar gemas 💎</p>
+          <h1 className="text-3xl font-black text-black tracking-tight mb-2">
+            {step === 1 && '¡Únete a la Aventura!'}
+            {step === 2 && 'Cuéntanos sobre ti'}
+            {step === 3 && 'Verifica tu Email'}
+          </h1>
+          <p className="text-gray-600 font-medium text-sm">
+            {step === 1 && 'Crea tu cuenta y empieza a ganar xavicoins 💰'}
+            {step === 2 && 'Solo un paso más para comenzar'}
+            {step === 3 && `Código enviado a ${registeredEmail}`}
+          </p>
         </div>
 
         {/* Mensaje de Error */}
@@ -82,59 +234,197 @@ export default function Register() {
           </div>
         )}
 
-        {/* Formulario */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        {/* STEP 1: Datos Básicos */}
+        {step === 1 && (
+          <form onSubmit={handleSubmit(handleNext)} className="space-y-5">
+            <Input
+              label="Nombre de Héroe (Usuario)"
+              type="text"
+              placeholder="Ej. SuperMate3000"
+              icon={<User size={20} />}
+              error={errors.username?.message}
+              {...register("username", {
+                required: "Necesitamos saber cómo llamarte",
+                minLength: { value: 3, message: "Mínimo 3 letras" },
+                pattern: { value: /^[a-zA-Z0-9_]+$/, message: "Solo letras, números y guiones bajos" }
+              })}
+            />
 
-          <Input
-            label="Nombre de Héroe (Usuario)"
-            type="text"
-            placeholder="Ej. SuperMate3000"
-            icon={<User size={20} />}
-            error={errors.username?.message}
-            {...register("username", {
-              required: "Necesitamos saber cómo llamarte",
-              minLength: { value: 3, message: "Mínimo 3 letras" },
-              pattern: { value: /^[a-zA-Z0-9_]+$/, message: "Solo letras, números y guiones bajos" }
-            })}
-          />
+            <Input
+              label="Correo Electrónico"
+              type="email"
+              placeholder="tu@email.com"
+              icon={<Mail size={20} />}
+              error={errors.email?.message}
+              {...register("email", {
+                required: "El correo es obligatorio",
+                pattern: { value: /^\S+@\S+$/i, message: "Correo inválido" }
+              })}
+            />
 
-          <Input
-            label="Correo Electrónico"
-            type="email"
-            placeholder="tu@email.com"
-            icon={<Mail size={20} />}
-            error={errors.email?.message}
-            {...register("email", {
-              required: "El correo es obligatorio",
-              pattern: { value: /^\S+@\S+$/i, message: "Correo inválido" }
-            })}
-          />
+            <Input
+              label="Contraseña Secreta"
+              type="password"
+              placeholder="••••••"
+              icon={<Lock size={20} />}
+              error={errors.password?.message}
+              {...register("password", {
+                required: "Crea una contraseña",
+                minLength: { value: 6, message: "Mínimo 6 caracteres para estar seguro" }
+              })}
+            />
 
-          <Input
-            label="Contraseña Secreta"
-            type="password"
-            placeholder="••••••"
-            icon={<Lock size={20} />}
-            error={errors.password?.message}
-            {...register("password", {
-              required: "Crea una contraseña",
-              minLength: { value: 6, message: "Mínimo 6 caracteres para estar seguro" }
-            })}
-          />
+            <div className="pt-2">
+              <Button
+                type="submit"
+                variant="primary"
+                className="w-full bg-brand-green hover:bg-green-500 text-white"
+                icon={<ArrowRight size={20} />}
+              >
+                SIGUIENTE
+              </Button>
+            </div>
+          </form>
+        )}
 
-          <div className="pt-2">
-            <Button
-              type="submit"
-              variant="primary" // Usamos el amarillo que ya definimos
-              className="w-full bg-brand-green hover:bg-green-500 text-white" // Override manual para hacerlo VERDE (Color de "Inicio")
-              disabled={isSubmitting}
-              icon={<Sparkles size={20} />}
-            >
-              ¡COMENZAR MISIÓN!
-            </Button>
+        {/* STEP 2: Información Personal */}
+        {step === 2 && (
+          <form onSubmit={handleSubmit(handleNext)} className="space-y-5">
+            <Input
+              label="Nombre Completo"
+              type="text"
+              placeholder="Ej. Juan Pérez"
+              icon={<User size={20} />}
+              error={errors.full_name?.message}
+              {...register("full_name", {
+                required: "Tu nombre completo es necesario",
+                minLength: { value: 3, message: "Mínimo 3 caracteres" }
+              })}
+            />
+
+            <Controller
+              name="grade_level"
+              control={control}
+              rules={{ required: "Selecciona tu año de estudio" }}
+              render={({ field }) => (
+                <GradeSelect
+                  value={field.value || ''}
+                  onChange={field.onChange}
+                  error={errors.grade_level?.message}
+                />
+              )}
+            />
+
+            <Input
+              label="Edad (Opcional)"
+              type="number"
+              placeholder="Ej. 12"
+              icon={<Calendar size={20} />}
+              error={errors.age?.message}
+              {...register("age", {
+                min: { value: 5, message: "Edad mínima: 5 años" },
+                max: { value: 100, message: "Edad máxima: 100 años" }
+              })}
+            />
+
+            <Input
+              label="Teléfono (Opcional)"
+              type="tel"
+              placeholder="Ej. 987654321"
+              icon={<Phone size={20} />}
+              error={errors.phone?.message}
+              {...register("phone", {
+                pattern: { value: /^[0-9]{9,15}$/, message: "Formato inválido (9-15 dígitos)" }
+              })}
+            />
+
+            <div className="flex gap-3 pt-2">
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={handleBack}
+                className="flex-1"
+                icon={<ArrowLeft size={20} />}
+              >
+                ATRÁS
+              </Button>
+              <Button
+                type="submit"
+                variant="primary"
+                className="flex-1 bg-brand-green hover:bg-green-500 text-white"
+                icon={<Sparkles size={20} />}
+              >
+                CREAR CUENTA
+              </Button>
+            </div>
+          </form>
+        )}
+
+        {/* STEP 3: Verificación OTP */}
+        {step === 3 && (
+          <div className="space-y-6">
+            {!verificationSuccess ? (
+              <>
+                <div className="text-center">
+                  <p className="text-gray-600 mb-6">
+                    Ingresa el código de 4 dígitos que enviamos a tu correo
+                  </p>
+                  <OTPInput
+                    onChange={(value) => {
+                      setOtpCode(value);
+                      setOtpError(false);
+                    }}
+                    error={otpError}
+                    disabled={isVerifying || isSubmitting}
+                  />
+
+                  {isVerifying && (
+                    <div className="mt-6 flex items-center justify-center gap-3">
+                      <div className="w-6 h-6 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
+                      <p className="text-brand-blue font-bold animate-pulse">Verificando código...</p>
+                    </div>
+                  )}
+                </div>
+
+                <div className="text-center">
+                  <button
+                    type="button"
+                    onClick={handleResendCode}
+                    disabled={countdown > 0 || isSubmitting || isVerifying}
+                    className={`text-sm font-bold ${countdown > 0 || isVerifying ? 'text-gray-400 cursor-not-allowed' : 'text-brand-blue hover:underline'
+                      }`}
+                  >
+                    {countdown > 0 ? `Reenviar código en ${countdown}s` : '¿No recibiste el código? Reenviar'}
+                  </button>
+                </div>
+
+                <Button
+                  type="button"
+                  onClick={handleBack}
+                  variant="secondary"
+                  className="w-full"
+                  icon={<ArrowLeft size={20} />}
+                  disabled={isVerifying}
+                >
+                  VOLVER
+                </Button>
+              </>
+            ) : (
+              <div className="text-center py-8">
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", duration: 0.5 }}
+                  className="inline-flex items-center justify-center bg-brand-green text-white p-6 rounded-full border-4 border-black shadow-retro mb-6"
+                >
+                  <CheckCircle size={64} strokeWidth={2.5} />
+                </motion.div>
+                <h2 className="text-2xl font-black text-brand-green mb-2">¡Verificado!</h2>
+                <p className="text-gray-600 font-medium">Redirigiendo a tu cuenta...</p>
+              </div>
+            )}
           </div>
-
-        </form>
+        )}
 
         <div className="mt-6 text-center">
           <p className="text-gray-500 font-medium text-sm">

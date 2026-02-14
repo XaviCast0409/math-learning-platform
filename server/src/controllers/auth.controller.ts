@@ -18,11 +18,50 @@ const authService = new AuthService();
 export const register = async (req: Request, res: Response, next: NextFunction) => {
   try {
     // La validación ya pasó por el middleware
-    const { user, token } = await authService.register(req.body);
+    const result = await authService.register(req.body);
+
+    res.status(200).json({
+      status: 'success',
+      data: result // { message, email }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const verifyEmail = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { email, code } = req.body;
+
+    if (!email || !code) {
+      throw new AppError('Email y código son requeridos', 400);
+    }
+
+    const { user, token } = await authService.verifyEmailAndCreateUser(email, code);
 
     res.status(201).json({
       status: 'success',
       data: { user, token }
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resendCode = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      throw new AppError('Email es requerido', 400);
+    }
+
+    const { verificationService } = require('../services/verification.service');
+    await verificationService.resendCode(email);
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Código reenviado exitosamente'
     });
   } catch (error) {
     next(error);

@@ -28,8 +28,31 @@ axiosClient.interceptors.request.use(
 
 // 3. Interceptor de RESPUESTA (Response)
 // Si el backend nos responde, o si hay un error
+import { gamificationEvents } from '../utils/gamificationEvents';
+
+// ... (imports)
+
+// 3. Interceptor de RESPUESTA (Response)
+// Si el backend nos responde, o si hay un error
 axiosClient.interceptors.response.use(
   (response) => {
+    // Detectar Level Up Globalmente
+    const data = response.data?.data; // Asumiendo estructura estandar { success: true, data: { ... } }
+
+    // A veces la respuesta es directa, a veces anidada en data.data
+    // Verificamos ambos casos por si acaso
+    const payload = data || response.data;
+
+    if (payload && payload.leveledUp && payload.levelRewards) {
+      // Emitir evento global
+      gamificationEvents.emitLevelUp({
+        level: payload.levelRewards.currentLevel || 0,
+        currentLevel: payload.levelRewards.currentLevel,
+        previousLevel: payload.levelRewards.previousLevel,
+        rewards: payload.levelRewards
+      });
+    }
+
     // Si todo sale bien, devolvemos la data limpia
     return response;
   },

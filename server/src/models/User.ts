@@ -12,6 +12,17 @@ class User extends Model {
   public password_hash!: string;
   public role!: 'student' | 'admin' | 'moderator';
 
+  // New profile fields
+  public full_name!: string;
+  public age!: number | null;
+  public phone!: string | null;
+  public grade_level!: string;
+
+  // Email verification
+  public email_verified!: boolean;
+  public email_verification_code!: string | null;
+  public verification_code_expires_at!: Date | null;
+
   // Gamification
   public xp_total!: number;
   public level!: number;
@@ -49,6 +60,17 @@ User.init({
   email: { type: DataTypes.STRING, allowNull: false, unique: true },
   password_hash: { type: DataTypes.STRING, allowNull: false },
   role: { type: DataTypes.ENUM('student', 'admin', 'moderator'), defaultValue: 'student' },
+
+  // New profile fields
+  full_name: { type: DataTypes.STRING, allowNull: false },
+  age: { type: DataTypes.INTEGER, allowNull: true },
+  phone: { type: DataTypes.STRING, allowNull: true },
+  grade_level: { type: DataTypes.STRING, allowNull: false },
+
+  // Email verification
+  email_verified: { type: DataTypes.BOOLEAN, defaultValue: false },
+  email_verification_code: { type: DataTypes.STRING, allowNull: true },
+  verification_code_expires_at: { type: DataTypes.DATE, allowNull: true },
 
   xp_total: { type: DataTypes.INTEGER, defaultValue: 0 },
 

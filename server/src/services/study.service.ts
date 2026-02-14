@@ -22,7 +22,7 @@ export interface DeckFilters {
 
 export class StudyService {
 
-  async startSession(userId: number, deckId: number, limit = 20) {
+  async startSession(userId: number, deckId: number, limit = 200) {
     const deck = await Deck.findByPk(deckId);
     if (!deck) throw new AppError('Mazo no encontrado', 404);
 
@@ -98,10 +98,16 @@ export class StudyService {
     let totalFinalGems = 0;
     let leveledUp = false;
     let allBonuses: string[] = [];
+    let levelRewardsPayload = undefined; // 👈 Variable para payload
+
+
+    // Detectar 20 min milestone (Frontend envía +200 XP de golpe)
+    if (xpToAdd >= 200) {
+      allBonuses.push('20_MIN_MILESTONE');
+    }
 
     // --- LÓGICA DE RECOMPENSAS ---
     if (xpToAdd > 0 || gemsToAdd > 0) {
-
       const initialUser = await User.findByPk(userId, { attributes: ['xp_total'] });
       const startXp = initialUser?.xp_total || 0;
 
@@ -117,6 +123,13 @@ export class StudyService {
       const xpResult = await userService.addExperience(userId, xpToAdd);
 
       leveledUp = xpResult.leveledUp;
+      // 👈 Capturamos rewards y detalles de niveles
+      levelRewardsPayload = {
+        ...xpResult.rewards,
+        previousLevel: xpResult.previousLevel,
+        currentLevel: xpResult.currentLevel
+      };
+
       realXpEarned = xpResult.user.xp_total - startXp;
 
       if (xpResult.rewards.bonusesApplied) {
@@ -169,7 +182,8 @@ export class StudyService {
       xpEarned: realXpEarned,
       gemsEarned: totalFinalGems,
       appliedBonuses: uniqueBonuses,
-      leveledUp
+      leveledUp,
+      levelRewards: levelRewardsPayload // 👈 Enviamos al frontend
     };
   }
 

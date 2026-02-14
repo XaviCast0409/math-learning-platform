@@ -10,6 +10,8 @@ interface XpGainResult {
 	user: User;
 	leveledUp: boolean;
 	levelsGained: number;
+	previousLevel?: number;
+	currentLevel?: number;
 	rewards: {
 		gems: number;
 		lives: number;
@@ -88,6 +90,8 @@ export class UserService {
 			user,
 			leveledUp: newLevel > previousLevel,
 			levelsGained: newLevel - previousLevel,
+			previousLevel,
+			currentLevel: newLevel,
 			rewards: totalRewards
 		};
 	}

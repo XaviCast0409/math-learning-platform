@@ -7,7 +7,7 @@ interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
   login: (credentials: { email: string; password: string }) => Promise<AuthResponse>;
-  register: (data: { username: string; email: string; password: string }) => Promise<void>;
+  register?: (data: { username: string; email: string; password: string }) => Promise<void>; // Deprecated
   logout: () => void;
   updateUserStats: (stats: Partial<User>) => void;
   refreshUser: () => Promise<void>;
@@ -59,18 +59,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const register = async (data: { username: string; email: string; password: string }) => {
-    try {
-      const response = await authApi.register(data);
-
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-
-      setUser(response.data.user);
-    } catch (error) {
-      throw error;
-    }
-  };
+  // DEPRECATED: Old register method - Now using email verification flow
+  // const register = async (data: { username: string; email: string; password: string }) => {
+  //   try {
+  //     const response = await authApi.register(data);
+  //     localStorage.setItem('token', response.data.token);
+  //     localStorage.setItem('user', JSON.stringify(response.data.user));
+  //     setUser(response.data.user);
+  //   } catch (error) {
+  //     throw error;
+  //   }
+  // };
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -86,7 +85,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const updateUserStats = (newStats: Partial<User>) => {
     if (user) {
-      setUser({ ...user, ...newStats });
+      const updatedUser = { ...user, ...newStats };
+      setUser(updatedUser);
+      // Persist to localStorage
+      localStorage.setItem('user', JSON.stringify(updatedUser));
     }
   };
 
@@ -95,7 +97,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     isAuthenticated: !!user,
     isLoading,
     login,
-    register,
+    // register is deprecated - using email verification flow now
     logout,
     updateUserStats,
     refreshUser: checkAuth,

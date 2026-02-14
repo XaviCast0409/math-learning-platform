@@ -1,5 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useLesson } from '../hooks/useLesson';
+import { useBackgroundMusic } from '../../../hooks/useBackgroundMusic';
 
 // Componentes UI
 import { GlobalLoading } from '../../../components/common/GlobalLoading';
@@ -8,6 +10,7 @@ import { FeedbackSheet } from '../components/FeedbackSheet';
 import { Button } from '../../../components/common/Button';
 import { Card } from '../../../components/common/Card';
 import { RichText } from '../../../components/common/RichText';
+import { FloatingXP } from '../../../components/common/FloatingXP';
 import { BookOpen, Loader2 } from 'lucide-react';
 
 // Subcomponentes
@@ -30,6 +33,24 @@ export default function LessonContainer() {
     isChecking, isTransitioning,
     earnedStats // 👈 Datos ganados para la pantalla de victoria
   } = useLesson(Number(id));
+
+  // 🎵 Background music - only plays during 'playing' state
+  useBackgroundMusic('/assets/sounds/lesson.mp3', {
+    enabled: gameState === 'playing',
+    volume: 0.1
+  });
+
+  // 🎉 Floating XP animation state
+  const [showXPAnimation, setShowXPAnimation] = useState(false);
+  const [xpToShow, setXpToShow] = useState(0);
+
+  // Trigger XP animation when lesson completes
+  useEffect(() => {
+    if (gameState === 'finished' && earnedStats.xp > 0) {
+      setXpToShow(earnedStats.xp);
+      setShowXPAnimation(true);
+    }
+  }, [gameState, earnedStats.xp]);
 
   if (loading || !content) return <GlobalLoading />;
 
@@ -154,6 +175,13 @@ export default function LessonContainer() {
         correctAnswer={currentExercise.correct_answer}
         explanation={currentExercise.solution_explanation}
         onContinue={handleContinue}
+      />
+
+      {/* 🎉 Floating XP Animation */}
+      <FloatingXP
+        xpAmount={xpToShow}
+        show={showXPAnimation}
+        onComplete={() => setShowXPAnimation(false)}
       />
     </div>
   );

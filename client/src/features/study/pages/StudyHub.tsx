@@ -4,6 +4,7 @@ import { clsx } from 'clsx'; // 👈 Necesario para los estilos de los tabs
 import { MainLayout } from '../../../components/layout/MainLayout';
 import { studyApi, type DeckSummary } from '../api/study.api';
 import { DeckCard } from '../components/DeckCard';
+import { RewardsTable } from '../components/RewardsTable';
 
 // Interfaz para el filtro
 interface CourseOption { id: number; title: string; }
@@ -76,6 +77,9 @@ export default function StudyHub() {
           <h1 className="text-2xl font-black text-gray-800">Centro de Repaso 🧠</h1>
           <p className="text-gray-500 text-sm">Estudia 20 minutos al día para ganar gemas.</p>
         </header>
+
+        {/* Rewards Table */}
+        <RewardsTable />
 
         {/* 👇 BARRA DE FILTRO DE CURSOS (Scroll Horizontal) */}
         <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar">

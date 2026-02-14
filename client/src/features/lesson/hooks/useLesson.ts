@@ -172,7 +172,7 @@ export const useLesson = (lessonId: number) => {
         console.error("Error sync derrota", e);
       }
       toast.error("💀 Te has quedado sin vidas");
-      navigate('/courses');
+      navigate('/learn');
       return;
     }
 
@@ -206,7 +206,7 @@ export const useLesson = (lessonId: number) => {
         });
       } catch (error) {
         toast.error("Error al guardar progreso");
-        navigate('/courses');
+        navigate('/learn');
       }
       return;
     }
