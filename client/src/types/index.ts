@@ -8,6 +8,12 @@ export interface User {
   email: string;
   role: 'student' | 'admin' | 'moderator';
 
+  // 👇 NUEVOS CAMPOS DE PERFIL
+  full_name: string;
+  age: number | null;
+  phone: string | null;
+  grade_level: string;
+
   // Gamificación
   xp_total: number;
   level: number;

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Trophy, Frown, Minus, ArrowRight, Home, Shield, Zap } from 'lucide-react';
+import { Trophy, Frown, Minus, ArrowRight, Home, Shield, Zap, Coins } from 'lucide-react';
 import { MainLayout } from '../../../components/layout/MainLayout';
 import { Button } from '../../../components/common/Button';
 import { useAuth } from '../../../context/AuthContext';
@@ -192,11 +192,11 @@ const PvpResults = () => {
                 {/* Gemas (Solo si hay) */}
                 {myRewards.gems > 0 && (
                   <div className="flex flex-col items-center animate-bounce-slow">
-                    <div className="bg-white p-2 rounded-full shadow-sm mb-1 text-purple-500">
-                      {/* Icono de Gema (puedes usar Diamond de lucide o un svg custom) */}
-                      <div className="w-4 h-4 bg-purple-500 rotate-45"></div>
+                    <div className="bg-white p-2 rounded-full shadow-sm mb-1 text-yellow-500">
+                      {/* Icono de XaviCoins */}
+                      <Coins size={16} fill="currentColor" />
                     </div>
-                    <span className="font-black text-purple-600">+{myRewards.gems}</span>
+                    <span className="font-black text-yellow-600">+{myRewards.gems}</span>
                   </div>
                 )}
               </div>

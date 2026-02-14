@@ -3,15 +3,41 @@ import { Shield, Plus, Search, Users, LogOut, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useClan } from '../hooks/useClan';
 import { Button } from '../../../components/common/Button';
-
 import { ClanMembersList } from '../components/ClanMembersList';
 import { ClanWarWidget } from '../components/ClanWarWidget';
 import { PendingChallenges } from '../components/PendingChallenges';
-import { ClanEmblem } from '../components/ClanEmblem'; // 👈 IMPORTAR
+import { ClanEmblem } from '../components/ClanEmblem';
+import { CLAN_LEVELS } from '../../../config/clanLevels.config';
 
 export default function ClanLobby() {
 	const { myClan, loading, actions, warStatus, pendingWars } = useClan();
 	const navigate = useNavigate();
+
+	// Cálculo de Progreso de Nivel
+	const calculateProgress = () => {
+		if (!myClan) return 0;
+
+		const currentLevelData = CLAN_LEVELS[myClan.level];
+		const nextLevelData = CLAN_LEVELS[myClan.level + 1];
+
+		// Si es nivel máximo
+		if (!nextLevelData) return 100;
+
+		const xpNeededForNext = nextLevelData.minXp;
+		const xpNeededForCurrent = currentLevelData.minXp;
+
+		const xpInCurrentLevel = myClan.total_xp - xpNeededForCurrent;
+		const totalXpToNext = xpNeededForNext - xpNeededForCurrent;
+
+		// Evitar división por cero
+		if (totalXpToNext <= 0) return 100;
+
+		const percent = (xpInCurrentLevel / totalXpToNext) * 100;
+		return Math.min(100, Math.max(0, percent));
+	};
+
+	const progressPercent = calculateProgress();
+
 
 	if (loading) return (
 		<div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center">
@@ -122,7 +148,7 @@ export default function ClanLobby() {
 								<div className="w-full h-3 bg-gray-100 rounded-full overflow-hidden shadow-inner">
 									<motion.div
 										initial={{ width: 0 }}
-										animate={{ width: `${(myClan as any).progress_percent || 15}%` }}
+										animate={{ width: `${progressPercent}%` }}
 										transition={{ duration: 1.5, ease: "easeOut" }}
 										className="h-full bg-gradient-to-r from-blue-400 to-brand-blue rounded-full relative"
 									>
@@ -141,13 +167,14 @@ export default function ClanLobby() {
 							<PendingChallenges
 								challenges={pendingWars}
 								onRespond={actions.respondChallenge}
+								isLeader={myClan?.my_role === 'leader'}
 							/>
 						)}
 
 						{/* 2. ESTADO DE GUERRA */}
 						<section>
 							<h3 className="text-xs font-bold text-gray-400 uppercase mb-3 ml-1">Campo de Batalla</h3>
-							<ClanWarWidget war={warStatus} />
+							<ClanWarWidget war={warStatus || null} />
 						</section>
 
 						{/* 3. LISTA DE MIEMBROS */}

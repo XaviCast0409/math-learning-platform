@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Button } from '../../components/common/Button';
 import { Card } from '../../components/common/Card';
-import { Trophy, Flame, Zap, LogOut, Gem, TrendingUp, ChevronRight } from 'lucide-react'; // Agregué ChevronRight
+import { Trophy, Flame, Zap, LogOut, Coins, TrendingUp, ChevronRight } from 'lucide-react'; // Agregué ChevronRight
 import { getLeagueInfo } from '../../config/pvp.constants';
 import { clsx } from 'clsx';
 import { toast } from 'react-hot-toast';
@@ -15,6 +15,7 @@ import type { AvatarConfig } from '../../types/avatar.types';
 // Componentes Visuales
 import { WardrobeModal } from '../../avatar/WardrobeModal';
 import { UserIdentityCard } from './UserIdentityCard';
+import { ProfileDetails } from './ProfileDetails';
 import { RankingModal } from './RankingModal'; // 👈 IMPORTANTE: Importamos el Modal
 
 // Avatar por defecto
@@ -212,13 +213,18 @@ export default function UserProfile() {
         </div>
       </Card>
 
+
+
       {/* Grid de Stats */}
       <div className="grid grid-cols-2 gap-4 mb-6 animate-in slide-in-from-bottom-4 duration-500">
         <StatBox icon={TrendingUp} label="Rating ELO" value={user?.elo_rating} colorClass="text-brand-blue" />
         <StatBox icon={Trophy} label="" image={currentLeague.icon} leagueTheme={currentLeague.color} />
         <StatBox icon={Flame} label="Racha Días" value={user?.current_streak} colorClass="text-brand-red fill-brand-red" />
-        <StatBox icon={Gem} label="Gemas" value={user?.gems} colorClass="text-purple-500 fill-purple-500" />
+        <StatBox icon={Coins} label="XaviCoins" value={user?.gems} colorClass="text-yellow-500 fill-yellow-500" />
       </div>
+
+      {/* 👇 2.5 INFORMACIÓN PERSONAL */}
+      <ProfileDetails user={user} />
 
       {/* 👇 3. BOTÓN DE CLASIFICACIÓN (RANKING) - DISEÑO INTEGRADO */}
       <button

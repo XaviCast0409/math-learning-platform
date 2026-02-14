@@ -33,7 +33,7 @@ const CoursesLobby = lazy(() => import('../pages/learn/CoursesLobby'));
 const LearnMap = lazy(() => import('../pages/learn/LearnMap'));
 const LessonContainer = lazy(() => import('../features/lesson/pages/LessonContainer'));
 const UserProfile = lazy(() => import('../pages/profile/UserProfile'));
-const GemShop = lazy(() => import('../features/shop/pages/GemShop'));
+const XaviCoinShop = lazy(() => import('../features/shop/pages/XaviCoinShop'));
 
 // --- Páginas de Estudio ---
 const StudyHub = lazy(() => import('../features/study/pages/StudyHub'));
@@ -123,7 +123,7 @@ export const AppRouter = () => {
           }>
             <Route path="/learn" element={<CoursesLobby />} />
             <Route path="/learn/course/:courseId" element={<LearnMap />} />
-            <Route path="/shop" element={<GemShop />} />
+            <Route path="/shop" element={<XaviCoinShop />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="/study" element={<StudyHub />} />
             <Route path="/clan" element={<ClanLobby />} />

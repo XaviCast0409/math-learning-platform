@@ -12,6 +12,7 @@ export interface Clan {
   owner_id: number;
   my_role?: 'leader' | 'member';
   members?: ClanMember[];
+  max_members?: number; // Added based on server logic which checks capacity
 }
 
 // Tipos

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Gift, Trash2, ShoppingBag, Gem, Save, X } from 'lucide-react';
+import { Gift, Trash2, ShoppingBag, Coins, Save, X } from 'lucide-react';
 import { adminUsersApi } from '../../../api/users.api';
 import { adminProductsApi } from '../../../api/products.api';
 import type { UserItem, Product } from '../../../../../types/admin.types';
@@ -69,7 +69,7 @@ export const InventoryTab = ({ userId }: { userId: number }) => {
 
         try {
             await adminUsersApi.grantGems(userId, amount);
-            toast.success(`Gemas ${amount > 0 ? 'añadidas' : 'quitadas'} con éxito.`);
+            toast.success(`XaviCoins ${amount > 0 ? 'añadidos' : 'quitados'} con éxito.`);
             setIsGemMode(false);
             setGemAmount('');
         } catch (error) {
@@ -89,7 +89,7 @@ export const InventoryTab = ({ userId }: { userId: number }) => {
                 <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 flex flex-col justify-center">
                     <div className="flex justify-between items-center mb-2">
                         <div className="flex gap-2 items-center text-blue-800 font-bold">
-                            <Gem size={20} /> Gestión de Divisa
+                            <Coins size={20} /> Gestión de Divisa
                         </div>
                         {!isGemMode && (
                             <Button variant="outline" className="text-xs h-8" onClick={() => { setIsGemMode(true); setIsGiftMode(false); }}>
@@ -117,7 +117,7 @@ export const InventoryTab = ({ userId }: { userId: number }) => {
                         </div>
                     ) : (
                         <p className="text-xs text-blue-600">
-                            Usa esto para bonificar gemas por errores del sistema o eventos.
+                            Usa esto para bonificar XaviCoins por errores del sistema o eventos.
                         </p>
                     )}
                 </div>

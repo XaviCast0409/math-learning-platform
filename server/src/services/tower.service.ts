@@ -3,6 +3,7 @@ import { userService } from './user.service';
 import { TowerRun, TowerHistory, User, Exercise, Lesson, Unit, Clan, UserItem, Product } from '../models';
 import { Op, QueryTypes } from 'sequelize';
 import sequelize from '../config/database';
+import { GAME_CONFIG } from '../config/game.config';
 import AppError from '../utils/AppError';
 
 export class TowerService {
@@ -47,11 +48,11 @@ export class TowerService {
 		if (user.tower_tickets > 0) {
 			user.tower_tickets -= 1;
 			costType = 'Ticket Diario';
-		} else if (user.gems >= 250) {
-			user.gems -= 250;
-			costType = '250 Gemas';
+		} else if (user.gems >= GAME_CONFIG.TOWER.ENTRY_COST_GEMS) {
+			user.gems -= GAME_CONFIG.TOWER.ENTRY_COST_GEMS;
+			costType = `${GAME_CONFIG.TOWER.ENTRY_COST_GEMS} Gemas`;
 		} else {
-			throw new AppError('No tienes suficientes tickets ni gemas (250) para entrar.', 403);
+			throw new AppError(`No tienes suficientes tickets ni gemas (${GAME_CONFIG.TOWER.ENTRY_COST_GEMS}) para entrar.`, 403);
 		}
 		await user.save();
 
@@ -59,7 +60,7 @@ export class TowerService {
 		const newRun = await TowerRun.create({
 			user_id: userId,
 			current_floor: 1,
-			lives_left: 3,
+			lives_left: GAME_CONFIG.TOWER.INITIAL_LIVES,
 			is_active: true,
 			score: 0,
 			difficulty_modifier: 1.0
@@ -106,7 +107,7 @@ export class TowerService {
 		if (isCorrect) {
 			// AUMENTAR PISO
 			run.current_floor += 1;
-			run.score += 10 * run.current_floor; // Más piso, más puntos
+			run.score += GAME_CONFIG.TOWER.SCORE_PER_FLOOR * run.current_floor; // Más piso, más puntos
 			await run.save();
 
 			return {
@@ -126,8 +127,8 @@ export class TowerService {
 
 				// Calcular Recompensas Base
 				const floorsCleared = run.current_floor;
-				const baseXp = floorsCleared * 10;
-				const baseXaviCoins = floorsCleared * 5;
+				const baseXp = floorsCleared * GAME_CONFIG.TOWER.XP_PER_FLOOR;
+				const baseXaviCoins = floorsCleared * GAME_CONFIG.TOWER.GEMS_PER_FLOOR;
 
 				// Obtener Usuario COMPLETO para el servicio de recompensas
 				// Optimizacion: Traemos todo en una query para no hacerla dentro del servicio
@@ -210,8 +211,8 @@ export class TowerService {
 		// Pisos 11+: Hard
 
 		let difficultyTarget = 1;
-		if (floor > 5) difficultyTarget = 2;
-		if (floor > 10) difficultyTarget = 3;
+		if (floor > GAME_CONFIG.TOWER.DIFFICULTY_TIERS.EASY_MAX_FLOOR) difficultyTarget = 2;
+		if (floor > GAME_CONFIG.TOWER.DIFFICULTY_TIERS.MEDIUM_MAX_FLOOR) difficultyTarget = 3;
 
 		console.log(`[TowerService] Generating question for floor ${floor} (Difficulty: ${difficultyTarget})`);
 

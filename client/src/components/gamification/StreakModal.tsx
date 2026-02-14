@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../common/Button';
-import { Flame, Gem, Zap, X } from 'lucide-react';
+import { Flame, Coins, Zap, X } from 'lucide-react';
 import Confetti from 'react-confetti'; // 👈 Importamos tu librería instalada
 
 interface StreakReward {
@@ -16,14 +16,14 @@ interface StreakModalProps {
 }
 
 export const StreakModal: React.FC<StreakModalProps> = ({ reward, onClose }) => {
-  
+
   // Obtenemos dimensiones de la ventana para que el confeti cubra todo
   const width = window.innerWidth;
   const height = window.innerHeight;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
-      
+
       {/* 👇 COMPONENTE DE CONFETI */}
       <Confetti
         width={width}
@@ -35,9 +35,9 @@ export const StreakModal: React.FC<StreakModalProps> = ({ reward, onClose }) => 
       />
 
       <div className="bg-white border-4 border-black rounded-3xl p-6 max-w-sm w-full shadow-retro relative animate-in zoom-in-50 duration-500 z-10">
-        
+
         {/* Botón Cerrar */}
-        <button 
+        <button
           onClick={onClose}
           className="absolute -top-4 -right-4 bg-red-500 text-white p-2 rounded-full border-2 border-black shadow-sm hover:scale-110 transition-transform z-20"
         >
@@ -71,9 +71,9 @@ export const StreakModal: React.FC<StreakModalProps> = ({ reward, onClose }) => 
         {/* Recompensas */}
         <div className="bg-gray-50 border-2 border-dashed border-gray-300 rounded-xl p-4 mb-6 flex justify-around items-center">
           <div className="flex flex-col items-center">
-            <Gem size={32} className="text-purple-500 fill-purple-200 mb-1" />
+            <Coins size={32} className="text-yellow-500 fill-yellow-200 mb-1" />
             <span className="font-black text-xl text-black">+{reward.gems}</span>
-            <span className="text-[10px] font-bold text-gray-400 uppercase">Gemas</span>
+            <span className="text-[10px] font-bold text-gray-400 uppercase">XaviCoins</span>
           </div>
           <div className="w-[2px] h-10 bg-gray-200"></div>
           <div className="flex flex-col items-center">
@@ -84,9 +84,9 @@ export const StreakModal: React.FC<StreakModalProps> = ({ reward, onClose }) => 
         </div>
 
         {/* Botón de Acción */}
-        <Button 
-          onClick={onClose} 
-          variant="primary" 
+        <Button
+          onClick={onClose}
+          variant="primary"
           className="w-full text-xl py-4"
         >
           ¡GENIAL!

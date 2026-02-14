@@ -1,12 +1,13 @@
-import { Swords, Check, X } from 'lucide-react';
+import { Swords, Check, X, ShieldAlert } from 'lucide-react';
 import { type WarStatus } from '../api/clan.api';
 
 interface Props {
 	challenges: WarStatus[];
 	onRespond: (warId: number, accept: boolean) => void;
+	isLeader: boolean;
 }
 
-export const PendingChallenges = ({ challenges, onRespond }: Props) => {
+export const PendingChallenges = ({ challenges, onRespond, isLeader }: Props) => {
 	if (challenges.length === 0) return null;
 
 	return (
@@ -24,19 +25,30 @@ export const PendingChallenges = ({ challenges, onRespond }: Props) => {
 						</h4>
 					</div>
 
-					<div className="flex gap-2">
-						<button
-							onClick={() => onRespond(war.warId, false)}
-							className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-red-100 hover:text-red-500 transition-colors"
-						>
-							<X size={20} />
-						</button>
-						<button
-							onClick={() => onRespond(war.warId, true)}
-							className="w-10 h-10 flex items-center justify-center rounded-full bg-brand-yellow text-black shadow-retro-sm active:translate-y-1 transition-all"
-						>
-							<Check size={20} strokeWidth={3} />
-						</button>
+					<div className="flex gap-2 items-center">
+						{isLeader ? (
+							<>
+								<button
+									onClick={() => onRespond(war.warId, false)}
+									className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-400 hover:bg-red-100 hover:text-red-500 transition-colors"
+									title="Rechazar"
+								>
+									<X size={20} />
+								</button>
+								<button
+									onClick={() => onRespond(war.warId, true)}
+									className="w-10 h-10 flex items-center justify-center rounded-full bg-brand-yellow text-black shadow-retro-sm active:translate-y-1 transition-all"
+									title="Aceptar Guerra"
+								>
+									<Check size={20} strokeWidth={3} />
+								</button>
+							</>
+						) : (
+							<div className="text-xs font-bold text-gray-400 flex items-center gap-1 bg-gray-50 px-2 py-1 rounded-lg">
+								<ShieldAlert size={14} />
+								<span>Solo Líder</span>
+							</div>
+						)}
 					</div>
 				</div>
 			))}

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Backpack, Gem } from 'lucide-react';
+import { ShoppingBag, Backpack, Coins } from 'lucide-react';
 import { clsx } from 'clsx';
 
 // Components & Hooks
@@ -26,7 +26,7 @@ const TabButton = ({ active, onClick, icon: Icon, label }: any) => (
   </button>
 );
 
-export default function GemShop() {
+export default function XaviCoinShop() {
   const {
     activeTab, setActiveTab, loading, processingId,
     products, inventory, userGems, actions
@@ -39,7 +39,7 @@ export default function GemShop() {
         <header className="p-4 flex justify-between items-center max-w-md mx-auto">
           <h1 className="text-xl font-black text-gray-800 italic tracking-tight">MERCADO</h1>
           <div className="flex items-center gap-1.5 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">
-            <Gem size={16} className="text-blue-500 fill-blue-500" />
+            <Coins size={16} className="text-yellow-500 fill-yellow-500" />
             <span className="font-black text-gray-700">{userGems}</span>
           </div>
         </header>

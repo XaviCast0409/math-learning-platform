@@ -151,6 +151,7 @@ export class RewardService {
 
       console.log(`[RewardService] 🧮 CALCULATION DEBUG:`);
       console.log(`- User ID: ${userId}`);
+      console.log(`- Clan: ${user.clan ? `Sí (ID: ${user.clan.id}, Nivel: ${user.clan.level})` : 'No'}`);
       console.log(`- Base XP: ${baseXp} | Base Coins: ${baseXaviCoins}`);
       console.log(`- Multiplier XP: ${multiplierXp} (Items) * ${globalMultiplierXp} (Global)`);
       console.log(`- Multiplier Coins: ${multiplierXaviCoins} (Items/Clan) * ${globalMultiplierXaviCoins} (Global)`);

@@ -9,7 +9,7 @@ export const RewardsTable = () => {
     return (
         <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-4 border-2 border-blue-200 shadow-sm">
             <div className="flex items-center gap-2 mb-3">
-                <span className="text-2xl">💎</span>
+                <span className="text-2xl">🪙</span>
                 <h3 className="font-black text-gray-800">Tabla de Recompensas</h3>
             </div>
 
@@ -19,7 +19,7 @@ export const RewardsTable = () => {
                         <tr>
                             <th className="text-left py-2 px-3 font-bold text-gray-700">Tiempo</th>
                             <th className="text-right py-2 px-3 font-bold text-gray-700">XP</th>
-                            <th className="text-right py-2 px-3 font-bold text-gray-700">Gemas</th>
+                            <th className="text-right py-2 px-3 font-bold text-gray-700">XaviCoins</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@ export const RewardsTable = () => {
                     ⭐ <strong>¡Estudia 20 minutos para el bonus especial!</strong>
                 </p>
                 <p className="text-[10px] text-yellow-700 text-center mt-1">
-                    +200 XP extra + 100 💎 extra al llegar a 20 minutos
+                    +200 XP extra + 100 🪙 extra al llegar a 20 minutos
                 </p>
             </div>
         </div>

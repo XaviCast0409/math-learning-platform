@@ -41,8 +41,8 @@ export const SessionSummaryModal = ({ summary, onClose }: Props) => {
 
             {/* Gemas */}
             <div className="bg-purple-50 p-3 rounded-xl border border-purple-100 flex justify-between items-center">
-              <span className="font-bold text-purple-700">Gemas</span>
-              <span className="font-black text-purple-600 text-lg">+{summary.gemsEarned} 💎</span>
+              <span className="font-bold text-purple-700">XaviCoins</span>
+              <span className="font-black text-purple-600 text-lg">+{summary.gemsEarned} 🪙</span>
             </div>
 
             {/* Bonos */}

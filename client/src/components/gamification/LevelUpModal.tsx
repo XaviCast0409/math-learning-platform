@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../common/Button';
-import { Gift, Heart, Zap } from 'lucide-react';
+import { Gift, Heart, Zap, Coins } from 'lucide-react';
 import Confetti from 'react-confetti';
 
 interface LevelUpModalProps {
@@ -87,13 +87,15 @@ export const LevelUpModal = ({ rewards, onClose }: LevelUpModalProps) => {
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="bg-gradient-to-r from-blue-50 to-blue-100 p-3 rounded-2xl flex items-center justify-between border border-blue-200 shadow-sm"
+              className="bg-gradient-to-r from-yellow-50 to-yellow-100 p-3 rounded-2xl flex items-center justify-between border border-yellow-200 shadow-sm"
             >
               <div className="flex items-center gap-3">
-                <div className="bg-white p-2 rounded-xl shadow-inner text-2xl">💎</div>
-                <span className="font-bold text-gray-700">Gemas</span>
+                <div className="bg-white p-2 rounded-xl shadow-inner text-2xl">
+                  <Coins size={24} className="text-yellow-500" />
+                </div>
+                <span className="font-bold text-gray-700">XaviCoins</span>
               </div>
-              <span className="font-black text-brand-blue text-xl">+{rewards.gems}</span>
+              <span className="font-black text-yellow-600 text-xl">+{rewards.gems}</span>
             </motion.div>
           ) : null}
 

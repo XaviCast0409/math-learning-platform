@@ -86,7 +86,7 @@ export default function ProductList() {
 
       <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
         <div>
-          <h1 className="text-2xl font-black text-gray-800">Tienda de Gemas</h1>
+          <h1 className="text-2xl font-black text-gray-800">Tienda de XaviCoins</h1>
           <p className="text-sm text-gray-500">Gestiona avatares, pociones y skins.</p>
         </div>
         <Button variant="primary" onClick={openNew} icon={<Plus size={18} />}>

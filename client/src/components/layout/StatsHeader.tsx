@@ -1,5 +1,5 @@
 import { useState, useEffect, /* useRef */ } from 'react';
-import { Heart, ChevronDown, Zap, Gem } from 'lucide-react'; // Importamos Zap y Gem
+import { Heart, ChevronDown, Zap, Coins } from 'lucide-react'; // Importamos Zap y Coins
 import { useAuth } from '../../context/AuthContext';
 import { clsx } from 'clsx';
 import type { CourseSummary } from '../../api/course.api';
@@ -102,8 +102,8 @@ export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeader
         <div className="flex flex-col items-start gap-1">
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-2xl border-2 border-gray-200 shadow-sm transition-transform hover:scale-105 cursor-default">
-              <span className="text-xl animate-bounce-subtle">💎</span>
-              <span className="font-black text-lg text-brand-blue tracking-wide">
+              <Coins size={20} className="text-yellow-500 fill-yellow-500 animate-bounce-subtle" />
+              <span className="font-black text-lg text-yellow-600 tracking-wide">
                 {user?.gems ?? 0}
               </span>
             </div>
@@ -111,7 +111,7 @@ export const StatsHeader = ({ currentCourse, onOpenCourseSelector }: StatsHeader
             {/* 👇 INDICADOR DE BUFF DE GEMAS */}
             {activeBuffs.gem && (
               <div className="bg-purple-100 border-2 border-purple-200 text-purple-600 px-2 py-1 rounded-lg flex items-center gap-1 text-xs font-bold animate-pulse">
-                <Gem size={12} /> x2 ({activeBuffs.gem})
+                <Coins size={12} /> x2 ({activeBuffs.gem})
               </div>
             )}
           </div>

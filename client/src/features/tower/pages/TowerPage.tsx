@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Castle, Skull, Ticket, Gem } from 'lucide-react';
+import { Castle, Skull, Ticket, Coins } from 'lucide-react';
 import { Button } from '../../../components/common/Button';
 import { useTower } from '../hooks/useTower';
 import { useAuth } from '../../../context/AuthContext';
@@ -78,7 +78,7 @@ export default function TowerPage() {
                             <span className="font-bold">{user?.tower_tickets || 0} Tickets</span>
                         </div>
                         <div className="bg-gray-800 px-4 py-2 rounded-lg border border-gray-700 flex items-center gap-2">
-                            <Gem size={20} className="text-blue-400" />
+                            <Coins size={20} className="text-yellow-400" />
                             <span className="font-bold">{user?.gems || 0}</span>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ export default function TowerPage() {
                     <div className="bg-gray-800/50 backdrop-blur-md p-6 rounded-2xl border border-gray-700 mb-8">
                         <h3 className="text-sm font-bold text-gray-400 uppercase mb-4">Recompensas</h3>
                         <ul className="text-left space-y-2 text-sm">
-                            <li className="flex items-center gap-2">💎 <span className="text-white">Gemas por cada piso</span></li>
+                            <li className="flex items-center gap-2">🪙 <span className="text-white">XaviCoins por cada piso</span></li>
                             <li className="flex items-center gap-2">🔥 <span className="text-white">XP Multiplicada x Piso</span></li>
                             <li className="flex items-center gap-2">🏆 <span className="text-white">Gloria Eterna</span></li>
                         </ul>
@@ -103,13 +103,13 @@ export default function TowerPage() {
                         {hasTicket ? (
                             <span className="flex items-center gap-2 justify-center"><Ticket /> USAR TICKET</span>
                         ) : (
-                            <span className="flex items-center gap-2 justify-center"><Gem /> PAGAR 250</span>
+                            <span className="flex items-center gap-2 justify-center"><Coins /> PAGAR 250</span>
                         )}
                     </Button>
 
                     {!canAfford && (
                         <p className="text-red-400 text-xs mt-3 font-bold">
-                            Necesitas 1 Ticket o 250 Gemas para entrar.
+                            Necesitas 1 Ticket o 250 XaviCoins para entrar.
                         </p>
                     )}
                 </motion.div>

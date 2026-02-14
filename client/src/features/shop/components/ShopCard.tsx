@@ -1,4 +1,4 @@
-import { Gem } from 'lucide-react';
+import { Coins } from 'lucide-react';
 import type { Product } from '../../../types';
 import { Button } from '../../../components/common/Button';
 import { ProductVisual } from './ProductVisual';
@@ -17,7 +17,7 @@ export const ShopCard = ({ product, userGems, onBuy, isProcessing = false }: Pro
   // Memoizamos el render de costo para evitar parpadeos innecesarios
   const CostDisplay = useMemo(() => (
     <>
-      <Gem size={14} className={canAfford ? 'text-blue-200' : 'text-gray-400'} />
+      <Coins size={14} className={canAfford ? 'text-blue-200' : 'text-gray-400'} />
       {product.cost_gems}
     </>
   ), [canAfford, product.cost_gems]);

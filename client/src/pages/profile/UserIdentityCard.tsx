@@ -1,8 +1,9 @@
-import { AvatarSprite } from '../../avatar/AvatarSprite'; // Ajusta ruta
-import type { AvatarConfig } from '../../types/avatar.types';
+import { AvatarSprite } from '../../avatar/AvatarSprite';
+import type { AvatarConfig } from '../../types/avatar.types'; // Ajusta ruta
+import type { User } from '../../types'; // Import User type
 
 interface Props {
-  user: any; // O tu tipo User real
+  user: User | null;
   leagueName: string;
   currentAvatar: AvatarConfig;
   onOpenWardrobe: () => void;
@@ -29,10 +30,22 @@ export const UserIdentityCard = ({ user, leagueName, currentAvatar }: Props) => 
           </div>
         </div>
 
-        <h2 className="text-2xl font-black leading-none mb-1">{user?.username}</h2>
-        <span className="text-xs font-bold px-2 py-0.5 bg-gray-100 rounded-md border border-gray-300 text-gray-500 uppercase">
-          {leagueName}
-        </span>
+        <h2 className="text-2xl font-black leading-none mb-1 text-center">{user?.username}</h2>
+        {/* Full Name */}
+        {user?.full_name && (
+          <p className="text-sm font-bold text-gray-400 mb-2">{user.full_name}</p>
+        )}
+
+        <div className="flex gap-2 mt-1">
+          <span className="text-xs font-bold px-2 py-0.5 bg-gray-100 rounded-md border border-gray-300 text-gray-500 uppercase">
+            {leagueName}
+          </span>
+          {user?.grade_level && (
+            <span className="text-xs font-bold px-2 py-0.5 bg-blue-50 rounded-md border border-blue-200 text-blue-500 uppercase">
+              {user.grade_level.replace('_', ' ')}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

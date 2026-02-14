@@ -14,6 +14,7 @@ export interface AuthRequest extends Request {
 const JWT_SECRET = process.env.JWT_SECRET || 'secreto_super_seguro_dev';
 
 // --- MIDDLEWARE 1: AUTENTICACIÓN (¿Quién eres?) ---
+// --- MIDDLEWARE 1: AUTENTICACIÓN (¿Quién eres?) ---
 export const protect = async (req: Request, res: Response, next: NextFunction) => {
   let token;
 
@@ -34,7 +35,7 @@ export const protect = async (req: Request, res: Response, next: NextFunction) =
     // 3. (Opcional pero recomendado) Verificar si el usuario sigue existiendo en BD
     // Esto es útil si borraste al usuario pero su token sigue vivo.
     const currentUser = await User.findByPk(decoded.id);
-    
+
     if (!currentUser) {
       return res.status(401).json({ message: 'El usuario de este token ya no existe.' });
     }
@@ -62,7 +63,7 @@ export const requireAdmin = (req: Request, res: Response, next: NextFunction) =>
   console.log(user);
 
   if (!user) {
-      return res.status(401).json({ message: 'Usuario no identificado.' });
+    return res.status(401).json({ message: 'Usuario no identificado.' });
   }
 
   // Verificamos el rol

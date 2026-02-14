@@ -48,7 +48,7 @@ export class ClanService {
 
     if (!clan) throw new AppError('Clan no encontrado.', 404);
 
-    const members = (clan as any).members as User[];
+    const members = (clan as any).members as User[] || [];
     if (!members) throw new AppError('Error al cargar miembros del clan.', 500);
 
     if (members.length >= clan.max_members) {
@@ -74,7 +74,7 @@ export class ClanService {
         {
           model: User,
           as: 'members',
-          attributes: ['id', 'username', 'elo_rating', 'xp_total', 'role', 'avatar']
+          attributes: ['id', 'username', 'elo_rating', 'xp_total', 'role']
         },
         {
           model: User,

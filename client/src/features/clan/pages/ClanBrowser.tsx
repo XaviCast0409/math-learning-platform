@@ -2,19 +2,42 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, ArrowLeft, Shield, ChevronRight, Loader2 } from 'lucide-react';
 import { useClan } from '../hooks/useClan';
-import { ClanEmblem } from '../components/ClanEmblem'; // 👈 IMPORTAR
+import { ClanEmblem } from '../components/ClanEmblem';
+import type { Clan } from '../api/clan.api';
 
 export default function ClanBrowser() {
-  const { searchList, loading, actions } = useClan();
+  const { actions } = useClan();
+  // Extraemos la función específica para que sea una dependencia estable
+  // actions cambia si cambia myClan, pero searchClans es estable (useCallback [])
+  const { searchClans } = actions;
+
   const [query, setQuery] = useState('');
+  const [searchList, setSearchList] = useState<Clan[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      actions.searchClans(query);
+    // Si no hay query, limpiar lista
+    if (!query.trim()) {
+      setSearchList([]);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsSearching(true);
+      try {
+        const results = await searchClans(query);
+        setSearchList(results);
+      } catch (error) {
+        console.error(error);
+        setSearchList([]);
+      } finally {
+        setIsSearching(false);
+      }
     }, 500);
+
     return () => clearTimeout(timer);
-  }, [query]);
+  }, [query, searchClans]);
 
   return (
     <div className="min-h-screen bg-gray-50 pb-safe">
@@ -42,7 +65,7 @@ export default function ClanBrowser() {
       <div className="max-w-md mx-auto p-4 space-y-3">
 
         {/* 👇 ESTADO DE CARGA SUAVE */}
-        {loading && (
+        {isSearching && (
           <div className="py-20 flex flex-col items-center justify-center text-gray-400 animate-in fade-in duration-300">
             <Loader2 size={32} className="text-brand-blue animate-spin mb-3" />
             <span className="text-xs font-bold tracking-widest uppercase opacity-70">Buscando...</span>
@@ -50,7 +73,7 @@ export default function ClanBrowser() {
         )}
 
         {/* 👇 ESTADO VACÍO */}
-        {!loading && searchList.length === 0 && (
+        {!isSearching && query.trim() !== '' && searchList.length === 0 && (
           <div className="text-center py-20 text-gray-400 flex flex-col items-center animate-in zoom-in-95 duration-300">
             <Shield size={48} className="text-gray-200 mb-3" />
             <p className="font-medium">No se encontraron clanes.</p>
@@ -58,8 +81,16 @@ export default function ClanBrowser() {
           </div>
         )}
 
+        {/* 👇 ESTADO INICIAL (Query vacía) */}
+        {!isSearching && query.trim() === '' && (
+          <div className="text-center py-20 text-gray-300 flex flex-col items-center">
+            <Search size={48} className="text-gray-200 mb-3" />
+            <p className="font-medium">Escribe para buscar un clan...</p>
+          </div>
+        )}
+
         {/* 👇 LISTA DE RESULTADOS */}
-        {!loading && searchList.map((clan) => (
+        {!isSearching && searchList.map((clan) => (
           <div
             key={clan.id}
             onClick={() => navigate(`/clan/${clan.id}`)}

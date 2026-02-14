@@ -157,7 +157,7 @@ export const ProductModal = ({ isOpen, onClose, onSubmit, initialData }: Props) 
 
           <div className="grid grid-cols-2 gap-4">
             <Input label="Nombre" {...register('name', { required: true })} placeholder="Ej: Guerrero de Fuego" />
-            <Input label="Precio (Gemas)" type="number" {...register('cost_gems', { required: true })} />
+            <Input label="Precio (XaviCoins)" type="number" {...register('cost_gems', { required: true })} />
           </div>
 
           <Input label="Descripción" {...register('description')} placeholder="Breve descripción..." />
@@ -197,7 +197,7 @@ export const ProductModal = ({ isOpen, onClose, onSubmit, initialData }: Props) 
               {category === 'inventory' && (
                 <select {...register('type')} className="w-full p-2 border border-gray-300 rounded-lg text-sm bg-white outline-none">
                   <option value="xp_boost_time">Potenciador de XP</option>
-                  <option value="gem_boost_time">Potenciador de Gemas</option>
+                  <option value="gem_boost_time">Potenciador de XaviCoins</option>
                   <option value="shield">Escudo</option>
                 </select>
               )}
@@ -248,7 +248,7 @@ export const ProductModal = ({ isOpen, onClose, onSubmit, initialData }: Props) 
                   <select {...register('meta_stat')} className="w-full p-2 rounded border border-gray-300 text-sm">
                     <option value="">Ninguno</option>
                     <option value="xp">Experiencia (XP)</option>
-                    <option value="gems">Gemas</option>
+                    <option value="gems">XaviCoins</option>
                   </select>
                 </div>
                 <div className="w-1/3">

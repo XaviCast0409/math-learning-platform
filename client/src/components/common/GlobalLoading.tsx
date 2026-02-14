@@ -7,7 +7,7 @@ const FUN_MESSAGES = [
     "Invocando a Pitágoras... 📐",
     "Cargando diversión exponencial... 🚀",
     "Resolviendo X... ✖️",
-    "Sumando gemas... 💎"
+    "Sumando XaviCoins... 🪙"
 ];
 
 const ICONS = [Calculator, Zap, Brain, Rocket];

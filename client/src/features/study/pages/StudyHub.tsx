@@ -75,7 +75,7 @@ export default function StudyHub() {
       <div className="p-4 space-y-6 pb-24">
         <header>
           <h1 className="text-2xl font-black text-gray-800">Centro de Repaso 🧠</h1>
-          <p className="text-gray-500 text-sm">Estudia 20 minutos al día para ganar gemas.</p>
+          <p className="text-gray-500 text-sm">Estudia 20 minutos al día para ganar XaviCoins.</p>
         </header>
 
         {/* Rewards Table */}

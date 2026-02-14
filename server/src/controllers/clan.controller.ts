@@ -3,13 +3,17 @@ import { Request, Response, NextFunction } from 'express';
 import { clanService } from '../services/clan.service';
 import AppError from '../utils/AppError';
 import { catchAsync } from '../utils/catchAsync';
+import { User, Clan, ClanWar } from '../models';
 
 export const getMyClan = catchAsync(async (req: Request, res: Response, next: NextFunction) => {
   const userId = req.user?.id;
+
   if (!userId) throw new AppError('No autenticado', 401);
 
-  // Mantenemos lógica original simplificada:
-  const { User } = require('../models');
+  if (!User) {
+    return res.status(500).json({ message: 'Internal Server Error: User model missing' });
+  }
+
   const user = await User.findByPk(userId);
 
   if (!user || !user.clan_id) {
@@ -24,7 +28,7 @@ export const getMyClan = catchAsync(async (req: Request, res: Response, next: Ne
 
   const clanJSON = clan.toJSON();
   // @ts-ignore
-  clanJSON.my_role = (clan.owner_id === userId) ? 'leader' : 'member';
+  clanJSON.my_role = (Number(clan.owner_id) === Number(userId)) ? 'leader' : 'member';
 
   res.status(200).json({ clan: clanJSON });
 });
@@ -73,7 +77,6 @@ export const getCurrentWar = catchAsync(async (req: Request, res: Response, next
   if (!userId) throw new AppError('No autenticado', 401);
 
   // Mismo pattern: necesitamos clan_id.
-  const { User } = require('../models');
   const user = await User.findByPk(userId);
   if (!user?.clan_id) return res.json(null);
 
@@ -130,7 +133,6 @@ export const getPendingChallenges = catchAsync(async (req: Request, res: Respons
   if (!userId) throw new AppError('No autenticado', 401);
 
   // Mismo pattern: obtener User para clan_id
-  const { User, ClanWar, Clan } = require('../models');
   const user = await User.findByPk(userId);
   if (!user?.clan_id) return res.status(200).json([]);
 

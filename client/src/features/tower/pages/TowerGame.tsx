@@ -84,7 +84,7 @@ export function TowerGame({ gameState, onAnswer, submitting, lastResult, onExit 
 									<p className="text-2xl font-black text-green-400">+{lastResult.rewards.xp}</p>
 								</div>
 								<div className="bg-blue-900/30 p-4 rounded-xl border border-blue-500/30">
-									<p className="text-xs text-blue-400 uppercase font-bold">Gemas</p>
+									<p className="text-xs text-blue-400 uppercase font-bold">XaviCoins</p>
 									<p className="text-2xl font-black text-blue-400">+{lastResult.rewards.gems}</p>
 								</div>
 							</>

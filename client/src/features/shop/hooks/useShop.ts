@@ -18,7 +18,7 @@ export const useShop = () => {
     const buyProduct = async (product: Product) => {
         if (!user) return;
 
-        const ok = await confirm(`¿Comprar ${product.name} por ${product.cost_gems} gemas?`, {
+        const ok = await confirm(`¿Comprar ${product.name} por ${product.cost_gems} XaviCoins?`, {
             title: 'Confirmar Compra',
             confirmText: 'Comprar',
             cancelText: 'Cancelar',
