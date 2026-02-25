@@ -27,11 +27,11 @@ export interface CourseSummary {
 
 export const courseApi = {
   // Por ahora hardcodeamos el ID 1 (Álgebra), luego puede ser dinámico
-  getCourseMap: async (courseId: number = 1) => {
-    const response = await axiosClient.get<{ status: string; data: { course: { units: UnitMap[] } } }>(
+  getCourseMap: async (courseId: number) => {
+    const response = await axiosClient.get<{ status: string; data: { courseInfo: CourseSummary, units: UnitMap[] } }>(
       `/courses/${courseId}/map`
     );
-    return response.data.data.course.units;
+    return response.data.data;
   },
 
   getAllCourses: async () => {

@@ -12,6 +12,24 @@ export const getCourses = async (req: Request, res: Response, next: NextFunction
   }
 };
 
+// Interfaz para la respuesta con estado
+interface LessonWithProgress {
+  id: number;
+  title: string;
+  order_index: number;
+  xp_reward: number;
+  status: 'locked' | 'active' | 'completed';
+  stars: number;
+}
+
+interface UnitWithLessons {
+  id: number;
+  title: string;
+  order_index: number;
+  description: string;
+  lessons: LessonWithProgress[];
+}
+
 // Obtener el Mapa (Dashboard del Curso)
 export const getCourseMap = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -30,21 +48,26 @@ export const getCourseMap = async (req: Request, res: Response, next: NextFuncti
 
     // 3. "Fusionar" los datos (Lógica frontend-friendly)
     // Convertimos el array de progreso en un Mapa para búsqueda rápida: { lessonId: "completed" }
-    const progressMap = new Map();
+    const progressMap = new Map<number, { status: 'locked' | 'active' | 'completed', stars: number }>();
     userProgress.forEach((p: any) => {
       progressMap.set(p.lesson_id, { status: p.status, stars: p.stars });
     });
 
     // Transformamos la respuesta para inyectar el estado en cada lección
-    const courseJSON = courseStructure.toJSON();
+    const courseJSON = courseStructure.toJSON() as any;
     
-    // @ts-ignore
-    courseJSON.units = courseJSON.units.map((unit: any) => ({
-      ...unit,
-      lessons: unit.lessons.map((lesson: any) => {
+    const mappedUnits: UnitWithLessons[] = (courseJSON.units || []).map((unit: any) => ({
+      id: unit.id,
+      title: unit.title,
+      order_index: unit.order_index,
+      description: unit.description,
+      lessons: (unit.lessons || []).map((lesson: any) => {
         const progress = progressMap.get(lesson.id);
         return {
-          ...lesson,
+          id: lesson.id,
+          title: lesson.title,
+          order_index: lesson.order_index,
+          xp_reward: lesson.xp_reward,
           status: progress ? progress.status : 'locked', // Por defecto bloqueada
           stars: progress ? progress.stars : 0
         };
@@ -52,18 +75,22 @@ export const getCourseMap = async (req: Request, res: Response, next: NextFuncti
     }));
 
     // TRUCO: Si el usuario es nuevo, desbloquear la PRIMERA lección de la PRIMERA unidad
-    // @ts-ignore
-    if (courseJSON.units.length > 0 && courseJSON.units[0].lessons.length > 0) {
-       // @ts-ignore
-      const firstLesson = courseJSON.units[0].lessons[0];
+    if (mappedUnits.length > 0 && mappedUnits[0].lessons.length > 0) {
+      const firstLesson = mappedUnits[0].lessons[0];
       if (firstLesson.status === 'locked') {
         firstLesson.status = 'active'; // La primera siempre debe estar disponible
       }
     }
 
+    // Extraemos la metadata del curso (sin las unidades crudas)
+    const { units, ...courseInfo } = courseJSON;
+
     res.status(200).json({
       status: 'success',
-      data: { course: courseJSON }
+      data: { 
+        courseInfo,
+        units: mappedUnits 
+      }
     });
 
   } catch (error) {

@@ -40,7 +40,8 @@ export const LessonNode = ({ lesson, index, onClick }: LessonNodeProps) => {
       <button
         // 👇 AHORA SOLO LLAMAMOS A LA FUNCIÓN DEL PADRE
         onClick={() => onClick(lesson)}
-
+        aria-label={`Lección: ${lesson.title}. Estado: ${lesson.status}`}
+        aria-disabled={lesson.status === 'locked'}
         className={clsx(
           "w-20 h-20 rounded-full border-b-8 flex items-center justify-center relative",
           getNodeStyles()

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { StatsHeader } from '../../components/layout/StatsHeader';
 import { LessonNode } from '../../components/math/LessonNode';
@@ -19,6 +19,32 @@ export default function LearnMap() {
   const { getPositionClasses } = useMapLayout();
   // 👇 Estado tipado correctamente
   const [selectedLesson, setSelectedLesson] = useState<LessonMapNode | null>(null);
+
+  // Referencia para hacer auto-scroll al nivel actual
+  const activeLessonRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Si ya cargaron los datos y tenemos la referencia del nivel activo, hacemos scroll
+    if (!isLoading && activeLessonRef.current) {
+      setTimeout(() => {
+        // Obtenemos la altura de la ventana y de la referencia
+        const windowHeight = window.innerHeight;
+        const elementRect = activeLessonRef.current?.getBoundingClientRect();
+
+        if (elementRect) {
+          // Calculamos la posición para que el nodo quede en la parte inferior central
+          const absoluteElementTop = elementRect.top + window.scrollY;
+          // Centramos el elemento un poco más abajo de la mitad de la pantalla
+          const scrollTo = absoluteElementTop - (windowHeight / 2) + 150;
+
+          window.scrollTo({
+            top: scrollTo,
+            behavior: 'smooth',
+          });
+        }
+      }, 300); // Pequeño delay de 300ms para asegurar el render de las animaciones
+    }
+  }, [isLoading, units]);
 
   if (isLoading) return <GlobalLoading />;
 
@@ -104,9 +130,14 @@ export default function LearnMap() {
 
                 {unit.lessons.map((lesson, idx) => {
                   const { container, connector } = getPositionClasses(idx);
+                  const isCurrentActive = lesson.status === 'active';
 
                   return (
-                    <div key={lesson.id} className={container}>
+                    <div
+                      key={lesson.id}
+                      className={container}
+                      ref={isCurrentActive ? activeLessonRef : null}
+                    >
                       {/* Pequeño conector horizontal hacia la línea central */}
                       <div className={connector} />
 
