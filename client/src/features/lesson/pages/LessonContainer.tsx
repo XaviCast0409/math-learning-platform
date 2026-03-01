@@ -60,6 +60,7 @@ export default function LessonContainer() {
       <LessonVictory
         xp={earnedStats.xp}
         gems={earnedStats.gems}
+        stars={earnedStats.stars} // 👈 NUEVO: Pasamos las estrellas
         lives={lives}
         leveledUp={earnedStats.leveledUp}
         levelRewards={earnedStats.levelRewards}

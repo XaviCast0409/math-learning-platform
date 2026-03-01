@@ -135,6 +135,7 @@ export class LessonService {
       xpEarned: finalXpForDisplay, // Mostramos el total real (Base x Poción)
       baseXp: baseXp,              // Mostramos la base
       gemsEarned: finalGems,
+      newStars: progress.stars,    // 👈 NUEVO: Enviar el récord histórico máximo al frontend
       appliedBonuses: uniqueBonuses,
 
       newTotalXp: user.xp_total,

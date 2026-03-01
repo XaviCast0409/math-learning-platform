@@ -82,6 +82,10 @@ export default function LearnMap() {
           const totalLessons = unit.lessons.length;
           const progressPercent = totalLessons > 0 ? (completedLessons / totalLessons) * 100 : 0;
 
+          // Calculate stars
+          const totalStars = unit.lessons.reduce((acc, l) => acc + (l.stars || 0), 0);
+          const maxPossibleStars = totalLessons * 3;
+
           return (
             <div key={unit.id} className="mb-12 relative z-10">
 
@@ -111,10 +115,15 @@ export default function LearnMap() {
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-xs font-black text-blue-100">
+                  <div className="flex items-center justify-center gap-2 text-xs font-black text-blue-100 flex-wrap">
                     <span className="bg-blue-800/40 px-2 py-1 rounded-lg">
                       {completedLessons}/{totalLessons} completadas
                     </span>
+                    {totalLessons > 0 && (
+                      <span className="bg-yellow-500/20 text-yellow-300 px-2 py-1 rounded-lg flex items-center gap-1 border border-yellow-500/30">
+                        <Star size={12} fill="currentColor" /> {totalStars}/{maxPossibleStars}
+                      </span>
+                    )}
                     <span className="text-yellow-400">
                       {Math.round(progressPercent)}%
                     </span>

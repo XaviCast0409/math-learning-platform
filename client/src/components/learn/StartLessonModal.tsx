@@ -2,12 +2,14 @@ import { X, Play, Star, Lock, HeartCrack } from 'lucide-react'; // Agregamos Hea
 import { Button } from '../common/Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext'; // 👈 IMPORTAR AUTH
+import { clsx } from 'clsx';
 
 interface Lesson {
   id: number;
   title: string;
   status: 'locked' | 'active' | 'completed';
   xp_reward?: number;
+  stars?: number; // 👈 Agregamos stars
 }
 
 interface StartLessonModalProps {
@@ -68,17 +70,40 @@ export const StartLessonModal = ({ lesson, onClose }: StartLessonModalProps) => 
               ? "Completa la lección anterior para desbloquear esta."
               : !hasLives
                 ? "¡Te quedaste sin vidas! Necesitas recargar para jugar."
-                : "¡Demuestra lo que sabes y gana recompensas!"
+                : lesson.status === 'completed'
+                  ? "¡Ya completaste esta lección! Juega de nuevo para intentar conseguir las 3 estrellas o repasar."
+                  : "¡Demuestra lo que sabes y gana recompensas!"
             }
           </p>
         </div>
 
         {/* Recompensas (Solo si está disponible) */}
         {!isLocked && hasLives && (
-          <div className="flex justify-center gap-4 mb-6">
-            <div className="bg-yellow-50 px-4 py-2 rounded-xl border-2 border-yellow-200 text-yellow-700 font-bold flex items-center gap-2">
-              <span className="text-xl">⚡</span>
-              <span>{lesson.xp_reward || 20} XP</span>
+          <div className="flex flex-col items-center gap-3 mb-6">
+            {/* Si ya está completada, mostramos su récord de estrellas */}
+            {lesson.status === 'completed' && lesson.stars !== undefined && (
+              <div className="flex gap-1 justify-center bg-gray-50 px-4 py-2 rounded-2xl border-2 border-gray-100 mb-2">
+                {[1, 2, 3].map((starIdx) => (
+                  <Star
+                    key={starIdx}
+                    size={28}
+                    className={clsx(
+                      "transition-all",
+                      starIdx <= lesson.stars!
+                        ? "text-brand-yellow fill-brand-yellow drop-shadow-md"
+                        : "text-gray-300 fill-gray-200"
+                    )}
+                  />
+                ))}
+              </div>
+            )}
+
+            <div className="flex justify-center gap-4">
+              <div className="bg-yellow-50 px-4 py-2 rounded-xl border-2 border-yellow-200 text-yellow-700 font-bold flex items-center gap-2">
+                <span className="text-xl">⚡</span>
+                {/* Asumimos que la recompensa por replay es menor, por ejemplo, 5 XP */}
+                <span>{lesson.status === 'completed' ? '5' : (lesson.xp_reward || 20)} XP</span>
+              </div>
             </div>
           </div>
         )}

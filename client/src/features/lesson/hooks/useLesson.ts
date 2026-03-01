@@ -10,6 +10,7 @@ import { toast } from 'react-hot-toast';
 interface EarnedStats {
   xp: number;
   gems: number;
+  stars?: number; // 👈 NUEVO PROP
   leveledUp?: boolean;
   levelRewards?: {
     gems: number;
@@ -26,6 +27,7 @@ interface LessonState {
   status: GameStatus;
   currentIdx: number;
   lives: number;
+  mistakes: number; // 👈 Añadimos contador de errores locales
   feedbackStatus: FeedbackStatus;
   selectedOption: string; // Para multiple choice / true_false
   textInput: string;      // Para fill_in
@@ -51,6 +53,7 @@ const initialState: LessonState = {
   status: 'intro',
   currentIdx: 0,
   lives: 0, // Se inicializa luego con el user data
+  mistakes: 0, // Inicia en 0
   feedbackStatus: 'idle',
   selectedOption: '',
   textInput: '',
@@ -73,11 +76,13 @@ function lessonReducer(state: LessonState, action: LessonAction): LessonState {
       return { ...state, isChecking: true };
     case 'CHECK_RESULT':
       const newLives = action.payload.isCorrect ? state.lives : Math.max(0, state.lives - 1);
+      const newMistakes = action.payload.isCorrect ? state.mistakes : state.mistakes + 1; // 👈 Acumulamos error
       return {
         ...state,
         isChecking: false,
         feedbackStatus: action.payload.isCorrect ? 'correct' : 'wrong',
-        lives: newLives
+        lives: newLives,
+        mistakes: newMistakes
       };
     case 'NEXT_EXERCISE':
       return {
@@ -178,10 +183,21 @@ export const useLesson = (lessonId: number) => {
 
     // B. Victoria (Fin de lección)
     if (state.currentIdx >= content.exercises.length - 1) {
-      // Calcular estrellas locales (optimista)
+      // Calcular estrellas locales (Dinámico basado en el largo del nivel)
       let stars = 1;
-      if (state.lives === 5) stars = 3;
-      else if (state.lives >= 3) stars = 2;
+      const totalExercises = content.exercises.length;
+
+      // % de precisión (100% si no hay errores)
+      // Nota: Si se equivocan mucho, el porcentaje puede bajar de 0, aseguramos un mínimo de 0.
+      const accuracy = Math.max(0, ((totalExercises - state.mistakes) / totalExercises) * 100);
+
+      if (state.mistakes === 0) {
+        stars = 3; // Perfecto
+      } else if (accuracy >= 80) { // Mayor a 80% de precisión
+        stars = 2; // Muy bien
+      } else {
+        stars = 1; // Pasó apenitas o se equivocó bastante
+      }
 
       try {
         const result = await lessonApi.completeLesson(lessonId, stars, state.lives);
@@ -199,6 +215,7 @@ export const useLesson = (lessonId: number) => {
           payload: {
             xp: result.xpEarned,
             gems: result.gemsEarned,
+            stars: result.newStars !== undefined ? result.newStars : stars, // 👈 NUEVO: Usamos el récord histórico del server, o fallback local si falla
             leveledUp: result.leveledUp,
             levelRewards: result.levelRewards,
             appliedBonuses: result.appliedBonuses

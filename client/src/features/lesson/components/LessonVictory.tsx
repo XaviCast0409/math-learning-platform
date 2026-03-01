@@ -4,12 +4,14 @@ import Confetti from 'react-confetti';
 import { AnimatePresence } from 'framer-motion';
 import { Button } from '../../../components/common/Button';
 import { Card } from '../../../components/common/Card';
+import { clsx } from 'clsx';
 import { LevelUpModal } from '../../../components/gamification/LevelUpModal';
 
 interface LessonVictoryProps {
   xp: number;
   gems: number;
   lives: number;
+  stars?: number; // 👈 NUEVO PROP
   leveledUp?: boolean;
   levelRewards?: { gems: number, lives: number, items: string[] };
   // 👇 NUEVO PROP: Bonos aplicados
@@ -17,7 +19,7 @@ interface LessonVictoryProps {
   onContinue: () => void;
 }
 
-export const LessonVictory = ({ xp, gems, lives, leveledUp, levelRewards, appliedBonuses, onContinue }: LessonVictoryProps) => {
+export const LessonVictory = ({ xp, gems, lives, stars, leveledUp, levelRewards, appliedBonuses, onContinue }: LessonVictoryProps) => {
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
@@ -53,6 +55,34 @@ export const LessonVictory = ({ xp, gems, lives, leveledUp, levelRewards, applie
         <h1 className="text-3xl font-black text-brand-yellow mb-2 tracking-tight uppercase transform -rotate-2">
           ¡Lección Completada!
         </h1>
+
+        {/* 👇 NUEVO: Mostrar Estrellas conseguidas */}
+        {stars !== undefined && (
+          <div className="flex justify-center gap-2 mb-6 text-brand-yellow">
+            {[1, 2, 3].map((starIdx) => (
+              <svg
+                key={starIdx}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill={starIdx <= stars ? "currentColor" : "none"}
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={clsx(
+                  "w-12 h-12 transition-all duration-500",
+                  starIdx <= stars ? "drop-shadow-md scale-110" : "text-gray-300 opacity-50 scale-90"
+                )}
+                style={{
+                  animationDelay: `${starIdx * 150}ms`,
+                  animation: starIdx <= stars ? "bounce 1s ease-out" : "none"
+                }}
+              >
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            ))}
+          </div>
+        )}
 
         {/* 👇 AVISO DE BONOS APLICADOS */}
         {appliedBonuses && appliedBonuses.length > 0 ? (

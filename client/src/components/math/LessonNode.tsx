@@ -7,6 +7,7 @@ interface LessonNodeProps {
     id: number;
     title: string;
     status: 'locked' | 'active' | 'completed';
+    stars?: number; // 👈 Agregado para el sistema de estrellas
     // Permitimos otras props opcionales para compatibilidad
     [key: string]: any;
   };
@@ -37,6 +38,24 @@ export const LessonNode = ({ lesson, index, onClick }: LessonNodeProps) => {
       className="relative z-10 transition-transform hover:scale-110 active:scale-95"
       style={{ transform: `translateX(${offset}px)` }}
     >
+      {/* 👇 NUEVO: Estrellitas flotando arriba si está completado */}
+      {lesson.status === 'completed' && lesson.stars !== undefined && (
+        <div className="absolute -top-6 left-1/2 -translate-x-1/2 flex gap-0.5 z-20">
+          {[1, 2, 3].map((starIdx) => (
+            <Star
+              key={starIdx}
+              size={16}
+              className={clsx(
+                "drop-shadow-sm transition-all",
+                starIdx <= lesson.stars! 
+                  ? "text-brand-yellow fill-brand-yellow scale-110" 
+                  : "text-gray-300 fill-gray-200 scale-90"
+              )}
+            />
+          ))}
+        </div>
+      )}
+
       <button
         // 👇 AHORA SOLO LLAMAMOS A LA FUNCIÓN DEL PADRE
         onClick={() => onClick(lesson)}
