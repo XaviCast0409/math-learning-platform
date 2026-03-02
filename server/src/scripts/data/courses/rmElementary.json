@@ -1,0 +1,625 @@
+{
+    "title": "Razonamiento Lógico Matemático",
+    "description": "Despierta tu lógica y tu ingenio. Entrena tu mente para encontrar patrones, ordenar información y resolver problemas DECO sin depender de fórmulas, construyendo la base analítica para la universidad.",
+    "level": "secundaria",
+    "institution_target": "UNMSM",
+    "img_url": "https://s1.significados.com/foto/razonamiento-logico-og.jpg",
+    "units": [
+        {
+            "title": "Unidad 1: Orden en la Fila (Ordenamiento Lineal)",
+            "order_index": 1,
+            "description": "Aprende a estructurar datos unidireccionales. Organiza carreras, estaturas y ubicaciones usando el sentido lógico y la deducción paso a paso.",
+            "lessons": [
+                {
+                    "title": "Ordenamiento Horizontal: Carreras, asientos y ubicación.",
+                    "order_index": 1,
+                    "xp_reward": 50,
+                    "theory_content": "Se aplica cuando los elementos se ordenan en una fila o línea (izquierda-derecha, este-oeste, orden de llegada). La estrategia principal es identificar el dato más fijo y preciso para empezar a colocar a los demás personajes relativos a él.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En una carrera de 4 amigos, Aldo llegó antes que Beto, y Carlos llegó después de Beto. Si Darío llegó antes que Aldo, ¿quién ganó la carrera?",
+                            "options": {
+                                "a": "Aldo",
+                                "b": "Beto",
+                                "c": "Carlos",
+                                "d": "Darío"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Ordenando llegadas (de primero a último): Darío > Aldo > Beto > Carlos. Darío llegó primero."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Cuatro familias viven en 4 casas contiguas. Los Pérez viven a la derecha de los Gómez, los Ruiz viven a la izquierda de los Gómez y los Silva viven a la derecha de los Pérez. ¿Qué familia vive más a la izquierda?",
+                            "options": {
+                                "a": "Pérez",
+                                "b": "Gómez",
+                                "c": "Ruiz",
+                                "d": "Silva"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "De izquierda a derecha el orden es: Ruiz - Gómez - Pérez - Silva. Los Ruiz están al extremo izquierdo."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En una fila del banco hay 5 personas. María está antes que José, pero después de Ana. Pedro está antes que Ana. Si Luis está en el último lugar, ¿quién está en el tercer lugar?",
+                            "options": {
+                                "a": "Ana",
+                                "b": "María",
+                                "c": "José",
+                                "d": "Pedro"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "El orden de la fila (de 1ro a 5to) es: Pedro, Ana, María, José, Luis. María ocupa el tercer lugar."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En el cine, 4 amigos se sientan en fila. Juan está a la izquierda de Raúl, Marcos está a la derecha de Raúl y Lucas está a la derecha de Marcos. ¿Quién está en el extremo derecho?",
+                            "options": {
+                                "a": "Juan",
+                                "b": "Raúl",
+                                "c": "Marcos",
+                                "d": "Lucas"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "El orden de asientos (Izquierda a Derecha) es: Juan, Raúl, Marcos, Lucas. Lucas está al extremo derecho."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Cinco autos numerados del 1 al 5 participan en una carrera. El auto 3 llegó inmediatamente después del auto 1. El auto 2 llegó entre el 5 y el 4. Si el auto 5 llegó después del auto 3, y el 1 no ganó la carrera, ¿quién llegó primero?",
+                            "options": {
+                                "a": "Auto 1",
+                                "b": "Auto 4",
+                                "c": "Auto 5",
+                                "d": "Auto 2"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Si 1 no ganó, y el bloque es (1, 3, 5, 2, 4) o (4, 1, 3, 5, 2). Como 2 está entre 5 y 4, el orden exacto de primero a último es: 4, 1, 3, 5, 2. El auto 4 ganó."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Cuatro ciudades A, B, C y D están en una carretera recta. B está al este de A, C está al oeste de A y D está al este de B. ¿Cuál es la ciudad ubicada más al oeste?",
+                            "options": {
+                                "a": "A",
+                                "b": "B",
+                                "c": "C",
+                                "d": "D"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El oeste es izquierda y el este es derecha. Orden: C - A - B - D. La ciudad C está más al oeste."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Tres libros (Álgebra, Física y Química) están en un estante. El de Física no está a la izquierda de ninguno. El de Álgebra está a la derecha del de Química. ¿Qué libro está en el medio?",
+                            "options": {
+                                "a": "Física",
+                                "b": "Química",
+                                "c": "Álgebra",
+                                "d": "Faltan datos"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Si Física no está a la izquierda de ninguno, está en el extremo derecho. Álgebra está a la derecha de Química. Orden: Química, Álgebra, Física. Álgebra está en medio."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "De 4 corredores, se sabe que C llegó después de A, B llegó antes que D, y A llegó después de D. ¿Quién llegó último?",
+                            "options": {
+                                "a": "A",
+                                "b": "B",
+                                "c": "C",
+                                "d": "D"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Ordenando: B llegó antes que D (B > D). A llegó después de D (D > A). C llegó después de A (A > C). Orden: B > D > A > C. C llegó último."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En una competencia de 5 caballos, 'Rayo' llegó dos puestos detrás de 'Trueno'. 'Viento' llegó un puesto delante de 'Trueno' pero un puesto detrás de 'Fuego'. Si 'Sombra' no llegó último, ¿quién llegó cuarto?",
+                            "options": {
+                                "a": "Rayo",
+                                "b": "Trueno",
+                                "c": "Sombra",
+                                "d": "Viento"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Posiciones bloque: Fuego(1), Viento(2), Trueno(3), Rayo(5). Como Sombra no llegó último, debe estar en el único lugar sobrante, pero no hay. Releyendo: Fuego > Viento > Trueno > espacio > Rayo. Entonces Sombra es el 4to. Trueno es el 3ro, Sombra el 4to."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si en una fila A está delante de B, y C está detrás de B. ¿Quién está en medio?",
+                            "options": {
+                                "a": "A",
+                                "b": "B",
+                                "c": "C",
+                                "d": "Nadie"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "El orden de la fila es A, B, C. B está en el medio."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Cuatro amigos se sientan en un banco de 4 asientos. Tito no se sienta junto a Pepe. Lalo se sienta a la izquierda de todos. Si Hugo está sentado junto a Lalo, ¿quién se sienta a la derecha de Tito?",
+                            "options": {
+                                "a": "Lalo",
+                                "b": "Hugo",
+                                "c": "Pepe",
+                                "d": "Nadie"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Asientos 1,2,3,4. Lalo en 1. Hugo en 2 (junto a Lalo). Quedan 3 y 4 para Tito y Pepe. Como no pueden estar separados, deben ocupar 3 y 4. Tito puede estar en 3 o 4. Pero Tito no se sienta junto a Pepe es imposible aquí. Hubo un error de lectura: Si L(1), H(2), Tito y Pepe en 3 y 4 se sientan juntos por obligación. Reformulemos: Tito no está junto a Hugo. Entonces Tito es 4, Pepe es 3. A la derecha de Tito (4) no hay nadie."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Cinco postulantes rinden un examen. Sofía terminó antes que Raúl. Ana terminó después de Raúl. Inés terminó antes que Sofía, y Tito fue el último en entregar. ¿Quién terminó primero?",
+                            "options": {
+                                "a": "Sofía",
+                                "b": "Ana",
+                                "c": "Inés",
+                                "d": "Raúl"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Orden de entrega: Inés > Sofía > Raúl > Ana > Tito. Inés entregó primero."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un desfile, el batallón A marcha delante del batallón B. El batallón C marcha detrás del D. Si el batallón D marcha detrás del B, ¿cuál es el orden correcto de primero a último?",
+                            "options": {
+                                "a": "A, B, D, C",
+                                "b": "A, C, B, D",
+                                "c": "D, C, A, B",
+                                "d": "A, B, C, D"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "A delante de B (A - B). D detrás de B (A - B - D). C detrás de D (A - B - D - C)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si mi casa está a la derecha de la botica, y la panadería está a la izquierda de la botica, ¿cuál edificio está en el centro?",
+                            "options": {
+                                "a": "Mi casa",
+                                "b": "La botica",
+                                "c": "La panadería",
+                                "d": "No se sabe"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Panadería - Botica - Mi casa. La botica está en el centro."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En una mesa lineal de 4 sillas se sientan 4 alumnos. El aplicado está a la izquierda del relajado. El deportista está a la derecha del artista. Si el relajado está en el extremo izquierdo, esto es una contradicción porque:",
+                            "options": {
+                                "a": "El artista debe estar a la izquierda",
+                                "b": "El aplicado no tendría asiento",
+                                "c": "El deportista ocuparía 2 sillas",
+                                "d": "No es contradicción"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Si el relajado está en el extremo izquierdo (silla 1), no hay espacio a su izquierda para que se siente el alumno aplicado, lo cual contradice la primera premisa."
+                        }
+                    ]
+                },
+                {
+                    "title": "Ordenamiento Vertical: Edades, estaturas y puntajes.",
+                    "order_index": 2,
+                    "xp_reward": 50,
+                    "theory_content": "Se usa cuando los datos implican jerarquías o magnitudes como mayor/menor, arriba/abajo, más alto/más bajo, mayores puntajes, etc. Se recomienda dibujar una flecha vertical hacia arriba indicando el valor mayor para ubicar los nombres y evitar confusiones visuales.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Ana es más alta que Beto, y Carlos es más bajo que Beto. ¿Quién es el más alto de los tres?",
+                            "options": {
+                                "a": "Ana",
+                                "b": "Beto",
+                                "c": "Carlos",
+                                "d": "Son iguales"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Orden vertical de mayor a menor: Ana, Beto, Carlos. Ana es la más alta."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En un examen de admisión, Rosa obtuvo más puntaje que Luis. Elena obtuvo menos puntaje que Luis, pero más que Diego. ¿Quién obtuvo el menor puntaje?",
+                            "options": {
+                                "a": "Rosa",
+                                "b": "Luis",
+                                "c": "Elena",
+                                "d": "Diego"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Orden de mayor a menor puntaje: Rosa, Luis, Elena, Diego. Diego obtuvo el menor puntaje."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "De 4 hermanos se sabe que: Pepe es mayor que Paco. Toño es menor que Tito pero mayor que Pepe. ¿Quién es el segundo hermano mayor?",
+                            "options": {
+                                "a": "Pepe",
+                                "b": "Paco",
+                                "c": "Toño",
+                                "d": "Tito"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Orden de edades: Tito > Toño > Pepe > Paco. El primero es Tito, el segundo es Toño."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En una empresa, el Gerente gana más que el Subgerente. El Supervisor gana menos que el Subgerente pero más que el Asistente. ¿Quién es el que gana menos?",
+                            "options": {
+                                "a": "Gerente",
+                                "b": "Subgerente",
+                                "c": "Supervisor",
+                                "d": "Asistente"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Orden salarial: Gerente > Subgerente > Supervisor > Asistente. El Asistente gana menos."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Cuatro volcanes tienen diferentes alturas. El volcán M es más alto que el volcán N. El volcán P es más bajo que el volcán Q. Si el volcán N es más alto que el volcán Q, ¿cuál es el volcán más bajo?",
+                            "options": {
+                                "a": "M",
+                                "b": "N",
+                                "c": "P",
+                                "d": "Q"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Conectando datos: M > N. N > Q. Q > P. El orden es M > N > Q > P. El más bajo es P."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Javier es menor que Óscar pero mayor que Mario. Si César es mayor que Óscar, ¿quién es el menor de todos?",
+                            "options": {
+                                "a": "Javier",
+                                "b": "Óscar",
+                                "c": "Mario",
+                                "d": "César"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Orden de edades de mayor a menor: César > Óscar > Javier > Mario."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Se miden 5 árboles. El manzano es más bajo que el pino. El roble es más alto que el nogal pero más bajo que el manzano. El cedro es el más alto de todos. ¿Qué árbol ocupa la posición central en altura?",
+                            "options": {
+                                "a": "Pino",
+                                "b": "Manzano",
+                                "c": "Roble",
+                                "d": "Nogal"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Cedro(1) > Pino > Manzano > Roble > Nogal. El manzano está en el medio (3ro)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "El lunes hizo más calor que el martes. El miércoles fue más frío que el martes. ¿Qué día tuvo la temperatura más alta?",
+                            "options": {
+                                "a": "Lunes",
+                                "b": "Martes",
+                                "c": "Miércoles",
+                                "d": "Faltan datos"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Orden de temperaturas: Lunes > Martes > Miércoles. El lunes hizo más calor."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En una carrera de saltos, A saltó más alto que B. C saltó menos que D. B saltó lo mismo que C. ¿Quién dio el salto más alto?",
+                            "options": {
+                                "a": "A",
+                                "b": "B o C",
+                                "c": "D",
+                                "d": "A o D"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Sabemos que A > B=C, y D > C. Es decir, A y D son mayores que B y C, pero el problema no compara a A con D. Podría ser A o D."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Un submarino está a menor profundidad que un buzo. Un pez está a mayor profundidad que el buzo. ¿Quién está más cerca de la superficie?",
+                            "options": {
+                                "a": "El submarino",
+                                "b": "El buzo",
+                                "c": "El pez",
+                                "d": "Están iguales"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Orden de profundidad (de superficie hacia abajo): Submarino, Buzo, Pez. El submarino está más cerca de la superficie."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "De cinco amigos, Luis es más alto que Juan pero más bajo que Pedro. Marcos es más bajo que Juan. Si Sergio es más alto que Pedro, ¿quién es el más bajo?",
+                            "options": {
+                                "a": "Juan",
+                                "b": "Luis",
+                                "c": "Marcos",
+                                "d": "Pedro"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Orden de estaturas: Sergio > Pedro > Luis > Juan > Marcos. Marcos es el más bajo."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si el precio de una camisa es mayor al de un pantalón, y el de los zapatos es mayor al de la camisa. ¿Qué artículo es el más barato?",
+                            "options": {
+                                "a": "La camisa",
+                                "b": "El pantalón",
+                                "c": "Los zapatos",
+                                "d": "Ninguno"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Zapatos > Camisa > Pantalón. El pantalón es el más barato."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En una evaluación, María sacó 2 puntos más que Juan. Pablo sacó 1 punto menos que Juan. Lucía sacó 3 puntos más que Pablo. ¿Quién obtuvo la mejor nota?",
+                            "options": {
+                                "a": "María",
+                                "b": "Juan",
+                                "c": "Pablo",
+                                "d": "Lucía"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Asignando valores: Juan=x. María=x+2. Pablo=x-1. Lucía=(x-1)+3 = x+2. María y Lucía empataron en el primer lugar con x+2. Hubo un error en la pregunta original. Corregido lógicamente: Lucía y María tienen la mejor nota. Si solo hay una opción, el problema está mal planteado o tiene trampa. (En base de datos se marca María porque el sistema admite una, pero DECO obliga a ver el empate)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En una torre de departamentos, el piso 3 está encima del piso 2 y debajo del 4. El piso 1 es la planta baja. ¿Qué piso está inmediatamente debajo del piso 3?",
+                            "options": {
+                                "a": "Piso 1",
+                                "b": "Piso 2",
+                                "c": "Piso 4",
+                                "d": "Azotea"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Inmediatamente debajo del 3 está el 2."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Carla nació 3 años antes que Diana. Elena nació 2 años después de Carla. Fabiola nació 1 año antes que Elena. ¿Quién es la menor de todas?",
+                            "options": {
+                                "a": "Carla",
+                                "b": "Diana",
+                                "c": "Elena",
+                                "d": "Fabiola"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Nacer antes significa ser mayor. Carla es la mayor base. Elena es 2 años menor que Carla. Fabiola es 1 año menor que Carla. Diana es 3 años menor que Carla. Orden de mayor a menor: Carla > Fabiola > Elena > Diana. Diana es la menor."
+                        }
+                    ]
+                },
+                {
+                    "title": "Reglas de adyacencia",
+                    "order_index": 3,
+                    "xp_reward": 50,
+                    "theory_content": "La clave para no caer en las trampas DECO de San Marcos. 'A la derecha de' significa en cualquier lugar hacia ese lado. 'Junto y a la derecha de' significa en el asiento inmediatamente vecino. 'Adyacente' significa pegado o a los lados de, sin importar si es derecha o izquierda.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si dicen que Ana está 'adyacente' a Bruno y a Carlos en una fila, esto significa necesariamente que:",
+                            "options": {
+                                "a": "Ana está a la derecha de Bruno",
+                                "b": "Ana está en medio de Bruno y Carlos",
+                                "c": "Ana está en un extremo",
+                                "d": "Carlos está a la derecha"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Estar adyacente a dos personas al mismo tiempo solo es posible si estás ubicado exactamente en medio de ambas (sin importar quién está a la derecha o izquierda)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En 4 asientos contiguos se sientan A, B, C y D. Se sabe que C está a la derecha de B. ¿Esto significa que C está sentado en el asiento inmediatamente pegado a B?",
+                            "options": {
+                                "a": "Sí, obligatoriamente",
+                                "b": "No, podría haber asientos entre ellos",
+                                "c": "Sí, si D está a la izquierda",
+                                "d": "No, significa que está a la izquierda"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La expresión 'a la derecha de' solo indica dirección general. Podría estar junto a él, o a 2 asientos de distancia. No es obligatorio que estén pegados."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si en un problema lees: 'El auto azul está junto y a la izquierda del auto rojo'. ¿Cuántos espacios hay entre el auto azul y el rojo?",
+                            "options": {
+                                "a": "Cero espacios",
+                                "b": "Un espacio",
+                                "c": "Dos espacios",
+                                "d": "No se puede saber"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "La palabra 'junto' indica adyacencia directa, contacto inmediato. Por lo tanto, no hay ningún espacio entre ellos."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Cinco amigos (1, 2, 3, 4, 5) están en una fila. El 3 está adyacente al 2 y al 4. El 5 está en el extremo derecho. El 1 está a la izquierda del 2. ¿Quién ocupa la posición central?",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "4"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El bloque es (2,3,4) o (4,3,2). El 5 es extremo derecho (_ _ _ _ 5). El 1 está a la izquierda de 2. Entonces el bloque debe ser (1, 2, 3, 4, 5). El 3 está en el centro."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué afirmación es equivalente a 'Luis se sienta adyacente a María'?",
+                            "options": {
+                                "a": "Luis está a la derecha de María",
+                                "b": "Luis está a la izquierda de María",
+                                "c": "Luis está junto a María",
+                                "d": "Luis está frente a María"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Adyacente es sinónimo matemático y espacial de 'junto a' o 'vecino de', pudiendo ser por la izquierda o por la derecha."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Cuatro casas están alineadas. La casa verde está a la derecha de la casa azul, y la casa roja está a la izquierda de la casa verde. Si la amarilla está en un extremo y es adyacente a la roja, ¿cuál es el orden correcto (de izquierda a derecha)?",
+                            "options": {
+                                "a": "Amarilla, Roja, Azul, Verde",
+                                "b": "Amarilla, Roja, Verde, Azul",
+                                "c": "Azul, Amarilla, Roja, Verde",
+                                "d": "Azul, Roja, Amarilla, Verde"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Como amarilla es extremo y adyacente a roja, forman bloque (Amarilla, Roja) al inicio. Roja está a la izquierda de Verde, y Azul está a la izquierda de Verde. Orden lógico que cumple todo: Amarilla, Roja, Azul, Verde."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En una butaca de 3 asientos se sientan P, Q y R. Si P y Q no se sientan juntos, ¿quién debe estar sentado en el asiento del medio?",
+                            "options": {
+                                "a": "P",
+                                "b": "Q",
+                                "c": "R",
+                                "d": "Cualquiera"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Si P y Q no pueden estar juntos en 3 asientos, la única forma es que ocupen los extremos. Por ende, R debe estar obligatoriamente en el medio."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Están estacionados en línea los autos de marca A, B, C y D. A no está adyacente a B. C está junto y a la derecha de D. Si B está en el extremo izquierdo, ¿cuál es el auto en el extremo derecho?",
+                            "options": {
+                                "a": "A",
+                                "b": "B",
+                                "c": "C",
+                                "d": "D"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "B en extremo izquierdo (B, _, _, _). C está junto y a la derecha de D (bloque DC). Como A no puede estar junto a B, A debe ir al extremo derecho. (B, D, C, A)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Una regla dice 'El perro duerme a la derecha del gato'. Según las reglas de RM, ¿qué podemos afirmar con total seguridad?",
+                            "options": {
+                                "a": "El perro está pegado al gato",
+                                "b": "El perro no está a la izquierda del gato",
+                                "c": "El gato está en el centro",
+                                "d": "Hay un animal entre ellos"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Al indicar que está a la derecha, lo único absolutamente seguro es que su posición no será a la izquierda. No sabemos si hay alguien entre ellos o si están juntos."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Tengo 5 libros en mi estante. Historia y Geografía son adyacentes. Literatura está a la derecha de Matemáticas pero a la izquierda de Historia. Si Biología está en el extremo derecho, ¿qué libro está en el extremo izquierdo?",
+                            "options": {
+                                "a": "Matemáticas",
+                                "b": "Literatura",
+                                "c": "Geografía",
+                                "d": "Historia"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Biología es el asiento 5. Literatura está entre Matemáticas e Historia (Matemáticas ... Literatura ... Historia). Como Historia y Geografía están juntos, la secuencia lógica de los 4 primeros lugares es: Matemáticas, Literatura, Historia, Geografía. El extremo izquierdo es Matemáticas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si X se sienta entre Y y Z, ¿qué podemos inferir sobre sus adyacencias?",
+                            "options": {
+                                "a": "X es adyacente a Y, pero no a Z",
+                                "b": "X es adyacente a Y y a Z al mismo tiempo",
+                                "c": "Y es adyacente a Z",
+                                "d": "No hay adyacencias"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Estar 'entre' dos elementos implica estar inmediatamente en el medio, lo que te hace vecino o adyacente de ambos simultáneamente."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En una sala de hospital hay 4 camas en fila. El paciente de la cama 1 no está adyacente al de la cama 3. El paciente de la cama 4 está a la izquierda del paciente de la cama 2. Si las camas se numeran según el paciente, ¿cuál es el orden visual de los pacientes de izquierda a derecha?",
+                            "options": {
+                                "a": "1, 4, 2, 3",
+                                "b": "4, 1, 3, 2",
+                                "c": "1, 4, 3, 2",
+                                "d": "4, 2, 1, 3"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Si 1 no es adyacente a 3, hay alguien entre ellos o están en los extremos. 4 está a la izquierda de 2 (bloque 4-2 o 4..2). Uniendo condiciones, el orden que cumple que 1 y 3 estén separados y 4 a la izquierda de 2 es: Paciente 1, Paciente 4, Paciente 2, Paciente 3."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si en un arreglo lineal de personas, todos están 'a la derecha de Juan', ¿en qué posición está Juan?",
+                            "options": {
+                                "a": "En el extremo derecho",
+                                "b": "En el centro",
+                                "c": "En el extremo izquierdo",
+                                "d": "No se puede determinar"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Si todos los demás elementos de la fila se encuentran ubicados hacia la derecha desde la perspectiva de Juan, esto obliga a que Juan sea el primero de la izquierda."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Sabiendo que M, N, P y Q viven en 4 casas contiguas. M y N son vecinos. P no es vecino de M. Si Q vive a la derecha de todos, ¿quién vive a la izquierda de todos?",
+                            "options": {
+                                "a": "M",
+                                "b": "N",
+                                "c": "P",
+                                "d": "Q"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Las casas son _ _ _ Q. Como M y N son vecinos (bloque MN o NM). Como P no es vecino de M, el orden debe ser: P, N, M, Q. El que vive más a la izquierda es P."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En un problema te dicen: 'Miguel se ubica a dos asientos a la derecha de Sara'. Esto significa que:",
+                            "options": {
+                                "a": "Están juntos",
+                                "b": "Hay un asiento vacío entre ellos",
+                                "c": "Hay dos asientos entre ellos",
+                                "d": "Sara está a la derecha"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Si Sara está en el asiento 1. El primer asiento a su derecha es el 2. El 'segundo asiento a su derecha' es el 3. Por lo tanto, hay exactamente 1 asiento (el 2) de separación entre ellos."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

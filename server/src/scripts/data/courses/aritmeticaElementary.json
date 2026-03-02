@@ -1,0 +1,625 @@
+{
+    "title": "Aritmética y Lógica Básica",
+    "description": "Domina el lenguaje del pensamiento lógico y las bases del conteo. Este curso está diseñado para desarrollar el razonamiento analítico necesario para resolver problemas tipo DECO.",
+    "level": "secundaria",
+    "institution_target": "UNMSM",
+    "img_url": "https://cdn.fisimat.com.mx/wp-content/uploads/2025/11/aritmetica-fisimat.png",
+    "units": [
+        {
+            "title": "Unidad 1: El Alfabeto del Pensamiento (Proposiciones)",
+            "order_index": 1,
+            "description": "Antes de operar con números, debemos operar con ideas. Aprende a distinguir verdades, falsedades y a estructurar el pensamiento.",
+            "lessons": [
+                {
+                    "title": "Enunciados y Proposiciones",
+                    "order_index": 1,
+                    "xp_reward": 50,
+                    "theory_content": "Un enunciado es cualquier frase u oración. Una proposición lógica es un enunciado que tiene la propiedad de ser verdadero (V) o falso (F), pero nunca ambos a la vez. Las preguntas, órdenes, exclamaciones y deseos NO son proposiciones. Las ecuaciones abiertas tampoco lo son hasta que se defina el valor de la variable.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Durante una clase de historia, el profesor afirma: 'El Perú se independizó en 1821'. Luego, un alumno exclama: '¡Qué viva el Perú!'. Sobre estas dos expresiones, es correcto afirmar que:",
+                            "options": {
+                                "a": "Ambas son proposiciones lógicas.",
+                                "b": "Ninguna es una proposición lógica.",
+                                "c": "La primera es proposición, la segunda es solo un enunciado.",
+                                "d": "La primera es un enunciado abierto, la segunda es proposición."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "La afirmación del profesor puede calificarse como verdadera o falsa (es proposición). La exclamación expresa una emoción y carece de valor de verdad."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Identifica cuál de las siguientes alternativas es estrictamente una proposición lógica.",
+                            "options": {
+                                "a": "¿A qué hora termina el simulacro de la UNMSM?",
+                                "b": "Ojalá ingrese a la universidad este año.",
+                                "c": "Lima es la capital de Argentina.",
+                                "d": "Por favor, resuelve el ejercicio 5 de álgebra."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "'Lima es la capital de Argentina' es una afirmación falsa. Al tener un valor de verdad definido, cumple con la definición de proposición."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un ingeniero anota: 'x^2 - 4 = 0'. Su asistente anota: 'Para todo número real x, x^2 >= 0'. ¿Qué podemos decir de ambas expresiones en el ámbito lógico?",
+                            "options": {
+                                "a": "Ambas son proposiciones verdaderas.",
+                                "b": "La primera es un enunciado abierto, la segunda es una proposición.",
+                                "c": "Ambas son proposiciones falsas.",
+                                "d": "La primera es proposición, la segunda es enunciado abierto."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La primera ecuación depende del valor de x para ser V o F (enunciado abierto). La segunda es una propiedad matemática universal verdadera (proposición)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Lee el siguiente texto: (I) César Vallejo escribió Trilce. (II) ¡Qué magnífica obra! (III) Vallejo nació en París. (IV) ¿Habrá ganado el Nobel? ¿Cuántas proposiciones lógicas hay?",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "4"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Las oraciones (I) y (III) son afirmaciones (V y F respectivamente). La (II) es exclamativa y la (IV) interrogativa. Hay 2 proposiciones."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En lógica, ¿por qué los refranes como 'A caballo regalado no se le mira el diente' no se consideran proposiciones?",
+                            "options": {
+                                "a": "Porque son muy antiguos.",
+                                "b": "Porque son subjetivos y no admiten un valor de verdad demostrable.",
+                                "c": "Porque pertenecen al lenguaje formal.",
+                                "d": "Porque no contienen números ni variables."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Los refranes son dichos populares subjetivos. La lógica exige que el enunciado pueda ser clasificado objetivamente como V o F."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuál de los siguientes es un enunciado pero NO una proposición?",
+                            "options": {
+                                "a": "El número 7 es par.",
+                                "b": "Gabriel García Márquez ganó el Premio Nobel.",
+                                "c": "Detente en el semáforo rojo.",
+                                "d": "El triángulo tiene tres lados."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Las órdenes o imperativos ('Detente') no pueden ser evaluados como verdaderos o falsos, por lo que son enunciados pero no proposiciones."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Dada la expresión 'x + 5 > 12', si te dicen que 'x pertenece a los números naturales', ¿qué le falta para ser una proposición?",
+                            "options": {
+                                "a": "Falta que la desigualdad sea una igualdad.",
+                                "b": "Falta asignarle un valor específico a la variable x.",
+                                "c": "Ya es una proposición lógica.",
+                                "d": "Falta usar el cuantificador 'para todo x'."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Es un enunciado abierto o función proposicional. Hasta que no reemplacemos 'x' por un número (ej. x=10), no podemos afirmar si es V o F."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Al afirmar 'El agua hierve a 100 grados Celsius a nivel del mar', estamos frente a:",
+                            "options": {
+                                "a": "Una creencia popular (no proposición).",
+                                "b": "Un enunciado abierto.",
+                                "c": "Una proposición lógica.",
+                                "d": "Un juicio de valor."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Es un hecho científico comprobable que tiene un valor de verdad definido (Verdadero), por ende es una proposición."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuántos enunciados que NO son proposiciones encuentras aquí?: (1) Hola, ¿cómo estás? (2) 5 + 5 = 11 (3) Prohibido fumar (4) El cielo es azul.",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "4"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La (1) es pregunta y la (3) es una norma/orden. Ambas no son proposiciones (son 2). Las otras dos sí pueden evaluarse como V o F."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si definimos p: 'Mario Vargas Llosa es peruano', ¿cuál es su valor de verdad y qué tipo de expresión es?",
+                            "options": {
+                                "a": "Valor F, enunciado.",
+                                "b": "Valor V, proposición.",
+                                "c": "Valor V, enunciado abierto.",
+                                "d": "No tiene valor de verdad."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Es una afirmación sobre la realidad con un sujeto definido. Como Vargas Llosa nació en Perú, su valor de verdad es Verdadero y es una proposición."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Identifica la alternativa que representa un enunciado abierto:",
+                            "options": {
+                                "a": "8 es un número primo.",
+                                "b": "x - y = 10",
+                                "c": "La ballena es un mamífero.",
+                                "d": "Silencio, por favor."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Al contener variables (x, y) sin especificar su valor, no se puede determinar si es V o F, caracterizando a un enunciado abierto."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "La expresión 'Él es el actual alcalde de Lima'. ¿Se considera una proposición lógica?",
+                            "options": {
+                                "a": "Sí, porque es una afirmación clara.",
+                                "b": "No, porque el pronombre 'Él' actúa como una variable no definida.",
+                                "c": "Sí, siempre y cuando se sepa de qué distrito.",
+                                "d": "No, porque los alcaldes cambian."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Los pronombres personales (él, ella) sin contexto funcionan como la variable 'x' en matemáticas, haciendo que la frase sea un enunciado abierto."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En una prueba de química se lee: '¿Cuál es el símbolo del Oro?'. ¿Qué es esta expresión?",
+                            "options": {
+                                "a": "Proposición verdadera.",
+                                "b": "Proposición falsa.",
+                                "c": "Un enunciado no proposicional.",
+                                "d": "Un conector lógico."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Toda pregunta busca información y no afirma nada que pueda ser evaluado como verdadero o falso."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Analiza: (A) x^2 + 1 = 0, en los números reales. (B) El átomo es indivisible. Señala lo correcto:",
+                            "options": {
+                                "a": "Ambos son enunciados abiertos.",
+                                "b": "A es abierto, B es proposición.",
+                                "c": "Ambos son proposiciones.",
+                                "d": "A es proposición, B es enunciado abierto."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "A contiene una variable (x), por lo que es abierto. B es una afirmación científica (históricamente evaluable como Falsa), por lo que es proposición."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué cualidad fundamental debe tener una oración para ser considerada 'Proposición Lógica'?",
+                            "options": {
+                                "a": "Tener sentido completo y signos de puntuación.",
+                                "b": "Tener la propiedad de ser verdadera o falsa sin ambigüedad.",
+                                "c": "Estar escrita en lenguaje matemático.",
+                                "d": "Ser una verdad absoluta comprobada."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La bivalencia (ser V o F, y solo una de las dos) es el requisito indispensable de toda proposición en la lógica clásica."
+                        }
+                    ]
+                },
+                {
+                    "title": "Proposiciones simples y compuestas",
+                    "order_index": 2,
+                    "xp_reward": 50,
+                    "theory_content": "Una proposición simple (atómica) carece de conectivos lógicos y expresa una sola idea. Pueden ser predicativas (un sujeto y un predicado) o relacionales (relacionan dos sujetos). Una proposición compuesta (molecular) se forma uniendo proposiciones simples mediante conectivos (y, o, si... entonces) o al negar una proposición.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Identifica cuál de las siguientes expresiones es una proposición simple relacional:",
+                            "options": {
+                                "a": "Carlos es ingeniero y María es abogada.",
+                                "b": "Mario y Luigi son hermanos.",
+                                "c": "Si llueve, entonces no saldremos.",
+                                "d": "Lima no es la capital de Chile."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Aunque usa 'y', no une dos ideas separadas. Establece un vínculo de parentesco (relación) entre dos sujetos en una idea indivisible."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un periodista redacta: 'La inflación bajó, sin embargo, los precios siguen altos'. Lógicamente, este texto se clasifica como:",
+                            "options": {
+                                "a": "Proposición simple.",
+                                "b": "Proposición compuesta conjuntiva.",
+                                "c": "Proposición compuesta condicional.",
+                                "d": "Enunciado abierto."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La locución 'sin embargo' funciona lógicamente igual que la 'y' (conjunción), uniendo dos proposiciones simples distintas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Por qué la proposición 'Es falso que el sol gire alrededor de la tierra' es compuesta?",
+                            "options": {
+                                "a": "Porque es muy larga.",
+                                "b": "Porque incluye un conector condicional.",
+                                "c": "Porque incluye el operador de negación.",
+                                "d": "Porque habla de dos cuerpos celestes."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Toda proposición que contiene una negación (no, nunca, es falso que) se clasifica automáticamente como compuesta o molecular."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Analiza la frase: 'Miguel Grau y Francisco Bolognesi son héroes nacionales'. ¿Cuántas proposiciones atómicas la conforman?",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "Ninguna, es compuesta."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Se puede separar en: 'M. Grau es héroe' y 'F. Bolognesi es héroe'. Al unirse con 'y', forman una compuesta de 2 atómicas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En un análisis, alguien dice: 'O el producto mejora o fracasará'. ¿Qué tipo de proposición acaba de utilizar?",
+                            "options": {
+                                "a": "Compuesta disyuntiva.",
+                                "b": "Simple relacional.",
+                                "c": "Compuesta bicondicional.",
+                                "d": "Enunciado exclamativo."
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "La estructura 'O... o...' enlaza dos alternativas mediante el conector lógico de disyunción, creando una proposición compuesta."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuál de las siguientes es una proposición simple predicativa?",
+                            "options": {
+                                "a": "El hierro es un metal de transición.",
+                                "b": "Juan y Pedro son primos.",
+                                "c": "No es cierto que hace frío.",
+                                "d": "Estudio, luego apruebo."
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Atribuye una cualidad (ser metal de transición) a un único sujeto (el hierro), sin usar conectivos lógicos ni relacionarlo con otro sujeto."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Dada la frase: 'Lima y Callao son provincias colindantes'. ¿Es simple o compuesta?",
+                            "options": {
+                                "a": "Compuesta, por el uso de la 'y'.",
+                                "b": "Simple, porque es predicativa.",
+                                "c": "Simple, porque expresa una relación geométrica ineludible entre dos entidades.",
+                                "d": "Ninguna de las anteriores."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Es una proposición simple relacional. La 'y' no une oraciones ('Lima es colindante' no tiene sentido sola), sino que une sujetos para formar la relación."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué clase de proposición es: 'Iré a la universidad si y solo si apruebo el examen'?",
+                            "options": {
+                                "a": "Simple",
+                                "b": "Compuesta conjuntiva",
+                                "c": "Compuesta bicondicional",
+                                "d": "Compuesta negativa"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Utiliza el conector lógico 'si y solo si', lo que la convierte en una proposición molecular de tipo bicondicional."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En la oración: 'Ni Juan estudia, ni María trabaja', encontramos:",
+                            "options": {
+                                "a": "Una proposición simple.",
+                                "b": "Una proposición compuesta formada por una conjunción y negaciones.",
+                                "c": "Una proposición compuesta condicional.",
+                                "d": "Un enunciado abierto."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La estructura 'Ni... ni...' equivale a 'Juan NO estudia Y María NO trabaja'. Son dos negaciones unidas por una conjunción implícita."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Una proposición atómica también es conocida como:",
+                            "options": {
+                                "a": "Proposición molecular.",
+                                "b": "Proposición simple.",
+                                "c": "Enunciado abierto.",
+                                "d": "Premisa falsa."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "En lógica, 'atómica' significa indivisible, que es el sinónimo exacto de una proposición simple (no se puede dividir en proposiciones más pequeñas)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si decimos 'Carlos es más alto que Luis', estamos ante una proposición:",
+                            "options": {
+                                "a": "Simple predicativa.",
+                                "b": "Compuesta conjuntiva.",
+                                "c": "Simple relacional.",
+                                "d": "Compuesta disyuntiva."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Compara dos sujetos (Carlos y Luis) mediante una relación de tamaño. No puede separarse en dos ideas independientes, por ende es simple relacional."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Señala la proposición compuesta:",
+                            "options": {
+                                "a": "El oro es un metal precioso.",
+                                "b": "La raíz cuadrada de 16 es 4.",
+                                "c": "Estudio mucho, por consiguiente ingresaré.",
+                                "d": "El triángulo equilátero tiene lados iguales."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Contiene el conector lógico 'por consiguiente' (condicional o implicación), uniendo la acción de estudiar con el resultado de ingresar."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Identifica la estructura de: 'No es el caso que, la economía mejore y los precios bajen'.",
+                            "options": {
+                                "a": "Negación de una conjunción.",
+                                "b": "Negación de una disyunción.",
+                                "c": "Condicional negativo.",
+                                "d": "Proposición simple negativa."
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "El conector principal es la negación externa ('No es el caso que') que afecta a toda una proposición compuesta unida por 'y' (conjunción)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Puede una proposición compuesta estar formada por una sola proposición simple?",
+                            "options": {
+                                "a": "Sí, cuando se le aplica el operador de negación.",
+                                "b": "No, siempre necesita al menos dos simples.",
+                                "c": "Sí, cuando es relacional.",
+                                "d": "No, las compuestas solo usan conjunciones."
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Si a la proposición simple 'p' le añadimos la negación '~p' (ej. 'No llueve'), pasa a considerarse una estructura lógica molecular o compuesta."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "¿Qué afirmación es correcta sobre las proposiciones simples?",
+                            "options": {
+                                "a": "Pueden contener la palabra 'no'.",
+                                "b": "Solo pueden tener un sujeto.",
+                                "c": "Carecen totalmente de conectivos lógicos.",
+                                "d": "No pueden tener valor de verdad falso."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "La definición fundamental de una proposición simple es la ausencia absoluta de operadores/conectivos lógicos (sin negaciones, ni conjunciones, etc.)."
+                        }
+                    ]
+                },
+                {
+                    "title": "Conectivos lógicos fundamentales",
+                    "order_index": 3,
+                    "xp_reward": 50,
+                    "theory_content": "Los conectivos permiten formalizar el lenguaje. Conjunción (∧): 'y', 'pero', 'además'. Disyunción débil (∨): 'o' (pueden darse ambas). Disyunción fuerte (⊻): 'o... o...' (solo una puede darse). Negación (~): 'no', 'es falso que'.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si p: 'Estudiaré álgebra' y q: 'Descuidaré lenguaje', ¿cuál es la formalización de 'Estudiaré álgebra pero no descuidaré lenguaje'?",
+                            "options": {
+                                "a": "p ∨ q",
+                                "b": "p → ~q",
+                                "c": "p ∧ ~q",
+                                "d": "~p ∧ q"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El conector 'pero' es una conjunción (∧). Se niega explícitamente la acción de descuidar lenguaje (~q). Queda: p ∧ ~q."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En 'Hoy almorzaremos pollo o ceviche, pero no ambos'. Lógicamente, ¿qué operador conecta estas comidas?",
+                            "options": {
+                                "a": "Disyunción débil (∨)",
+                                "b": "Disyunción fuerte (⊻)",
+                                "c": "Conjunción (∧)",
+                                "d": "Bicondicional (↔)"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La frase 'pero no ambos' elimina la posibilidad de que ocurran las dos a la vez. Esa exclusividad define a la disyunción fuerte."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Traduce al lenguaje natural: ~(p ∧ q), sabiendo que p = 'Hace frío' y q = 'Llueve'.",
+                            "options": {
+                                "a": "No hace frío y no llueve.",
+                                "b": "Es falso que, hace frío y llueve.",
+                                "c": "Hace frío pero no llueve.",
+                                "d": "Si no hace frío, entonces llueve."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La negación fuera del paréntesis afecta a toda la estructura, leyéndose como 'Es falso que' o 'No es cierto que' aplicado a la conjunción."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Para iniciar sesión se requiere: 'Que el correo sea válido A LA VEZ QUE la contraseña sea correcta'. ¿Qué operador representa esto?",
+                            "options": {
+                                "a": "Disyunción (∨)",
+                                "b": "Conjunción (∧)",
+                                "c": "Condicional (→)",
+                                "d": "Negación (~)"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La exigencia 'a la vez que' implica simultaneidad estricta, lo cual corresponde a la conjunción (∧)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En un problema DECO: 'Pedro es médico, ADEMÁS, tiene una maestría'. El término 'además' se formaliza como:",
+                            "options": {
+                                "a": "∨",
+                                "b": "→",
+                                "c": "↔",
+                                "d": "∧"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Palabras como 'además', 'también', 'aún', funcionan como nexos aditivos en el lenguaje natural, traduciéndose como conjunciones (∧)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué conectivo lógico se asocia con la palabra 'o' cuando admite la posibilidad de que ambas opciones sucedan?",
+                            "options": {
+                                "a": "Disyunción fuerte",
+                                "b": "Conjunción",
+                                "c": "Disyunción débil",
+                                "d": "Bicondicional"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "La disyunción débil (o inclusiva) permite que una, la otra, o ambas proposiciones sean verdaderas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Formaliza: 'La inflación no cederá a menos que aumente la producción'. (p: La inflación cederá, q: Aumente la producción)",
+                            "options": {
+                                "a": "~p ∨ q",
+                                "b": "~p ∧ ~q",
+                                "c": "p → ~q",
+                                "d": "~(p ∧ q)"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "La locución 'a menos que' funciona convencionalmente como una disyunción débil (∨). Se negaría p ('no cederá') y se une con q."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "El símbolo '~' o '¬' se utiliza en lógica proposicional para:",
+                            "options": {
+                                "a": "Sumar valores.",
+                                "b": "Invertir el valor de verdad de una proposición.",
+                                "c": "Unir dos oraciones.",
+                                "d": "Indicar que una oración es abierta."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Es el operador de negación, su única función es cambiar lo verdadero a falso y lo falso a verdadero."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si decimos: 'Iré a la playa o al cine, ya lo decidí'. En el habla cotidiana, si vas a la playa ya no vas al cine en ese momento. ¿Qué conector es más preciso?",
+                            "options": {
+                                "a": "Conjunción",
+                                "b": "Disyunción débil",
+                                "c": "Disyunción fuerte",
+                                "d": "Negación conjunta"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Como el contexto implica elegir una opción excluyendo por completo la otra, la representación más precisa es la disyunción fuerte (⊻)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿A qué conector lógico corresponde la expresión 'Sin embargo'?",
+                            "options": {
+                                "a": "Conjunción (∧)",
+                                "b": "Disyunción (∨)",
+                                "c": "Condicional (→)",
+                                "d": "Bicondicional (↔)"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "'Sin embargo', al igual que 'pero' o 'aunque', es un conector adversativo que lógicamente une dos afirmaciones simultáneas (conjunción)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Formaliza la siguiente expresión: 'O apruebas el curso y viajas, o te quedas a estudiar'. (p: apruebas, q: viajas, r: te quedas)",
+                            "options": {
+                                "a": "(p ∧ q) ∨ r",
+                                "b": "(p ∧ q) ⊻ r",
+                                "c": "p ∨ (q ∧ r)",
+                                "d": "(p → q) ⊻ r"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La estructura 'O... o...' agrupa la primera parte (apruebas y viajas: p ∧ q) y la contrapone exclusivamente (⊻) a la segunda (r)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuál de las siguientes traducciones lingüísticas NO corresponde a una conjunción (∧)?",
+                            "options": {
+                                "a": "A y B",
+                                "b": "A pero B",
+                                "c": "A o B",
+                                "d": "A además B"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "La letra 'o' es el indicador universal de la disyunción, planteando alternativas, no simultaneidad."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si formalizamos 'No es cierto que Carlos cante y no baile' siendo p: cante, q: baile. Quedaría:",
+                            "options": {
+                                "a": "~p ∧ ~q",
+                                "b": "~(p ∧ ~q)",
+                                "c": "~p ∨ q",
+                                "d": "~(p ∨ ~q)"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La negación externa 'No es cierto que' envuelve entre paréntesis a 'cante y no baile' (p ∧ ~q), resultando en ~(p ∧ ~q)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué operador lógico usarías para formalizar: 'El número 5 no es par' (p: 5 es par)?",
+                            "options": {
+                                "a": "p",
+                                "b": "~p",
+                                "c": "p ∧ p",
+                                "d": "p ∨ ~p"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Simplemente se le aplica el operador de negación (~) a la proposición original p."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En la expresión 'Juan es estudiante, María también', el término 'también' funciona como:",
+                            "options": {
+                                "a": "Un cuantificador.",
+                                "b": "Un condicional oculto.",
+                                "c": "Una disyunción inclusiva.",
+                                "d": "Una conjunción."
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Indica suma de hechos que ocurren al mismo tiempo. Lógicamente es una conjunción (Juan es estudiante ∧ María es estudiante)."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

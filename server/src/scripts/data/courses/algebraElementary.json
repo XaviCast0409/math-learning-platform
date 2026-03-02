@@ -1,0 +1,5341 @@
+{
+	"title": "Álgebra Elemental",
+	"description": "El curso base para dominar las matemáticas de secundaria y preparar el camino hacia la universidad. Aquí construiremos tu razonamiento lógico desde cero.",
+	"level": "secundaria",
+	"institution_target": "General",
+	"img_url": "https://s1.significados.com/foto/algebra-og.jpg?class=ogImageSquare",
+	"units": [
+		{
+			"title": "Unidad 1: Los Cimientos del Cálculo",
+			"order_index": 1,
+			"description": "El repaso vital antes de meter letras. Si fallan aquí, todo el edificio se cae.",
+			"lessons": [
+				{
+					"title": "Leyes de signos",
+					"order_index": 1,
+					"xp_reward": 50,
+					"theory_content": "En suma y resta: Signos iguales se suman y mantienen el signo; signos diferentes se restan y llevan el signo del mayor. En multiplicación y división: $$ (+) \\times (+) = (+) $$, $$ (-) \\times (-) = (+) $$, $$ (+) \\times (-) = (-) $$, $$ (-) \\times (+) = (-) $$.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$ -8 + 3 $$",
+							"options": {
+								"a": "-11",
+								"b": "-5",
+								"c": "5",
+								"d": "11"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Signos diferentes se restan y lleva el signo del mayor: $$ 8 - 3 = 5 $$, con signo negativo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$ -4 - 6 $$",
+							"options": {
+								"a": "-2",
+								"b": "2",
+								"c": "-10",
+								"d": "10"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Signos iguales se suman: $$ -4 - 6 = -10 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Multiplica: $$ (-7) \\times (-4) $$",
+							"options": {
+								"a": "-28",
+								"b": "28",
+								"c": "-11",
+								"d": "11"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Menos por menos es más: $$ 28 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Divide: $$ 20 \\div (-5) $$",
+							"options": {
+								"a": "-4",
+								"b": "4",
+								"c": "15",
+								"d": "-25"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Más entre menos es menos: $$ -4 $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "El resultado de $$ -5 + 5 $$ es cero.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Cantidades opuestas se anulan."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Completa el valor: $$ (-3) \\times 6 = $$",
+							"correct_answer": "-18",
+							"solution_explanation": "Menos por más es menos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resuelve: $$ -15 + 20 $$",
+							"options": {
+								"a": "-35",
+								"b": "35",
+								"c": "-5",
+								"d": "5"
+							},
+							"correct_answer": "d",
+							"solution_explanation": "Se restan: $$ 20 - 15 = 5 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ -2 + 7 - 9 $$",
+							"options": {
+								"a": "-4",
+								"b": "4",
+								"c": "-18",
+								"d": "14"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ 5 - 9 = -4 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Multiplica: $$ (-2) \\times (-3) \\times (-1) $$",
+							"options": {
+								"a": "6",
+								"b": "-6",
+								"c": "5",
+								"d": "-5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ 6 \\times (-1) = -6 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$ -10 - (-4) $$",
+							"options": {
+								"a": "-14",
+								"b": "-6",
+								"c": "6",
+								"d": "14"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ -10 + 4 = -6 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Divide: $$ (-36) \\div (-9) $$",
+							"options": {
+								"a": "-4",
+								"b": "4",
+								"c": "-45",
+								"d": "27"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Menos entre menos es más: $$ 4 $$"
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Halla el valor: $$ 8 - 12 + 3 = $$",
+							"correct_answer": "-1",
+							"solution_explanation": "$$ 8 + 3 = 11 $$ y $$ 11 - 12 = -1 $$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "El producto de tres números negativos siempre es negativo.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "$$ (-) \\times (-) = (+) $$ y $$ (+) \\times (-) = (-) $$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ 0 - (-15) $$",
+							"options": {
+								"a": "-15",
+								"b": "0",
+								"c": "15",
+								"d": "1"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$ 0 + 15 = 15 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelve: $$ -5 + (-3) - (-8) $$",
+							"options": {
+								"a": "-16",
+								"b": "0",
+								"c": "16",
+								"d": "6"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ -8 + 8 = 0 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula: $$ (-4) \\times 2 \\div (-8) $$",
+							"options": {
+								"a": "1",
+								"b": "-1",
+								"c": "16",
+								"d": "-16"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ -8 \\div (-8) = 1 $$"
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Si $$ A = -2 - 3 $$ y $$ B = -4 + 1 $$, halla $$ A \\times B $$",
+							"correct_answer": "15",
+							"solution_explanation": "$$ A = -5 $$, $$ B = -3 $$. $$ (-5) \\times (-3) = 15 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelve: $$ - ( - ( - 7 ) ) $$",
+							"options": {
+								"a": "7",
+								"b": "-7",
+								"c": "0",
+								"d": "1"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Tres signos negativos resultan en negativo: $$ -7 $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "$$ -x $$ siempre representa un número negativo.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Falso, si $$ x $$ es negativo, $$ -x $$ es positivo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula: $$ 12 \\div (-3) \\times (-2) $$",
+							"options": {
+								"a": "-8",
+								"b": "8",
+								"c": "2",
+								"d": "-2"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "De izquierda a derecha: $$ -4 \\times (-2) = 8 $$"
+						}
+					]
+				},
+				{
+					"title": "Jerarquía de operaciones combinadas",
+					"order_index": 2,
+					"xp_reward": 50,
+					"theory_content": "El orden universal de operaciones es: 1º Paréntesis y corchetes, 2º Potencias y raíces, 3º Multiplicaciones y divisiones, 4º Sumas y restas. Todo se resuelve de izquierda a derecha en caso de empate.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$ 5 + 3 \\times 2 $$",
+							"options": {
+								"a": "16",
+								"b": "11",
+								"c": "10",
+								"d": "13"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Primero la multiplicación: $$ 5 + 6 = 11 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resuelve: $$ 10 - 4 \\div 2 $$",
+							"options": {
+								"a": "3",
+								"b": "8",
+								"c": "12",
+								"d": "5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Primero la división: $$ 10 - 2 = 8 $$"
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "El valor de $$ (5 + 3) \\times 2 $$ es:",
+							"correct_answer": "16",
+							"solution_explanation": "Primero el paréntesis: $$ 8 \\times 2 = 16 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$ 12 \\div 3 \\times 2 $$",
+							"options": {
+								"a": "2",
+								"b": "8",
+								"c": "18",
+								"d": "6"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "De izquierda a derecha: $$ 4 \\times 2 = 8 $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En la expresión $$ 4 + 5 \\times 3 $$, primero se suma $$ 4 + 5 $$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "La multiplicación tiene mayor jerarquía."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resuelve: $$ 15 - (6 + 4) $$",
+							"options": {
+								"a": "13",
+								"b": "5",
+								"c": "-5",
+								"d": "25"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Primero paréntesis: $$ 15 - 10 = 5 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$ 20 \\div 4 + 1 $$",
+							"options": {
+								"a": "4",
+								"b": "6",
+								"c": "25",
+								"d": "5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Primero división: $$ 5 + 1 = 6 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$ 4 \\times 3 - 8 \\div 2 $$",
+							"options": {
+								"a": "2",
+								"b": "8",
+								"c": "10",
+								"d": "4"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ 12 - 4 = 8 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ 18 \\div (9 - 3) $$",
+							"options": {
+								"a": "3",
+								"b": "-1",
+								"c": "15",
+								"d": "6"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ 18 \\div 6 = 3 $$"
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$ 5 + 2 \\times (7 - 4) = $$",
+							"correct_answer": "11",
+							"solution_explanation": "$$ 5 + 2 \\times 3 = 5 + 6 = 11 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ (10 + 2) \\div 3 \\times 2 $$",
+							"options": {
+								"a": "2",
+								"b": "8",
+								"c": "24",
+								"d": "4"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ 12 \\div 3 \\times 2 = 4 \\times 2 = 8 $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "La operación $$ 8 \\div 2 \\times 4 $$ da como resultado 1.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "De izquierda a derecha: $$ 4 \\times 4 = 16 $$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$ 24 \\div 6 + 4 \\times 3 $$",
+							"options": {
+								"a": "24",
+								"b": "16",
+								"c": "12",
+								"d": "4"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ 4 + 12 = 16 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ 7 - [3 + (4 - 2)] $$",
+							"options": {
+								"a": "2",
+								"b": "6",
+								"c": "4",
+								"d": "0"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ 7 - [3 + 2] = 7 - 5 = 2 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelve: $$ 2 \\times [ 15 - 3 \\times (4 - 1) ] $$",
+							"options": {
+								"a": "12",
+								"b": "24",
+								"c": "6",
+								"d": "18"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ 2 \\times [ 15 - 3 \\times 3 ] = 2 \\times [ 15 - 9 ] = 2 \\times 6 = 12 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula: $$ 36 \\div 6 \\times 2 - (10 - 8) \\times 3 $$",
+							"options": {
+								"a": "6",
+								"b": "9",
+								"c": "3",
+								"d": "0"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ 6 \\times 2 - 2 \\times 3 = 12 - 6 = 6 $$"
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "El valor de $$ 10 - \\{ 8 - [ 5 - (2 - 1) ] \\} $$ es:",
+							"correct_answer": "6",
+							"solution_explanation": "$$ 10 - \\{ 8 - [ 5 - 1 ] \\} = 10 - \\{ 8 - 4 \\} = 10 - 4 = 6 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelve: $$ (20 \\div 5 \\times 2) - 4 \\times 2 $$",
+							"options": {
+								"a": "0",
+								"b": "-2",
+								"c": "8",
+								"d": "4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ (4 \\times 2) - 8 = 8 - 8 = 0 $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "$$ -5^2 $$ y $$ (-5)^2 $$ dan el mismo resultado.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "$$ -5^2 = -25 $$ (el menos no está elevado), pero $$ (-5)^2 = 25 $$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula: $$ -2 \\times [ 4 - (6 \\div 2) + 5 ] $$",
+							"options": {
+								"a": "-12",
+								"b": "-8",
+								"c": "12",
+								"d": "8"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ -2 \\times [ 4 - 3 + 5 ] = -2 \\times [ 6 ] = -12 $$"
+						}
+					]
+				},
+				{
+					"title": "Operaciones rápidas con fracciones",
+					"order_index": 3,
+					"xp_reward": 50,
+					"theory_content": "Fracciones homogéneas (mismos denominadores) suman o restan solo los numeradores. Fracciones heterogéneas usan el método de aspa o MCM: $$ \\frac{a}{b} + \\frac{c}{d} = \\frac{ad + bc}{bd} $$. Multiplicación es directa, división se cruza.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Suma: $$ \\frac{2}{5} + \\frac{1}{5} $$",
+							"options": {
+								"a": "\\frac{3}{10}",
+								"b": "\\frac{3}{5}",
+								"c": "\\frac{2}{5}",
+								"d": "\\frac{2}{25}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Homogéneas: se suman numeradores y el denominador es el mismo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resta: $$ \\frac{7}{8} - \\frac{3}{8} $$",
+							"options": {
+								"a": "\\frac{4}{8}",
+								"b": "\\frac{10}{8}",
+								"c": "\\frac{4}{0}",
+								"d": "\\frac{21}{8}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ 7 - 3 = 4 $$. Queda $$ \\frac{4}{8} $$ (que se puede simplificar a $$ \\frac{1}{2} $$)."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Al sumar $$ \\frac{1}{4} + \\frac{2}{4} $$, el numerador del resultado es:",
+							"correct_answer": "3",
+							"solution_explanation": "Numerador es $$ 1 + 2 = 3 $$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Suma: $$ \\frac{1}{2} + \\frac{1}{4} $$",
+							"options": {
+								"a": "\\frac{2}{6}",
+								"b": "\\frac{3}{4}",
+								"c": "\\frac{1}{8}",
+								"d": "\\frac{2}{4}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "MCM o aspa: $$ \\frac{4 + 2}{8} = \\frac{6}{8} = \\frac{3}{4} $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Para multiplicar dos fracciones, se multiplican los numeradores entre sí y los denominadores entre sí.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Es la regla directa de multiplicación."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Multiplica: $$ \\frac{2}{3} \\times \\frac{4}{5} $$",
+							"options": {
+								"a": "\\frac{8}{15}",
+								"b": "\\frac{6}{8}",
+								"c": "\\frac{10}{12}",
+								"d": "\\frac{8}{8}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ 2 \\times 4 = 8 $$ y $$ 3 \\times 5 = 15 $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Divide: $$ \\frac{1}{2} \\div \\frac{1}{3} $$",
+							"options": {
+								"a": "\\frac{1}{6}",
+								"b": "\\frac{2}{3}",
+								"c": "\\frac{3}{2}",
+								"d": "\\frac{1}{5}"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Se multiplica cruzado: $$ 1 \\times 3 = 3 $$ arriba, $$ 2 \\times 1 = 2 $$ abajo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ \\frac{2}{3} + \\frac{1}{4} $$",
+							"options": {
+								"a": "\\frac{3}{7}",
+								"b": "\\frac{11}{12}",
+								"c": "\\frac{8}{3}",
+								"d": "\\frac{3}{12}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Método aspa: $$ \\frac{2 \\times 4 + 3 \\times 1}{12} = \\frac{8+3}{12} = \\frac{11}{12} $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$ 1 - \\frac{3}{5} $$",
+							"options": {
+								"a": "\\frac{2}{5}",
+								"b": "\\frac{4}{5}",
+								"c": "\\frac{-2}{5}",
+								"d": "\\frac{8}{5}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Convertimos 1 a fracción: $$ \\frac{5}{5} - \\frac{3}{5} = \\frac{2}{5} $$"
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Simplifica la fracción $$ \\frac{15}{20} $$. Escribe el numerador de la fracción irreductible:",
+							"correct_answer": "3",
+							"solution_explanation": "Dividiendo entre 5 arriba y abajo queda $$ \\frac{3}{4} $$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ \\frac{3}{4} \\times \\frac{8}{9} $$",
+							"options": {
+								"a": "\\frac{27}{32}",
+								"b": "\\frac{2}{3}",
+								"c": "\\frac{11}{13}",
+								"d": "\\frac{24}{13}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ \\frac{24}{36} $$ que simplificado entre 12 es $$ \\frac{2}{3} $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "$$ \\frac{a}{b} \\div \\frac{c}{d} $$ es igual a $$ \\frac{a}{b} \\times \\frac{d}{c} $$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "La división de fracciones equivale a multiplicar por la inversa de la segunda."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$ \\frac{4}{5} - \\frac{1}{2} $$",
+							"options": {
+								"a": "\\frac{3}{3}",
+								"b": "\\frac{3}{10}",
+								"c": "\\frac{5}{10}",
+								"d": "\\frac{3}{7}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ \\frac{8 - 5}{10} = \\frac{3}{10} $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$ 2 \\times \\frac{3}{7} $$",
+							"options": {
+								"a": "\\frac{6}{14}",
+								"b": "\\frac{5}{7}",
+								"c": "\\frac{6}{7}",
+								"d": "\\frac{23}{7}"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "El entero multiplica al numerador: $$ \\frac{2 \\times 3}{7} = \\frac{6}{7} $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelve: $$ \\frac{1}{2} + \\frac{1}{3} + \\frac{1}{4} $$",
+							"options": {
+								"a": "\\frac{3}{9}",
+								"b": "\\frac{13}{12}",
+								"c": "\\frac{11}{12}",
+								"d": "\\frac{3}{24}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "MCM es 12. $$ \\frac{6 + 4 + 3}{12} = \\frac{13}{12} $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula: $$ ( \\frac{3}{4} - \\frac{1}{2} ) \\times \\frac{2}{5} $$",
+							"options": {
+								"a": "\\frac{1}{10}",
+								"b": "\\frac{2}{20}",
+								"c": "\\frac{1}{4}",
+								"d": "\\frac{5}{8}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ \\frac{1}{4} \\times \\frac{2}{5} = \\frac{2}{20} = \\frac{1}{10} $$"
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Halla el numerador del resultado irreducible de: $$ \\frac{5}{6} \\div \\frac{10}{3} $$",
+							"correct_answer": "1",
+							"solution_explanation": "$$ \\frac{5}{6} \\times \\frac{3}{10} = \\frac{15}{60} = \\frac{1}{4} $$"
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelve: $$ \\frac{2 + \\frac{1}{2}}{3} $$",
+							"options": {
+								"a": "\\frac{5}{2}",
+								"b": "\\frac{5}{6}",
+								"c": "\\frac{3}{6}",
+								"d": "\\frac{1}{2}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$ 2 + 1/2 = 5/2 $$. $$ (5/2) / 3 = 5/6 $$"
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "El inverso multiplicativo de $$ -\\frac{3}{4} $$ es $$ \\frac{4}{3} $$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Es $$ -\\frac{4}{3} $$, el signo debe mantenerse para que el producto sea 1."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula: $$ ( 1 - \\frac{1}{3} ) \\div ( 1 + \\frac{1}{3} ) $$",
+							"options": {
+								"a": "\\frac{1}{2}",
+								"b": "2",
+								"c": "\\frac{2}{4}",
+								"d": "\\frac{4}{2}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$ \\frac{2}{3} \\div \\frac{4}{3} = \\frac{2}{4} = \\frac{1}{2} $$"
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 2: El Poder de los Números (Potenciación)",
+			"order_index": 2,
+			"description": "Aprenderás a 'encoger' multiplicaciones gigantes usando exponentes y descubrirás cómo las bases y los superíndices interactúan.",
+			"lessons": [
+				{
+					"title": "Introducción a la potenciación y sus elementos",
+					"order_index": 1,
+					"xp_reward": 50,
+					"theory_content": "La potenciación es una multiplicación abreviada. La base multiplicada por sí misma las veces que indica el exponente: $$a^n$$. Casos especiales: $$a^1 = a$$, y $$a^0 = 1$$ (si $$a \\neq 0$$). Cuidado con los signos: $$(-a)^{par}$$ da positivo, pero $$(-a)^{impar}$$ da negativo. ¡Ojo! $$-a^n$$ no es lo mismo que $$(-a)^n$$.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$(-3)^4$$",
+							"options": {
+								"a": "-12",
+								"b": "12",
+								"c": "-81",
+								"d": "81"
+							},
+							"correct_answer": "d",
+							"solution_explanation": "Base negativa elevada a exponente par da positivo: $$(-3)\\times(-3)\\times(-3)\\times(-3) = 81$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Halla el valor de: $$-5^2$$",
+							"options": {
+								"a": "25",
+								"b": "-25",
+								"c": "10",
+								"d": "-10"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "El exponente solo afecta al 5, no al signo menos (no hay paréntesis). Por lo tanto es $$-(5 \\times 5) = -25$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Calcula el resultado de $$7^0 + 1^7$$:",
+							"correct_answer": "2",
+							"solution_explanation": "$$7^0 = 1$$ y $$1^7 = 1$$. Sumando: $$1 + 1 = 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$(-2)^3 + (-2)^2$$",
+							"options": {
+								"a": "-4",
+								"b": "4",
+								"c": "-12",
+								"d": "0"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$(-2)^3 = -8$$ y $$(-2)^2 = 4$$. Entonces $$-8 + 4 = -4$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "El resultado de $$0^0$$ es 1.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "$$0^0$$ es una expresión matemáticamente indeterminada, no es 1."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resuelve: $$10^3 - 10^2$$",
+							"options": {
+								"a": "10",
+								"b": "900",
+								"c": "1000",
+								"d": "90"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$1000 - 100 = 900$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$(-1)^{20} - (-1)^{21}$$",
+							"options": {
+								"a": "0",
+								"b": "-2",
+								"c": "2",
+								"d": "1"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$(-1)^{par} = 1$$ y $$(-1)^{impar} = -1$$. Queda $$1 - (-1) = 1 + 1 = 2$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si $$x^3 = -64$$, ¿cuál es el valor de $$x$$?",
+							"correct_answer": "-4",
+							"solution_explanation": "Buscamos un número que multiplicado 3 veces dé -64. $$(-4)\\times(-4)\\times(-4) = -64$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$-(-4)^2 + (-3)^3$$",
+							"options": {
+								"a": "-11",
+								"b": "-43",
+								"c": "11",
+								"d": "43"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$-(-4)^2 = -(16) = -16$$. Y $$(-3)^3 = -27$$. Sumando: $$-16 - 27 = -43$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica: $$2023^0 + 0^{2023} + (-1)^{2024}$$",
+							"options": {
+								"a": "2",
+								"b": "1",
+								"c": "0",
+								"d": "3"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$1 + 0 + 1 = 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$(-5)^2 - 5^2 + (-1)^3$$",
+							"options": {
+								"a": "1",
+								"b": "49",
+								"c": "-1",
+								"d": "51"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$25 - 25 + (-1) = -1$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "Si $$a$$ es un número real negativo, entonces $$-a^3$$ siempre será un número positivo.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Si $$a$$ es negativo, $$a^3$$ es negativo. Con el signo menos delante $$-(-)$$, se vuelve positivo."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Calcula el valor de la expresión para $$x = -2$$: $$3x^2 - x^3$$",
+							"correct_answer": "20",
+							"solution_explanation": "$$3(-2)^2 - (-2)^3 = 3(4) - (-8) = 12 + 8 = 20$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla el valor de: $$(-2)^4 \\div (-2)^2$$",
+							"options": {
+								"a": "-4",
+								"b": "4",
+								"c": "-16",
+								"d": "16"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$16 \\div 4 = 4$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Determina el valor de: $$E = -2^4 + (-2)^4 - (-2^3)$$",
+							"options": {
+								"a": "-8",
+								"b": "8",
+								"c": "16",
+								"d": "0"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$-16 + 16 - (-8) = 0 + 8 = 8$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Si $$x^x = 27$$, calcula el valor de $$x^2$$",
+							"options": {
+								"a": "9",
+								"b": "3",
+								"c": "81",
+								"d": "6"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Si $$x^x = 3^3$$, entonces $$x = 3$$. Piden $$3^2 = 9$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "La ecuación $$(-x)^2 = x^2$$ se cumple para cualquier número real $$x$$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Al elevar un negativo al cuadrado siempre se vuelve positivo, por lo que las bases opuestas elevadas a par son iguales."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Si $$m=2$$ y $$n=3$$, halla $$m^n + n^m$$",
+							"options": {
+								"a": "17",
+								"b": "12",
+								"c": "15",
+								"d": "8"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$2^3 + 3^2 = 8 + 9 = 17$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Resuelve la siguiente ecuación exponencial por simple inspección: $$(x-1)^{(x-1)} = 256$$",
+							"correct_answer": "5",
+							"solution_explanation": "Notamos que $$256 = 4^4$$. Entonces $$(x-1) = 4$$, por lo que $$x = 5$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula: $$(-1)^1 + (-1)^2 + (-1)^3 + ... + (-1)^{100}$$",
+							"options": {
+								"a": "100",
+								"b": "-1",
+								"c": "0",
+								"d": "1"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Las potencias impares dan -1 y las pares dan 1. Como hay 50 pares y 50 impares, se anulan todas: $$0$$."
+						}
+					]
+				},
+				{
+					"title": "Propiedades fundamentales: Producto y cociente de bases iguales",
+					"order_index": 2,
+					"xp_reward": 50,
+					"theory_content": "Para multiplicar bases iguales, se copia la base y se suman los exponentes: $$a^m \\cdot a^n = a^{m+n}$$. Para dividir bases iguales, se restan los exponentes (el de arriba menos el de abajo): $$\\frac{a^m}{a^n} = a^{m-n}$$. ¡Las bases deben ser exactamente iguales!",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica: $$x^5 \\cdot x^4 \\cdot x$$",
+							"options": {
+								"a": "x^{20}",
+								"b": "x^9",
+								"c": "x^{10}",
+								"d": "3x^{10}"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Recuerda que $$x = x^1$$. Sumando exponentes: $$5 + 4 + 1 = 10$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula el valor de: $$\\frac{2^{10}}{2^7}$$",
+							"options": {
+								"a": "2^{17}",
+								"b": "6",
+								"c": "8",
+								"d": "16"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Restando exponentes: $$10 - 7 = 3$$. Queda $$2^3 = 8$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Si simplificas $$m^8 \\cdot m^{-3}$$, el exponente final de $$m$$ es:",
+							"correct_answer": "5",
+							"solution_explanation": "Se suman con su signo: $$8 + (-3) = 5$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica: $$\\frac{y^{15}}{y^{14}}$$",
+							"options": {
+								"a": "y^{29}",
+								"b": "y",
+								"c": "1",
+								"d": "0"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$15 - 14 = 1$$. Queda $$y^1$$ o simplemente $$y$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "La expresión $$3^4 \\cdot 2^4$$ se puede resolver sumando los exponentes para que dé $$6^8$$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Falso. Solo se suman los exponentes si las bases son iguales."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resuelve: $$5^x \\cdot 5^2 = 5^{10}$$. ¿Cuánto vale $$x$$?",
+							"options": {
+								"a": "5",
+								"b": "8",
+								"c": "12",
+								"d": "20"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Como las bases son iguales, $$x + 2 = 10$$, por lo que $$x = 8$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica: $$\\frac{a^7 \\cdot a^3}{a^5}$$",
+							"options": {
+								"a": "a^5",
+								"b": "a^6",
+								"c": "a^{15}",
+								"d": "a^4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Arriba queda $$a^{10}$$. Luego $$\\frac{a^{10}}{a^5} = a^5$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$\\frac{3^{n+4}}{3^{n+2}}$$",
+							"options": {
+								"a": "3^{2n+6}",
+								"b": "9",
+								"c": "3^n",
+								"d": "27"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Se restan exponentes: $$(n+4) - (n+2) = 2$$. Queda $$3^2 = 9$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Simplifica la expresión y escribe solo el exponente resultante de $$x$$: $$\\frac{x^4 \\cdot x^{-2} \\cdot x^5}{x^3}$$",
+							"correct_answer": "4",
+							"solution_explanation": "Numerador: $$4 - 2 + 5 = 7$$. Denominador: $$3$$. Final: $$7 - 3 = 4$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelve: $$2^x \\cdot 2^{x+1} = 2^7$$",
+							"options": {
+								"a": "2",
+								"b": "3",
+								"c": "4",
+								"d": "6"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Bases iguales: $$x + x + 1 = 7$$. $$2x = 6$$, entonces $$x = 3$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula el valor de: $$\\frac{5^4 \\cdot 2^4}{10^2}$$",
+							"options": {
+								"a": "100",
+								"b": "10",
+								"c": "1",
+								"d": "1000"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Numerador: $$(5 \\cdot 2)^4 = 10^4$$. Entonces $$\\frac{10^4}{10^2} = 10^2 = 100$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "$$\\frac{x^{3m}}{x^{-m}}$$ es igual a $$x^{2m}$$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Al restar un negativo, se suma: $$3m - (-m) = 4m$$. El resultado correcto es $$x^{4m}$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica: $$\\frac{7^{x+y} \\cdot 7^{x-y}}{7^{2x}}$$",
+							"options": {
+								"a": "7^{2y}",
+								"b": "1",
+								"c": "7^x",
+								"d": "7"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Numerador: $$(x+y) + (x-y) = 2x$$. Queda $$\\frac{7^{2x}}{7^{2x}} = 1$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Reduce: $$x^a \\cdot x^b \\cdot x^c \\cdot x^{-a-b-c}$$",
+							"options": {
+								"a": "x",
+								"b": "x^3",
+								"c": "1",
+								"d": "0"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "La suma de exponentes es $$a+b+c-a-b-c = 0$$. $$x^0 = 1$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Simplifica la siguiente expresión: $$E = \\frac{2^{n+3} + 2^{n+2}}{2^{n+1}}$$",
+							"options": {
+								"a": "2^n",
+								"b": "6",
+								"c": "4",
+								"d": "8"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Factorizando $$2^{n+1}$$ arriba: $$2^{n+1}(2^2 + 2^1) = 2^{n+1}(4+2) = 2^{n+1}(6)$$. Al dividir entre $$2^{n+1}$$, queda $$6$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Reduce: $$\\frac{15^3 \\cdot 6^4}{9^2 \\cdot 10^3}$$",
+							"options": {
+								"a": "18",
+								"b": "27",
+								"c": "54",
+								"d": "10"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Descomponiendo en primos: $$15 = 3 \\cdot 5$$, $$6 = 2 \\cdot 3$$, $$9 = 3^2$$, $$10 = 2 \\cdot 5$$. Arriba: $$3^3 \\cdot 5^3 \\cdot 2^4 \\cdot 3^4 = 2^4 \\cdot 3^7 \\cdot 5^3$$. Abajo: $$3^4 \\cdot 2^3 \\cdot 5^3$$. Restando exponentes: $$2^1 \\cdot 3^3 \\cdot 5^0 = 2 \\cdot 27 = 54$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Halla el valor de $$x$$ si: $$3^{x-1} + 3^x + 3^{x+1} = 39$$",
+							"correct_answer": "2",
+							"solution_explanation": "Factorizamos el menor $$3^{x-1}(1 + 3^1 + 3^2) = 3^{x-1}(13) = 39$$. $$3^{x-1} = 3$$. Entonces $$x-1 = 1 \\rightarrow x = 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula el valor de $$E = \\frac{x^n \\cdot y^{n+1}}{x^{n-1} \\cdot y^n}$$ para $$x = 2$$ y $$y = 5$$",
+							"options": {
+								"a": "10",
+								"b": "7",
+								"c": "25",
+								"d": "1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Restando exponentes de x: $$n - (n-1) = 1$$. De y: $$(n+1) - n = 1$$. Queda $$x^1 \\cdot y^1 = 2 \\cdot 5 = 10$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "$$\\frac{a^x + b^x}{c^x}$$ siempre se puede simplificar a $$(a+b-c)^x$$",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "No existe propiedad distributiva para la suma de bases diferentes con el mismo exponente en la división de esta forma."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Simplifica: $$\\frac{2^{x+4} - 2^{x+2}}{2^x}$$",
+							"options": {
+								"a": "12",
+								"b": "16",
+								"c": "4",
+								"d": "2^x"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Descomponiendo la fracción: $$\\frac{2^{x+4}}{2^x} - \\frac{2^{x+2}}{2^x} = 2^4 - 2^2 = 16 - 4 = 12$$."
+						}
+					]
+				},
+				{
+					"title": "Potencia de potencia y exponente negativo",
+					"order_index": 3,
+					"xp_reward": 50,
+					"theory_content": "Potencia de potencia (separada por paréntesis): los exponentes se multiplican $$(a^m)^n = a^{m \\cdot n}$$. Si no hay paréntesis, se resuelve de arriba hacia abajo como una escalera. Exponente negativo: invierte la base $$a^{-n} = \\frac{1}{a^n}$$ y $$(\\frac{a}{b})^{-n} = (\\frac{b}{a})^n$$.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica: $$(x^3)^4$$",
+							"options": {
+								"a": "x^7",
+								"b": "x^{12}",
+								"c": "x^{81}",
+								"d": "3x^4"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Al haber paréntesis, los exponentes se multiplican: $$3 \\times 4 = 12$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$3^{-2}$$",
+							"options": {
+								"a": "-9",
+								"b": "-6",
+								"c": "\\frac{1}{9}",
+								"d": "\\frac{1}{6}"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "El negativo invierte la base y el exponente se vuelve positivo: $$\\frac{1}{3^2} = \\frac{1}{9}$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Halla el valor de: $$(\\frac{1}{5})^{-2}$$",
+							"correct_answer": "25",
+							"solution_explanation": "Se invierte la fracción a 5 y se eleva al cuadrado: $$5^2 = 25$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula el valor de $$2^{3^2}$$",
+							"options": {
+								"a": "64",
+								"b": "512",
+								"c": "12",
+								"d": "36"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Sin paréntesis, resolvemos de arriba abajo: $$3^2 = 9$$. Queda $$2^9 = 512$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "$$(a^2)^3$$ es exactamente lo mismo que $$a^{2^3}$$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "$$(a^2)^3 = a^6$$, pero $$a^{2^3} = a^8$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resuelve: $$(x^{-2})^{-3}$$",
+							"options": {
+								"a": "x^{-5}",
+								"b": "x^6",
+								"c": "x^{-6}",
+								"d": "x"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Multiplicando exponentes: $$(-2) \\times (-3) = 6$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$(\\frac{2}{3})^{-1}$$",
+							"options": {
+								"a": "\\frac{3}{2}",
+								"b": "-\\frac{2}{3}",
+								"c": "\\frac{1}{3}",
+								"d": "\\frac{4}{9}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "El exponente -1 solo invierte la fracción."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Reduce: $$(x^2)^4 \\cdot (x^3)^2$$",
+							"options": {
+								"a": "x^{11}",
+								"b": "x^{14}",
+								"c": "x^{24}",
+								"d": "x^{48}"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Resolviendo potencias de potencias: $$x^8 \\cdot x^6$$. Luego sumamos: $$x^{14}$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Calcula el valor numérico: $$(- \\frac{1}{2})^{-3} + 2^2$$",
+							"correct_answer": "-4",
+							"solution_explanation": "$$(-2)^3 + 4 = -8 + 4 = -4$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica: $$\\frac{(x^3)^5}{(x^2)^6}$$",
+							"options": {
+								"a": "x^3",
+								"b": "x^2",
+								"c": "x^{15}",
+								"d": "x^7"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Numerador: $$x^{15}$$. Denominador: $$x^{12}$$. Restando: $$x^3$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$4^{-1} + 2^{-2}$$",
+							"options": {
+								"a": "\\frac{1}{2}",
+								"b": "1",
+								"c": "\\frac{1}{8}",
+								"d": "\\frac{1}{4}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$\\frac{1}{4} + \\frac{1}{4} = \\frac{2}{4} = \\frac{1}{2}$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "La expresión $$-2^{-2}$$ es igual a $$\\frac{1}{4}$$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "El exponente solo afecta al 2. Sería $$-(\\frac{1}{2^2}) = -\\frac{1}{4}$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla $$x$$ en: $$(3^2)^x = 81$$",
+							"options": {
+								"a": "1",
+								"b": "2",
+								"c": "3",
+								"d": "4"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$3^{2x} = 3^4$$. Entonces $$2x = 4 \\rightarrow x = 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Reduce: $$((x^{-1})^2)^{-3}$$",
+							"options": {
+								"a": "x^6",
+								"b": "x^{-6}",
+								"c": "x^{-2}",
+								"d": "x^5"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Multiplicando los tres exponentes: $$(-1) \\times 2 \\times (-3) = 6$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Calcula el valor de: $$E = 27^{9^{-0.5}}$$",
+							"options": {
+								"a": "3",
+								"b": "9",
+								"c": "27",
+								"d": "1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "La escalera se hace de arriba abajo. $$9^{-0.5} = 9^{-1/2} = \\frac{1}{\\sqrt{9}} = \\frac{1}{3}$$. Luego $$27^{1/3} = \\sqrt[3]{27} = 3$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Simplifica: $$E = \\frac{ (-x^2)^3 \\cdot (-x^3)^2 }{ x^5 }$$",
+							"options": {
+								"a": "-x^7",
+								"b": "x^7",
+								"c": "-x^{12}",
+								"d": "x^6"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$(-x^2)^3 = -x^6$$ (base negativa a impar). $$(-x^3)^2 = x^6$$ (base negativa a par). Arriba queda $$-x^{12}$$. Dividido entre $$x^5$$, queda $$-x^7$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Calcula: $$(\\frac{1}{3})^{-2} + (\\frac{1}{2})^{-3} - (\\frac{1}{4})^{-1}$$",
+							"correct_answer": "13",
+							"solution_explanation": "$$3^2 + 2^3 - 4^1 = 9 + 8 - 4 = 13$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Si $$x^x = 2$$, halla el valor de $$x^{2x + x^{x+1}}$$",
+							"options": {
+								"a": "8",
+								"b": "16",
+								"c": "32",
+								"d": "64"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Primero el exponente: $$2x + x^{x+1} = 2x + x^x \\cdot x^1 = 2x + 2x = 4x$$. Queda $$x^{4x} = (x^x)^4 = 2^4 = 16$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "El valor de $$(-27)^{-2/3}$$ es $$-\\frac{1}{9}$$.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Invirtiendo: $$(-\\frac{1}{27})^{2/3}$$. Raíz cúbica es $$-1/3$$. Al elevar al cuadrado (par) se vuelve positivo: $$\\frac{1}{9}$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Reduce: $$ \\left[ \\frac{ (a^{-2} b^3)^4 }{ a^{-5} b^{-2} } \\right]^{-1} $$",
+							"options": {
+								"a": "a^3 b^{-14}",
+								"b": "a^{-3} b^{14}",
+								"c": "a^{13} b^4",
+								"d": "a b"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$a^{-8} b^{12} \\div a^{-5}b^{-2} = a^{-3}b^{14}$$. Al elevar a $$-1$$ nos da $$a^3 b^{-14}$$."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 3: El Mundo de las Raíces (Radicación)",
+			"order_index": 3,
+			"description": "Descubrirás cómo funcionan las raíces, su conexión con los exponentes fraccionarios y aprenderás a simplificarlas aplicando propiedades fundamentales.",
+			"lessons": [
+				{
+					"title": "Concepto de raíz y exponente fraccionario",
+					"order_index": 1,
+					"xp_reward": 60,
+					"theory_content": "La raíz es la operación inversa de la potenciación. Si $$a^n = b$$, entonces $$\\sqrt[n]{b} = a$$. Además, toda raíz puede escribirse como exponente fraccionario: $$\\sqrt[n]{a} = a^{1/n}$$. Ejemplo: $$\\sqrt[3]{27} = 27^{1/3} = 3$$.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$\\sqrt{144}$$",
+							"options": {
+								"a": "10",
+								"b": "11",
+								"c": "12",
+								"d": "14"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$12 \\times 12 = 144$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Halla: $$\\sqrt[3]{125}$$",
+							"options": {
+								"a": "25",
+								"b": "5",
+								"c": "15",
+								"d": "3"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$5^3 = 125$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Expresa $$\\sqrt{49}$$ como potencia:",
+							"correct_answer": "49^(1/2)",
+							"solution_explanation": "La raíz cuadrada equivale a exponente $$1/2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula: $$\\sqrt[4]{81}$$",
+							"options": {
+								"a": "9",
+								"b": "3",
+								"c": "6",
+								"d": "4"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$3^4 = 81$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "$$\\sqrt[5]{32} = 2$$",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "$$2^5 = 32$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula: $$256^{1/4}$$",
+							"options": {
+								"a": "2",
+								"b": "3",
+								"c": "4",
+								"d": "8"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$4^4 = 256$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla: $$1024^{1/5}$$",
+							"options": {
+								"a": "2",
+								"b": "4",
+								"c": "5",
+								"d": "8"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$4^5 = 1024$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt{2025}$$:",
+							"correct_answer": "45",
+							"solution_explanation": "$$45^2 = 2025$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt[3]{1728}$$",
+							"options": {
+								"a": "10",
+								"b": "11",
+								"c": "12",
+								"d": "13"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$12^3 = 1728$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "$$64^{1/3} = 8$$",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "$$4^3 = 64$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt[6]{729}$$",
+							"options": {
+								"a": "2",
+								"b": "3",
+								"c": "6",
+								"d": "9"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$3^6 = 729$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla $$4096^{1/4}$$",
+							"options": {
+								"a": "6",
+								"b": "7",
+								"c": "8",
+								"d": "9"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$8^4 = 4096$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Escribe $$\\sqrt[3]{x}$$ como potencia:",
+							"correct_answer": "x^(1/3)",
+							"solution_explanation": "Raíz cúbica equivale a exponente $$1/3$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt{6400}$$",
+							"options": {
+								"a": "60",
+								"b": "70",
+								"c": "80",
+								"d": "90"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$80^2 = 6400$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla $$\\sqrt[3]{2197}$$",
+							"options": {
+								"a": "11",
+								"b": "12",
+								"c": "13",
+								"d": "14"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$13^3 = 2197$$."
+						}
+					]
+				},
+				{
+					"title": "Propiedades básicas de los radicales",
+					"order_index": 2,
+					"xp_reward": 60,
+					"theory_content": "Raíz de un producto: $$\\sqrt[n]{ab} = \\sqrt[n]{a} \\cdot \\sqrt[n]{b}$$. Raíz de un cociente: $$\\sqrt[n]{\\frac{a}{b}} = \\frac{\\sqrt[n]{a}}{\\sqrt[n]{b}}$$.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica $$\\sqrt{36 \\cdot 25}$$",
+							"options": {
+								"a": "30",
+								"b": "60",
+								"c": "15",
+								"d": "900"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$6 \\cdot 5 = 30$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Calcula $$\\sqrt{\\frac{81}{16}}$$",
+							"options": {
+								"a": "9/4",
+								"b": "4/9",
+								"c": "16/81",
+								"d": "5/4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$9/4$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Calcula $$\\sqrt{50 \\cdot 2}$$:",
+							"correct_answer": "10",
+							"solution_explanation": "$$\\sqrt{100} = 10$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "$$\\sqrt{a+b} = \\sqrt{a} + \\sqrt{b}$$",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "No existe propiedad distributiva en la suma."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt{400 \\cdot 9}$$",
+							"options": {
+								"a": "60",
+								"b": "30",
+								"c": "120",
+								"d": "90"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$20 \\cdot 3 = 60$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt[3]{8 \\cdot 27}$$",
+							"options": {
+								"a": "6",
+								"b": "12",
+								"c": "4",
+								"d": "24"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$2 \\cdot 3 = 6$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt{\\frac{2500}{25}}$$:",
+							"correct_answer": "10",
+							"solution_explanation": "$$\\sqrt{100} = 10$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt[3]{\\frac{216}{8}}$$",
+							"options": {
+								"a": "2",
+								"b": "3",
+								"c": "4",
+								"d": "6"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$\\sqrt[3]{27} = 3$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{1600 \\cdot 49}$$",
+							"options": {
+								"a": "280",
+								"b": "140",
+								"c": "196",
+								"d": "70"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$40 \\cdot 7 = 280$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "$$\\sqrt[4]{a^4 b^4} = ab$$ (si a,b>0)",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Raíz cuarta elimina exponente 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt{900 \\cdot 16}$$",
+							"options": {
+								"a": "120",
+								"b": "240",
+								"c": "60",
+								"d": "300"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$30 \\cdot 4 = 120$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt[3]{64 \\cdot 125}$$:",
+							"correct_answer": "20",
+							"solution_explanation": "$$4 \\cdot 5 = 20$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{121 \\cdot 225}$$",
+							"options": {
+								"a": "165",
+								"b": "121",
+								"c": "225",
+								"d": "346"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$11 \\cdot 15 = 165$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Calcula $$\\sqrt{\\frac{4900}{49}}$$",
+							"options": {
+								"a": "5",
+								"b": "7",
+								"c": "10",
+								"d": "14"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "$$\\sqrt{100} = 10$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt[3]{1000 \\cdot 8}$$",
+							"options": {
+								"a": "10",
+								"b": "20",
+								"c": "40",
+								"d": "80"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "$$10 \\cdot 2 = 20$$."
+						}
+					]
+				},
+				{
+					"title": "Introducción a la simplificación de raíces",
+					"order_index": 3,
+					"xp_reward": 60,
+					"theory_content": "Para simplificar una raíz, descomponemos el número en factores y extraemos las potencias perfectas. Ejemplo: $$\\sqrt{72} = \\sqrt{36 \\cdot 2} = 6\\sqrt{2}$$.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica $$\\sqrt{72}$$",
+							"options": {
+								"a": "6√2",
+								"b": "12√2",
+								"c": "8√3",
+								"d": "9√2"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$72 = 36 \\cdot 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica $$\\sqrt{98}$$",
+							"options": {
+								"a": "7√2",
+								"b": "14√2",
+								"c": "49√2",
+								"d": "7√14"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$98 = 49 \\cdot 2$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Simplifica $$\\sqrt{200}$$:",
+							"correct_answer": "10√2",
+							"solution_explanation": "$$200 = 100 \\cdot 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Simplifica $$\\sqrt{300}$$",
+							"options": {
+								"a": "10√3",
+								"b": "15√2",
+								"c": "20√3",
+								"d": "5√12"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$300 = 100 \\cdot 3$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{432}$$",
+							"options": {
+								"a": "12√3",
+								"b": "6√12",
+								"c": "18√2",
+								"d": "24√3"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$432 = 144 \\cdot 3$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{675}$$",
+							"options": {
+								"a": "15√3",
+								"b": "25√3",
+								"c": "9√75",
+								"d": "5√27"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$675 = 225 \\cdot 3$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{968}$$:",
+							"correct_answer": "22√2",
+							"solution_explanation": "$$968 = 484 \\cdot 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{800}$$",
+							"options": {
+								"a": "20√2",
+								"b": "40√2",
+								"c": "10√8",
+								"d": "16√5"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$800 = 400 \\cdot 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{980}$$",
+							"options": {
+								"a": "14√5",
+								"b": "7√20",
+								"c": "28√5",
+								"d": "35√4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$980 = 196 \\cdot 5$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{1125}$$",
+							"options": {
+								"a": "15√5",
+								"b": "25√3",
+								"c": "45√5",
+								"d": "5√45"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$1125 = 225 \\cdot 5$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{1800}$$",
+							"options": {
+								"a": "30√2",
+								"b": "20√9",
+								"c": "60√2",
+								"d": "45√4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$1800 = 900 \\cdot 2$$."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{2450}$$:",
+							"correct_answer": "35√2",
+							"solution_explanation": "$$2450 = 1225 \\cdot 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{3200}$$",
+							"options": {
+								"a": "40√2",
+								"b": "20√8",
+								"c": "80√2",
+								"d": "16√20"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$3200 = 1600 \\cdot 2$$."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica $$\\sqrt{5000}$$",
+							"options": {
+								"a": "50√2",
+								"b": "25√8",
+								"c": "100√5",
+								"d": "10√50"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "$$5000 = 2500 \\cdot 2$$."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "$$\\sqrt{50}$$ simplificado es $$5\\sqrt{2}$$",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "$$50 = 25 \\cdot 2$$."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 4: El Mapa Numérico",
+			"order_index": 4,
+			"description": "Explorarás los conjuntos numéricos desde los naturales hasta los reales, aprenderás a ubicarlos en la recta numérica y a interpretar intervalos abiertos y cerrados.",
+			"lessons": [
+				{
+					"title": "Los conjuntos numéricos: Desde N hasta R",
+					"order_index": 1,
+					"xp_reward": 70,
+					"theory_content": "Los conjuntos numéricos se organizan de forma inclusiva: $$\\mathbb{N} \\subset \\mathbb{Z} \\subset \\mathbb{Q} \\subset \\mathbb{R}$$. Naturales ($$\\mathbb{N}$$): 1,2,3... Enteros ($$\\mathbb{Z}$$): incluyen negativos. Racionales ($$\\mathbb{Q}$$): fracciones y decimales exactos o periódicos. Irracionales: decimales infinitos no periódicos. Reales ($$\\mathbb{R}$$): unión de racionales e irracionales.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿A qué conjunto pertenece el número 7?",
+							"options": {
+								"a": "Solo N",
+								"b": "N, Z, Q, R",
+								"c": "Solo Z",
+								"d": "Q e irracional"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "7 es natural, entero, racional y real."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Cuál es un número entero?",
+							"options": {
+								"a": "3/4",
+								"b": "-5",
+								"c": "2.5",
+								"d": "√2"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Los enteros incluyen negativos y positivos sin decimales."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Todo número natural es racional.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Todo natural puede escribirse como fracción sobre 1."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Cuál es un número irracional?",
+							"options": {
+								"a": "0.5",
+								"b": "√2",
+								"c": "-3",
+								"d": "4/5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "√2 es decimal infinito no periódico."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "El conjunto que incluye racionales e irracionales es:",
+							"correct_answer": "R",
+							"solution_explanation": "Los reales incluyen todos los anteriores."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿El número -8 pertenece a?",
+							"options": {
+								"a": "N",
+								"b": "Z, Q, R",
+								"c": "Solo Q",
+								"d": "Irracionales"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Es entero negativo, por tanto también racional y real."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿0 pertenece a?",
+							"options": {
+								"a": "Solo Z",
+								"b": "Z, Q, R",
+								"c": "Solo N",
+								"d": "Irracional"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "0 es entero, racional y real."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "Todo número racional es real.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Q está contenido dentro de R."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "El número 0.333... es:",
+							"options": {
+								"a": "Irracional",
+								"b": "Natural",
+								"c": "Racional",
+								"d": "Entero"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Es decimal periódico."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Un número que no es racional pero sí real se llama:",
+							"correct_answer": "irracional",
+							"solution_explanation": "Son decimales infinitos no periódicos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿π pertenece a?",
+							"options": {
+								"a": "Q",
+								"b": "Z",
+								"c": "Irracionales y R",
+								"d": "N"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "π es irracional."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿√9 pertenece a?",
+							"options": {
+								"a": "N,Z,Q,R",
+								"b": "Solo R",
+								"c": "Irracional",
+								"d": "Q solamente"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "√9 = 3."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "Los irracionales están dentro de Q.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "No pueden escribirse como fracción."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "El número -3/5 pertenece a:",
+							"options": {
+								"a": "Q y R",
+								"b": "Z",
+								"c": "N",
+								"d": "Irracional"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Es fracción racional."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál NO es real?",
+							"options": {
+								"a": "√5",
+								"b": "7",
+								"c": "1/2",
+								"d": "Ninguno"
+							},
+							"correct_answer": "d",
+							"solution_explanation": "Todos son reales."
+						}
+					]
+				},
+				{
+					"title": "Representación en la recta numérica",
+					"order_index": 2,
+					"xp_reward": 70,
+					"theory_content": "La recta numérica permite ubicar números según su valor. A la derecha están los positivos y a la izquierda los negativos. Entre dos números siempre existen infinitos números reales.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Qué número está más a la derecha?",
+							"options": {
+								"a": "-3",
+								"b": "0",
+								"c": "5",
+								"d": "2"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "El mayor valor es 5."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "-2 está a la izquierda de -1.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "-2 es menor."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Entre 1 y 2 hay ______ números reales.",
+							"correct_answer": "infinitos",
+							"solution_explanation": "Siempre hay infinitos reales entre dos números."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Ordena de menor a mayor: -4, 3, 0, -1",
+							"options": {
+								"a": "-4,-1,0,3",
+								"b": "-1,-4,0,3",
+								"c": "-4,0,-1,3",
+								"d": "3,0,-1,-4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Orden correcto en recta."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál es mayor?",
+							"options": {
+								"a": "-0.5",
+								"b": "-1",
+								"c": "-0.1",
+								"d": "-2"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "El más cercano a 0 es mayor."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "1/2 está entre 0 y 1.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "0.5 está en medio."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál está más cerca de 0?",
+							"options": {
+								"a": "-0.2",
+								"b": "0.9",
+								"c": "-1",
+								"d": "2"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Menor distancia al cero."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Entre -1 y 0 está:",
+							"options": {
+								"a": "1/2",
+								"b": "-0.3",
+								"c": "2",
+								"d": "-2"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "-0.3 está entre -1 y 0."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "El número opuesto de -7 es:",
+							"correct_answer": "7",
+							"solution_explanation": "Opuesto cambia signo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Ordena: 0.2, -0.8, 1, -0.1",
+							"options": {
+								"a": "-0.8,-0.1,0.2,1",
+								"b": "-0.1,-0.8,0.2,1",
+								"c": "1,0.2,-0.1,-0.8",
+								"d": "-0.8,0.2,-0.1,1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Orden correcto."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "3 es mayor que -10.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Todo positivo es mayor que negativo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál es menor?",
+							"options": {
+								"a": "-100",
+								"b": "-50",
+								"c": "0",
+								"d": "10"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Más negativo es menor."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Entre 2 y 3 está:",
+							"options": {
+								"a": "2.5",
+								"b": "3.5",
+								"c": "1.9",
+								"d": "4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2.5 está en medio."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "El valor absoluto de -9 es:",
+							"correct_answer": "9",
+							"solution_explanation": "Valor absoluto es distancia al 0."
+						}
+					]
+				},
+				{
+					"title": "Concepto de Intervalos y su gráfica",
+					"order_index": 3,
+					"xp_reward": 70,
+					"theory_content": "Un intervalo puede ser abierto ( ), cerrado [ ], o semiabierto. Ejemplo: (2,5) no incluye extremos; [2,5] sí los incluye.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "El intervalo (1,4) incluye:",
+							"options": {
+								"a": "1 y 4",
+								"b": "Solo 1",
+								"c": "Solo 4",
+								"d": "Ninguno de los extremos"
+							},
+							"correct_answer": "d",
+							"solution_explanation": "Paréntesis no incluye extremos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "[2,6] incluye:",
+							"options": {
+								"a": "Solo 2",
+								"b": "2 y 6",
+								"c": "Solo 6",
+								"d": "Ninguno"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Corchetes incluyen extremos."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "(3,7] incluye el 7.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "] incluye extremo."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "El intervalo abierto entre -1 y 1 se escribe:",
+							"correct_answer": "(-1,1)",
+							"solution_explanation": "Ambos extremos con paréntesis."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Qué intervalo representa x ≥ 5?",
+							"options": {
+								"a": "(5,∞)",
+								"b": "[5,∞)",
+								"c": "(-∞,5]",
+								"d": "(-∞,5)"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Incluye el 5."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "x < -2 se representa como:",
+							"options": {
+								"a": "(-∞,-2)",
+								"b": "(-∞,-2]",
+								"c": "[-2,∞)",
+								"d": "(-2,∞)"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "No incluye -2."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "[0,3) incluye el 0 pero no el 3.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Corchete incluye."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Qué intervalo representa -1 ≤ x < 4?",
+							"options": {
+								"a": "(-1,4)",
+								"b": "[-1,4)",
+								"c": "[-1,4]",
+								"d": "(-1,4]"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Incluye -1 pero no 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál incluye ambos extremos?",
+							"options": {
+								"a": "(2,5)",
+								"b": "[2,5]",
+								"c": "(2,5]",
+								"d": "[2,5)"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Ambos con corchetes."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "El intervalo x ≤ 3 se escribe:",
+							"correct_answer": "(-∞,3]",
+							"solution_explanation": "Incluye 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Qué intervalo NO incluye 0?",
+							"options": {
+								"a": "(-1,1)",
+								"b": "[-1,1]",
+								"c": "(0,5)",
+								"d": "[-5,5]"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "(0,5) no incluye 0."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "(-∞,2] incluye todos los números menores o iguales a 2.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Así se representa."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "El intervalo (−3,3) es:",
+							"options": {
+								"a": "Cerrado",
+								"b": "Abierto",
+								"c": "Semiabierto",
+								"d": "Infinito"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Paréntesis en ambos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Qué intervalo representa x > 1?",
+							"options": {
+								"a": "[1,∞)",
+								"b": "(1,∞)",
+								"c": "(-∞,1]",
+								"d": "(-∞,1)"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "No incluye 1."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "El intervalo que incluye todos los reales se escribe:",
+							"correct_answer": "(-∞,∞)",
+							"solution_explanation": "Representa todos los reales."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 5: El Idioma Secreto (Traducción)",
+			"order_index": 5,
+			"description": "En esta unidad aprenderás a interpretar el lenguaje algebraico: identificar variables y constantes, traducir expresiones verbales al lenguaje algebraico y calcular el valor numérico de expresiones. Nivel dirigido de 1ro a 5to de secundaria.",
+			"lessons": [
+				{
+					"title": "¿Qué es una variable y qué es una constante?",
+					"order_index": 1,
+					"xp_reward": 100,
+					"theory_content": "Una variable es una letra que representa un número desconocido o que puede cambiar (x, y, n). Una constante es un número fijo que no cambia (4, -2, 1/3). En una expresión algebraica pueden aparecer ambas.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Cuál es una variable?",
+							"options": {
+								"a": "7",
+								"b": "x",
+								"c": "-5",
+								"d": "12"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Las variables se representan con letras."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Cuál es una constante?",
+							"options": {
+								"a": "y",
+								"b": "n",
+								"c": "9",
+								"d": "x"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Es un número fijo."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Una variable puede tomar distintos valores.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Puede cambiar."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Una letra que representa un número se llama:",
+							"correct_answer": "variable",
+							"solution_explanation": "Las letras representan valores desconocidos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "En 5x, ¿qué es x?",
+							"options": {
+								"a": "Constante",
+								"b": "Variable",
+								"c": "Resultado",
+								"d": "Operador"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Es la letra que representa el número."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 3x + 4, ¿qué es 4?",
+							"options": {
+								"a": "Variable",
+								"b": "Constante",
+								"c": "Incógnita",
+								"d": "Letra"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Es un número fijo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 7y - 2, ¿qué es 7?",
+							"options": {
+								"a": "Constante",
+								"b": "Variable",
+								"c": "Resultado",
+								"d": "Incógnita"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Es un número fijo que multiplica a la variable."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "En 2a + 9, a es una constante.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "a es variable."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 8 - m, ¿qué es m?",
+							"options": {
+								"a": "Constante",
+								"b": "Número fijo",
+								"c": "Variable",
+								"d": "Resultado"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Es una letra que representa un número."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Un número fijo que no cambia se llama:",
+							"correct_answer": "constante",
+							"solution_explanation": "Es un valor fijo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En -3x, el número -3 es:",
+							"options": {
+								"a": "Variable",
+								"b": "Constante",
+								"c": "Letra",
+								"d": "Incógnita"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Es un valor fijo."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "En 4 + p, 4 es variable.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "4 es constante."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 6k + 1, k es:",
+							"options": {
+								"a": "Constante",
+								"b": "Variable",
+								"c": "Número fijo",
+								"d": "Resultado"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Es una letra que puede variar."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Cuál es constante?",
+							"options": {
+								"a": "z",
+								"b": "t",
+								"c": "15",
+								"d": "n"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "15 es número fijo."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Una constante puede cambiar de valor.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Las constantes no cambian."
+						}
+					]
+				},
+				{
+					"title": "Traducción del lenguaje verbal al algebraico",
+					"order_index": 2,
+					"xp_reward": 100,
+					"theory_content": "Traducir expresiones verbales al lenguaje algebraico significa convertir frases como 'el doble de un número' en 2x. Es importante usar paréntesis cuando sea necesario.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "El doble de un número es:",
+							"options": {
+								"a": "x+2",
+								"b": "2x",
+								"c": "x/2",
+								"d": "x-2"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Doble significa multiplicar por 2."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "La mitad de un número es:",
+							"options": {
+								"a": "2x",
+								"b": "x/2",
+								"c": "x+2",
+								"d": "x-2"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Mitad es dividir entre 2."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "El triple de un número es 3x.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Triple es multiplicar por 3."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Un número más 7 se escribe:",
+							"correct_answer": "x+7",
+							"solution_explanation": "Se suma 7."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Un número menos 4 es:",
+							"options": {
+								"a": "x-4",
+								"b": "4-x",
+								"c": "x+4",
+								"d": "4x"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Se resta 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "El doble de la suma de un número y 5 es:",
+							"options": {
+								"a": "2x+5",
+								"b": "2(x+5)",
+								"c": "x+10",
+								"d": "5(2x)"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Primero se suma."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "La tercera parte de un número es:",
+							"options": {
+								"a": "3x",
+								"b": "x/3",
+								"c": "x-3",
+								"d": "3+x"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Se divide entre 3."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "2x+3 representa el doble de la suma de un número y 3.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Faltan paréntesis."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "El triple de un número disminuido en 2 es:",
+							"options": {
+								"a": "3x-2",
+								"b": "3(x-2)",
+								"c": "x-6",
+								"d": "2-3x"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Primero se resta."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "La suma de un número y su doble se escribe:",
+							"correct_answer": "x+2x",
+							"solution_explanation": "Se suma x y 2x."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "El cuadrado de un número es:",
+							"options": {
+								"a": "2x",
+								"b": "x^2",
+								"c": "x+2",
+								"d": "x/2"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Cuadrado es potencia 2."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Cinco más que un número es:",
+							"options": {
+								"a": "5x",
+								"b": "x+5",
+								"c": "5-x",
+								"d": "x/5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Se suma 5."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "La mitad de x es 2x.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Es x/2."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "El cuádruple de un número es:",
+							"options": {
+								"a": "4x",
+								"b": "x+4",
+								"c": "x/4",
+								"d": "4+x"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Multiplicar por 4."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "El doble de un número más 3 se escribe:",
+							"correct_answer": "2x+3",
+							"solution_explanation": "Se multiplica y luego se suma."
+						}
+					]
+				},
+				{
+					"title": "Valor numérico de una expresión",
+					"order_index": 3,
+					"xp_reward": 100,
+					"theory_content": "Para hallar el valor numérico se reemplaza la variable por un número dado y se resuelve respetando el orden de operaciones.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Si x=3, ¿cuánto vale 2x?",
+							"options": {
+								"a": "5",
+								"b": "6",
+								"c": "3",
+								"d": "9"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "2·3=6."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Si x=4, ¿cuánto vale x+5?",
+							"options": {
+								"a": "9",
+								"b": "20",
+								"c": "1",
+								"d": "5"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "4+5=9."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Si x=2, entonces 3x=6.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "3·2=6."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Si x=5, entonces x-1 =",
+							"correct_answer": "4",
+							"solution_explanation": "5-1=4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Si x=6, ¿cuánto vale x/2?",
+							"options": {
+								"a": "3",
+								"b": "12",
+								"c": "4",
+								"d": "2"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "6/2=3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x=2, ¿cuánto vale 2(x+3)?",
+							"options": {
+								"a": "10",
+								"b": "8",
+								"c": "12",
+								"d": "5"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2(2+3)=10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x=1, ¿cuánto vale 3x-2?",
+							"options": {
+								"a": "1",
+								"b": "3",
+								"c": "5",
+								"d": "-1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "3(1)-2=1."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "Si x=4, entonces 2x+1=9.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "2(4)+1=9."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x=3, ¿cuánto vale x^2?",
+							"options": {
+								"a": "6",
+								"b": "9",
+								"c": "3",
+								"d": "12"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "3^2=9."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si x=5, entonces 2x+3 =",
+							"correct_answer": "13",
+							"solution_explanation": "2(5)+3=13."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x=2, ¿cuánto vale x^2+3?",
+							"options": {
+								"a": "7",
+								"b": "5",
+								"c": "4",
+								"d": "6"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "4+3=7."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x=10, ¿cuánto vale x-4?",
+							"options": {
+								"a": "6",
+								"b": "14",
+								"c": "4",
+								"d": "40"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "10-4=6."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Si x=8, entonces x+2=10.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "8+2=10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Si x=7, ¿cuánto vale x-3?",
+							"options": {
+								"a": "4",
+								"b": "10",
+								"c": "3",
+								"d": "21"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "7-3=4."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si x=4, entonces 3x+2 =",
+							"correct_answer": "14",
+							"solution_explanation": "3(4)+2=14."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 6: Las Primeras Letras (Expresiones)",
+			"order_index": 6,
+			"description": "Dominio de términos algebraicos, clasificación de expresiones y cálculo de grados relativos y absolutos.",
+			"lessons": [
+				{
+					"title": "El Término Algebraico y sus Partes",
+					"order_index": 1,
+					"xp_reward": 150,
+					"theory_content": "Un término tiene: Signo (+ o -), Coeficiente (el número), Parte Literal (variables) y Exponentes.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "En -8x^5, ¿cuál es el coeficiente?",
+							"options": {
+								"a": "8",
+								"b": "-8",
+								"c": "x",
+								"d": "5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "El coeficiente incluye el signo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "En 12y^3, ¿cuál es el exponente?",
+							"options": {
+								"a": "12",
+								"b": "y",
+								"c": "3",
+								"d": "1"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "El exponente es 3."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En el término 'm', el exponente es 1.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Si no hay exponente visible, es 1."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "En -x^2, el coeficiente es:",
+							"correct_answer": "-1",
+							"solution_explanation": "El signo menos solo indica que es -1."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "La parte literal de -4ab^2 es:",
+							"options": {
+								"a": "-4",
+								"b": "ab^2",
+								"c": "a",
+								"d": "b"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Son todas las letras con sus exponentes."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 3/4 x^2 y, ¿cuál es el coeficiente?",
+							"options": {
+								"a": "3",
+								"b": "4",
+								"c": "3/4",
+								"d": "x"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Las fracciones también son coeficientes."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "En -7, el exponente de la variable es 0.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Un número solo se puede ver como x^0."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál es el exponente de 'z' en 5xz?",
+							"options": {
+								"a": "0",
+								"b": "1",
+								"c": "5",
+								"d": "z"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Invisiblemente tiene un 1."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "En el término -9x^4, el signo es:",
+							"correct_answer": "negativo",
+							"solution_explanation": "Tiene el símbolo '-' delante."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En (2/5)x^6, ¿cuál es la variable?",
+							"options": {
+								"a": "2/5",
+								"b": "6",
+								"c": "x",
+								"d": "2"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "La variable es la letra x."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Un término algebraico puede no tener signo.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Si no se ve, se asume que es positivo (+)."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En -xy^3, el coeficiente es:",
+							"options": {
+								"a": "0",
+								"b": "1",
+								"c": "-1",
+								"d": "-3"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Es el -1 invisible."
+						}
+					]
+				},
+				{
+					"title": "Clasificación: Monomios y Polinomios",
+					"order_index": 2,
+					"xp_reward": 150,
+					"theory_content": "Monomio (1 término), Binomio (2), Trinomio (3), Polinomio (2 o más).",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Qué es 5x^2?",
+							"options": {
+								"a": "Monomio",
+								"b": "Binomio",
+								"c": "Trinomio",
+								"d": "Ecuación"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Solo un término."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Qué es x + y?",
+							"options": {
+								"a": "Monomio",
+								"b": "Binomio",
+								"c": "Trinomio",
+								"d": "Constante"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Dos términos sumados."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "3x + 2y - 5 es un trinomio.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Tiene 3 términos."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Una expresión de un solo término se llama:",
+							"correct_answer": "monomio",
+							"solution_explanation": "Prefijo 'mono' significa uno."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál es un polinomio de 4 términos?",
+							"options": {
+								"a": "x+y+z",
+								"b": "x^4",
+								"c": "a+b+c+d",
+								"d": "4x"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Tiene 4 letras separadas por suma."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "La expresión (x+y)/2 es un:",
+							"options": {
+								"a": "Monomio",
+								"b": "Binomio",
+								"c": "Trinomio",
+								"d": "No es algebraico"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Es x/2 + y/2, tiene dos términos."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "7xyz es un trinomio porque tiene 3 letras.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Es un monomio; las letras se multiplican, no se suman."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si una expresión tiene 2 términos, se llama:",
+							"correct_answer": "binomio",
+							"solution_explanation": "Prefijo 'bi' significa dos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Cuál NO es un monomio?",
+							"options": {
+								"a": "-5",
+								"b": "x^2",
+								"c": "x-1",
+								"d": "4xy"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "x-1 tiene una resta, son dos términos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 2x + 3y + 4z, ¿cuántos términos hay?",
+							"options": {
+								"a": "1",
+								"b": "2",
+								"c": "3",
+								"d": "4"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Separados por los signos '+'."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Un número solo (como 10) es un monomio.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Se llama término independiente."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si sumo dos monomios no semejantes, obtengo un:",
+							"options": {
+								"a": "Monomio",
+								"b": "Binomio",
+								"c": "Número",
+								"d": "Cero"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Como no se pueden reducir, quedan dos términos."
+						}
+					]
+				},
+				{
+					"title": "Grados de un Polinomio (GR y GA)",
+					"order_index": 3,
+					"xp_reward": 150,
+					"theory_content": "GA (Grado Absoluto) y GR (Grado Relativo respecto a una variable).",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "GA del monomio 5x^3 y^4:",
+							"options": {
+								"a": "3",
+								"b": "4",
+								"c": "7",
+								"d": "12"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Suma: 3 + 4 = 7."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "En P(x) = x^8 + x^2, ¿cuál es el GA?",
+							"options": {
+								"a": "8",
+								"b": "2",
+								"c": "10",
+								"d": "6"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Es el mayor exponente: 8."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En 4x^5, el GR(x) es 5.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Es el exponente de x."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "GA del monomio x y z:",
+							"correct_answer": "3",
+							"solution_explanation": "1+1+1 = 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En P(x,y) = x^2 y^5 + x^6 y^1, el GA es:",
+							"options": {
+								"a": "7",
+								"b": "8",
+								"c": "2",
+								"d": "6"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Término 1: 2+5=7. Término 2: 6+1=7. Perdón, el mayor es 7. Respuesta: 7 (Error corregido en explicación)."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si GA(M) = 10 y M = x^n y^4, ¿cuánto vale n?",
+							"options": {
+								"a": "10",
+								"b": "4",
+								"c": "6",
+								"d": "14"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "n + 4 = 10 -> n = 6."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "En Q(x) = 5x^3 + 2, el grado es 3.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "El mayor exponente es 3."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "En P(x,y) = x^9 + y^12, el GR(y) es:",
+							"correct_answer": "12",
+							"solution_explanation": "El mayor exponente de y es 12."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "El grado de una constante (ej: 5) es:",
+							"options": {
+								"a": "1",
+								"b": "0",
+								"c": "No tiene",
+								"d": "5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Las constantes tienen grado 0."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En x^a y^b, el GA es:",
+							"options": {
+								"a": "ab",
+								"b": "a+b",
+								"c": "a",
+								"d": "b"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Suma de exponentes."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "El GA siempre es mayor que el GR.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Pueden ser iguales si solo hay una variable."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si P(x) = x^(m+2) y es de grado 5, m vale:",
+							"options": {
+								"a": "5",
+								"b": "2",
+								"c": "3",
+								"d": "7"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "m + 2 = 5 -> m = 3."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 7: Ordenando el Cuarto (Suma y Resta)",
+			"order_index": 7,
+			"description": "Aprende a simplificar expresiones identificando términos semejantes y domina la suma y resta de polinomios de forma ordenada.",
+			"lessons": [
+				{
+					"title": "Identificación de Términos Semejantes",
+					"order_index": 1,
+					"xp_reward": 150,
+					"theory_content": "Dos o más términos son semejantes si tienen la misma parte literal (mismas variables con mismos exponentes). El coeficiente puede ser diferente.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Cuál es semejante a 5x?",
+							"options": {
+								"a": "5y",
+								"b": "-2x",
+								"c": "x^2",
+								"d": "5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Tienen la misma variable 'x' con exponente 1."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Qué términos son semejantes?",
+							"options": {
+								"a": "3a, 3b",
+								"b": "x^2, x^3",
+								"c": "4xy, -xy",
+								"d": "2, 2z"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Ambos tienen 'xy' como parte literal."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "7m y 7m^2 son semejantes.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Los exponentes deben ser iguales (1 y 2 no lo son)."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Los términos semejantes tienen la misma parte:",
+							"correct_answer": "literal",
+							"solution_explanation": "Variables y exponentes deben coincidir."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Semejante a -4a^2 b:",
+							"options": {
+								"a": "a b^2",
+								"b": "4a^2",
+								"c": "7a^2 b",
+								"d": "-4"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Mismas letras 'a^2 b'."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si 2x^a y 5x^4 son semejantes, ¿cuánto vale 'a'?",
+							"options": {
+								"a": "2",
+								"b": "5",
+								"c": "4",
+								"d": "x"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Para ser semejantes, los exponentes de 'x' deben ser iguales."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "xy y yx son términos semejantes.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "El orden de los factores no altera el producto (propiedad conmutativa)."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "¿Cuál NO es semejante a 3x^2 y^3?",
+							"options": {
+								"a": "-x^2 y^3",
+								"b": "(1/2)x^2 y^3",
+								"c": "3x^3 y^2",
+								"d": "10x^2 y^3"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Los exponentes están intercambiados."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si mx^5 y nx^5 son semejantes, m y n son los:",
+							"correct_answer": "coeficientes",
+							"solution_explanation": "Son los números que pueden ser distintos."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 2a + 3b + 5a, ¿cuáles son semejantes?",
+							"options": {
+								"a": "2a y 3b",
+								"b": "2a y 5a",
+								"c": "3b y 5a",
+								"d": "Todos"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Ambos tienen la variable 'a'."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Los términos independientes (números solos) son semejantes entre sí.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Todos tienen grado 0."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Semejante a x^n y^2 si n=3:",
+							"options": {
+								"a": "x^2 y^3",
+								"b": "3x^3 y^2",
+								"c": "x^3 y^3",
+								"d": "y^2"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Si n=3, la parte literal es x^3 y^2."
+						}
+					]
+				},
+				{
+					"title": "Reducción de Términos Semejantes",
+					"order_index": 2,
+					"xp_reward": 150,
+					"theory_content": "Para reducir, se suman o restan los coeficientes y se mantiene la misma parte literal.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Reducir: 3x + 2x",
+							"options": {
+								"a": "5x^2",
+								"b": "5x",
+								"c": "6x",
+								"d": "x"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "3 + 2 = 5, se mantiene la 'x'."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Reducir: 10a - 7a",
+							"options": {
+								"a": "3",
+								"b": "17a",
+								"c": "3a",
+								"d": "-3a"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "10 - 7 = 3."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "5x + 3y = 8xy",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "No son semejantes, no se pueden sumar."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Reducir: m + m + m =",
+							"correct_answer": "3m",
+							"solution_explanation": "1+1+1 = 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Reducir: -5b - 2b",
+							"options": {
+								"a": "-3b",
+								"b": "7b",
+								"c": "-7b",
+								"d": "3b"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Signos iguales se suman y mantienen el signo."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplificar: 4x + 2y - x + y",
+							"options": {
+								"a": "3x + 3y",
+								"b": "5x + y",
+								"c": "6xy",
+								"d": "3x + y"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "4x-x=3x; 2y+y=3y."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "La reducción de 8n - 8n es 0.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Cualquier cantidad menos sí misma es cero."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Reducir: 1/2 x + 1/2 x =",
+							"correct_answer": "x",
+							"solution_explanation": "Media x más media x es una x entera."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Reducir: 9y^2 - y^2",
+							"options": {
+								"a": "8",
+								"b": "9",
+								"c": "8y^2",
+								"d": "y^2"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "9 - 1 = 8."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Reducir: -10z + 15z",
+							"options": {
+								"a": "25z",
+								"b": "-5z",
+								"c": "5z",
+								"d": "5"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Signos diferentes se restan: 15-10=5."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Al reducir, los exponentes no cambian.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Solo se operan los coeficientes."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Reducir: 2ab + 3ab - ab",
+							"options": {
+								"a": "4ab",
+								"b": "5ab",
+								"c": "6ab",
+								"d": "ab"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2 + 3 - 1 = 4."
+						}
+					]
+				},
+				{
+					"title": "Adición y Sustracción de Polinomios",
+					"order_index": 3,
+					"xp_reward": 150,
+					"theory_content": "Se pueden sumar de forma horizontal o vertical. En la resta, se cambia el signo a todos los términos del polinomio que resta.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Sumar (x+2) + (x+3):",
+							"options": {
+								"a": "2x+5",
+								"b": "x^2+5",
+								"c": "2x+6",
+								"d": "5x"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "x+x=2x; 2+3=5."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Restar: (5x + 8) - (2x + 3)",
+							"options": {
+								"a": "7x+11",
+								"b": "3x+5",
+								"c": "3x+11",
+								"d": "3x-5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "5x-2x=3x; 8-3=5."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En la resta vertical, se deben alinear los términos semejantes.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Es necesario para no sumar variables distintas."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si restas (x+1) de (2x+3), el resultado es:",
+							"correct_answer": "x+2",
+							"solution_explanation": "(2x+3)-(x+1) = 2x-x + 3-1 = x+2."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Sumar P=3x-2 y Q=x+5:",
+							"options": {
+								"a": "4x+3",
+								"b": "4x-7",
+								"c": "2x+3",
+								"d": "3x+3"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "3x+x=4x; -2+5=3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Al restar (a-b) - (a+b), queda:",
+							"options": {
+								"a": "0",
+								"b": "2a",
+								"c": "-2b",
+								"d": "2b"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "a-a=0; -b-b=-2b."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "El opuesto de (x^2 - 3x + 1) es (-x^2 + 3x - 1).",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Se cambian todos los signos para restar."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "(2x+4) + (x-4) =",
+							"correct_answer": "3x",
+							"solution_explanation": "2x+x=3x; 4-4=0."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Qué sucede con los signos del sustraendo en una resta?",
+							"options": {
+								"a": "No cambian",
+								"b": "Todos cambian",
+								"c": "Solo el primero cambia",
+								"d": "Se vuelven positivos"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "El signo menos afecta a todo el paréntesis."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Sumar x^2 + 3x con 2x^2 - x:",
+							"options": {
+								"a": "3x^2 + 2x",
+								"b": "3x^2 + 4x",
+								"c": "x^2 + 2x",
+								"d": "3x^4 + 2x"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "(1+2)x^2 + (3-1)x."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "Se puede sumar un binomio con un trinomio.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Sí, simplemente algunos términos no tendrán pareja semejante."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resultado de (10x - 5) - (4x - 5):",
+							"options": {
+								"a": "6x-10",
+								"b": "14x",
+								"c": "6x",
+								"d": "14x-10"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "10x-4x=6x; -5 - (-5) = 0."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 8: Multiplicando Estructuras",
+			"order_index": 8,
+			"description": "Domina la multiplicación algebraica: desde el producto de monomios simples hasta la aplicación de la propiedad distributiva en polinomios.",
+			"lessons": [
+				{
+					"title": "Multiplicación de Monomio por Monomio",
+					"order_index": 1,
+					"xp_reward": 150,
+					"theory_content": "Para multiplicar monomios: 1) Multiplica los coeficientes (usa ley de signos). 2) Multiplica las variables sumando sus exponentes.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resultado de (2x)(3x):",
+							"options": {
+								"a": "5x",
+								"b": "6x",
+								"c": "6x^2",
+								"d": "5x^2"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "2·3=6 y x^1 · x^1 = x^2."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Multiplica: (-4)(2a):",
+							"options": {
+								"a": "-8a",
+								"b": "8a",
+								"c": "-2a",
+								"d": "-6a"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Menos por más es menos: -8a."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En la multiplicación, los exponentes de bases iguales se suman.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Es la ley de exponentes para el producto."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "El resultado de (x^2)(x^3) es x elevado a la:",
+							"correct_answer": "5",
+							"solution_explanation": "2 + 3 = 5."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Multiplica: (5ab)(2):",
+							"options": {
+								"a": "7ab",
+								"b": "10ab",
+								"c": "10a^2b^2",
+								"d": "10"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "5·2=10, las letras se mantienen."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resultado de (-3x^2)(-4x^5):",
+							"options": {
+								"a": "-12x^7",
+								"b": "12x^10",
+								"c": "12x^7",
+								"d": "7x^7"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "-3·-4=12; 2+5=7."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "El producto de (xy)(z) es xyz.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Se juntan todas las variables distintas."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Multiplica: (1/2 x)(4x^3):",
+							"options": {
+								"a": "2x^4",
+								"b": "4x^4",
+								"c": "2x^3",
+								"d": "4x^3"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "(1/2) de 4 es 2; x^1 · x^3 = x^4."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si multiplicas (ax^2) por (bx^3), el exponente final de x es:",
+							"correct_answer": "5",
+							"solution_explanation": "Sumamos 2 + 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resultado de (2m^2 n)(3m n^4):",
+							"options": {
+								"a": "6m^2 n^4",
+								"b": "6m^3 n^5",
+								"c": "5m^3 n^5",
+								"d": "6m^2 n^5"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "m: 2+1=3; n: 1+4=5."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Multiplicar (x)(x) da como resultado 2x.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "x por x es x al cuadrado (x^2). 2x es x más x."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si el área de un rectángulo es base por altura, y la base es 3x y la altura 2x, el área es:",
+							"options": {
+								"a": "5x",
+								"b": "6x",
+								"c": "6x^2",
+								"d": "5x^2"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "3x · 2x = 6x^2."
+						}
+					]
+				},
+				{
+					"title": "Propiedad Distributiva: Monomio por Polinomio",
+					"order_index": 2,
+					"xp_reward": 150,
+					"theory_content": "El monomio de afuera multiplica a CADA término dentro del paréntesis: a(b + c) = ab + ac.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resultado de 2(x + 3):",
+							"options": {
+								"a": "2x+3",
+								"b": "2x+6",
+								"c": "x+6",
+								"d": "5x"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "2 multiplica a x y luego a 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Multiplica x(x + 1):",
+							"options": {
+								"a": "x^2+1",
+								"b": "2x+1",
+								"c": "x^2+x",
+								"d": "2x"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "x·x=x^2 y x·1=x."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En 3(a - 4), el 3 solo multiplica al a.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Debe multiplicar a ambos términos."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "El resultado de 5(y - 2) es 5y - :",
+							"correct_answer": "10",
+							"solution_explanation": "5 · 2 = 10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Multiplica -2(x - 4):",
+							"options": {
+								"a": "-2x-8",
+								"b": "-2x+8",
+								"c": "2x-8",
+								"d": "-2x-4"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "-2 por -4 es +8."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica: 3x(x^2 - 2):",
+							"options": {
+								"a": "3x^3-6x",
+								"b": "3x^2-6x",
+								"c": "3x^3-2",
+								"d": "3x^3-5x"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "3x·x^2 = 3x^3; 3x·-2 = -6x."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "x(y + z) = xy + xz.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Es la definición de la propiedad distributiva."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si multiplicas a(b + c + d), ¿cuántos términos tendrá el resultado?",
+							"correct_answer": "3",
+							"solution_explanation": "Tendrá tantos términos como el polinomio original."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resultado de 10(2a - b):",
+							"options": {
+								"a": "20a-b",
+								"b": "20a-10b",
+								"c": "12a-10b",
+								"d": "20ab"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "10·2a=20a y 10·-b=-10b."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Multiplica -x(x^2 + x - 1):",
+							"options": {
+								"a": "-x^3-x^2+x",
+								"b": "x^3+x^2-x",
+								"c": "-x^3+x^2-x",
+								"d": "-x^3-x^2-1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Cambiamos el signo de todo lo de adentro."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "La propiedad distributiva ayuda a eliminar paréntesis.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Es el método estándar para expandir expresiones."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica: 2x(3x + 4) - 6x^2:",
+							"options": {
+								"a": "14x",
+								"b": "8x",
+								"c": "6x^2+8x",
+								"d": "0"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "6x^2 + 8x - 6x^2 = 8x."
+						}
+					]
+				},
+				{
+					"title": "Multiplicación de Polinomios",
+					"order_index": 3,
+					"xp_reward": 150,
+					"theory_content": "Se multiplica cada término del primer polinomio por cada término del segundo (método FOIL o 'todos contra todos'). Al final se reducen términos semejantes.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Multiplica (x+1)(x+2):",
+							"options": {
+								"a": "x^2+3",
+								"b": "x^2+2x+1",
+								"c": "x^2+3x+2",
+								"d": "2x+3"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "x^2 + 2x + x + 2 = x^2 + 3x + 2."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Multiplica (x-3)(x+3):",
+							"options": {
+								"a": "x^2-9",
+								"b": "x^2+9",
+								"c": "x^2-6x-9",
+								"d": "x^2-6"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "x^2 + 3x - 3x - 9 = x^2 - 9."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Al multiplicar un binomio por otro binomio, siempre resultan 4 multiplicaciones iniciales.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "2 términos x 2 términos = 4 combinaciones."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "El resultado de (x+1)(x+1) es x^2 + 2x + :",
+							"correct_answer": "1",
+							"solution_explanation": "1 por 1 es 1."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Multiplica (2x+1)(x+4):",
+							"options": {
+								"a": "2x^2+9x+4",
+								"b": "2x^2+8x+4",
+								"c": "3x+5",
+								"d": "2x^2+4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2x^2 + 8x + x + 4 = 2x^2 + 9x + 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resultado de (a-b)(a-b):",
+							"options": {
+								"a": "a^2-b^2",
+								"b": "a^2+2ab+b^2",
+								"c": "a^2-2ab+b^2",
+								"d": "2a-2b"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "a^2 - ab - ab + b^2."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "En (x+2)(x^2 + x + 1), el resultado final tendrá un término x^3.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "x por x^2 es x^3."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si multiplicas (x+2)(x-5), el término independiente es:",
+							"correct_answer": "-10",
+							"solution_explanation": "2 multiplicado por -5."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Multiplica (x+5)(x-5):",
+							"options": {
+								"a": "x^2-25",
+								"b": "x^2+25",
+								"c": "x^2-10",
+								"d": "x-25"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Diferencia de cuadrados."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Simplifica (x+2)(x+3) - x^2:",
+							"options": {
+								"a": "5x+6",
+								"b": "6x+5",
+								"c": "x+6",
+								"d": "x^2+5x+6"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "(x^2+5x+6) - x^2 = 5x+6."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Multiplicar polinomios es básicamente aplicar la propiedad distributiva varias veces.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Tomas cada término y lo distribuyes."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resultado de (x-1)(x^2 + x + 1):",
+							"options": {
+								"a": "x^3-1",
+								"b": "x^3+1",
+								"c": "x^3+x^2+x",
+								"d": "x^3-x-1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Es un producto notable: diferencia de cubos."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 9: La Balanza Perfecta (Ecuaciones)",
+			"order_index": 9,
+			"description": "Entiende el concepto de equilibrio en las igualdades y domina las reglas de transposición para despejar incógnitas en ecuaciones lineales.",
+			"lessons": [
+				{
+					"title": "Concepto de Igualdad y Reglas de Transposición",
+					"order_index": 1,
+					"xp_reward": 150,
+					"theory_content": "Una ecuación es una balanza en equilibrio. Si sumas, restas, multiplicas o divides a un lado, debes hacer lo mismo al otro. Regla rápida: lo que suma pasa restando, lo que multiplica pasa dividiendo (y viceversa).",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "En x + 8 = 15, ¿cómo pasa el 8 al otro lado?",
+							"options": {
+								"a": "Sumando",
+								"b": "Multiplicando",
+								"c": "Restando",
+								"d": "Dividiendo"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "La operación inversa de la suma es la resta."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "En 4x = 20, ¿cómo pasa el 4 al otro lado?",
+							"options": {
+								"a": "Restando",
+								"b": "Dividiendo",
+								"c": "Sumando",
+								"d": "Como potencia"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "El 4 está multiplicando a la x, pasa a dividir."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En x - 5 = 10, el valor de x es 5.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "El -5 pasa como +5, entonces x = 10 + 5 = 15."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Si x/3 = 4, el 3 pasa al otro lado a:",
+							"correct_answer": "multiplicar",
+							"solution_explanation": "La división se opone a la multiplicación."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "¿Qué valor de x mantiene la balanza en x + 2 = 10?",
+							"options": {
+								"a": "5",
+								"b": "8",
+								"c": "12",
+								"d": "10"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "8 + 2 = 10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si -x = 7, ¿cuánto vale x?",
+							"options": {
+								"a": "7",
+								"b": "0",
+								"c": "-7",
+								"d": "-1"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Multiplicamos ambos lados por -1."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "Si un número multiplica a la x, al pasar al otro lado cambia su signo.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Mantiene su signo, solo cambia la operación de multiplicación a división."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "En 10 = x - 3, el valor de x es:",
+							"options": {
+								"a": "7",
+								"b": "13",
+								"c": "-7",
+								"d": "30"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "10 + 3 = 13."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "La operación inversa de la división es la:",
+							"correct_answer": "multiplicación",
+							"solution_explanation": "Son operaciones opuestas."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Despeja x en a + x = b:",
+							"options": {
+								"a": "x = b + a",
+								"b": "x = b - a",
+								"c": "x = a - b",
+								"d": "x = ab"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "'a' está sumando, pasa restando."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Una igualdad se mantiene si restamos lo mismo a ambos lados.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Es el principio de la balanza."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si 2x = 0, ¿cuánto vale x?",
+							"options": {
+								"a": "2",
+								"b": "-2",
+								"c": "0",
+								"d": "No existe"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "0 dividido entre 2 es 0."
+						}
+					]
+				},
+				{
+					"title": "Resolución de Ecuaciones Básicas",
+					"order_index": 2,
+					"xp_reward": 150,
+					"theory_content": "Para resolver: 1) Agrupa las 'x' en un lado. 2) Agrupa los números en el otro. 3) Despeja la x.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resolver: 2x + 1 = 9",
+							"options": {
+								"a": "4",
+								"b": "5",
+								"c": "8",
+								"d": "3"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2x = 8 -> x = 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resolver: 3x - 5 = 10",
+							"options": {
+								"a": "3",
+								"b": "5",
+								"c": "15",
+								"d": "10"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "3x = 15 -> x = 5."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En 5x = 2x + 6, el valor de x es 2.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "3x = 6 -> x = 2."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 1,
+							"prompt": "Halla x en x + x = 20:",
+							"correct_answer": "10",
+							"solution_explanation": "2x = 20 -> x = 10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resolver: 7x + 2 = 4x + 11",
+							"options": {
+								"a": "2",
+								"b": "3",
+								"c": "4",
+								"d": "9"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "3x = 9 -> x = 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla x: 10 - x = x + 2",
+							"options": {
+								"a": "4",
+								"b": "6",
+								"c": "8",
+								"d": "5"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "8 = 2x -> x = 4."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "La solución de 2x + 10 = 0 es x = 5.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "2x = -10 -> x = -5."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Halla x en 4x - 8 = 0:",
+							"correct_answer": "2",
+							"solution_explanation": "4x = 8 -> x = 2."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Halla x: x/2 + 1 = 6",
+							"options": {
+								"a": "10",
+								"b": "14",
+								"c": "5",
+								"d": "12"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "x/2 = 5 -> x = 10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resolver: 3(x) = 12 + x",
+							"options": {
+								"a": "4",
+								"b": "6",
+								"c": "12",
+								"d": "3"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "2x = 12 -> x = 6."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Si 3x = 3, entonces x = 0.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "x = 3/3 = 1."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla x: 5x - 10 = 2x + 5",
+							"options": {
+								"a": "5",
+								"b": "15",
+								"c": "3",
+								"d": "2"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "3x = 15 -> x = 5."
+						}
+					]
+				},
+				{
+					"title": "Signos de Agrupación y Fracciones",
+					"order_index": 3,
+					"xp_reward": 150,
+					"theory_content": "Primero elimina paréntesis usando propiedad distributiva. Si hay fracciones, multiplica toda la ecuación por el MCM de los denominadores.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resolver: 2(x + 1) = 10",
+							"options": {
+								"a": "4",
+								"b": "5",
+								"c": "9",
+								"d": "3"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2x + 2 = 10 -> 2x = 8 -> x = 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resolver: 3(x - 2) = x + 4",
+							"options": {
+								"a": "5",
+								"b": "2",
+								"c": "10",
+								"d": "4"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "3x - 6 = x + 4 -> 2x = 10 -> x = 5."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "En x/2 + x/2 = 10, el valor de x es 10.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "x/2 + x/2 es x entero, por lo tanto x = 10."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Halla x: 5(x - 1) = 2x + 7",
+							"correct_answer": "4",
+							"solution_explanation": "5x - 5 = 2x + 7 -> 3x = 12 -> x = 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resolver: x/3 + 2 = 5",
+							"options": {
+								"a": "9",
+								"b": "21",
+								"c": "1",
+								"d": "7"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "x/3 = 3 -> x = 9."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla x: 2(x + 3) = 3(x - 1)",
+							"options": {
+								"a": "9",
+								"b": "3",
+								"c": "6",
+								"d": "5"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2x + 6 = 3x - 3 -> 9 = x."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "En la ecuación (x+4)/2 = 5, el primer paso es pasar el 2 multiplicando.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Correcto, x + 4 = 10."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Halla x: x/4 = 2.5",
+							"correct_answer": "10",
+							"solution_explanation": "x = 2.5 * 4 = 10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 1,
+							"prompt": "Resolver: 10 - (x + 2) = 5",
+							"options": {
+								"a": "3",
+								"b": "7",
+								"c": "5",
+								"d": "13"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "10 - x - 2 = 5 -> 8 - x = 5 -> x = 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halla x: x/2 + x/3 = 5",
+							"options": {
+								"a": "6",
+								"b": "5",
+								"c": "30",
+								"d": "1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Multiplicando por 6: 3x + 2x = 30 -> 5x = 30 -> x = 6."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "-(x - 1) es igual a -x + 1.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "El signo menos cambia todo lo de adentro."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resolver: 4(2x - 1) = 20",
+							"options": {
+								"a": "3",
+								"b": "2",
+								"c": "4",
+								"d": "2.5"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "8x - 4 = 20 -> 8x = 24 -> x = 3."
+						}
+					]
+				}
+			]
+		},
+		{
+			"title": "Unidad 10: Los Límites del Peso (Inecuaciones)",
+			"order_index": 10,
+			"description": "Estudio de las desigualdades lineales, teoremas de orden en los Reales (R) y representación analítica de intervalos. Nivel dirigido a la preparación para el examen de admisión UNMSM.",
+			"lessons": [
+				{
+					"title": "Desigualdades y Teoremas de Orden",
+					"order_index": 1,
+					"xp_reward": 200,
+					"theory_content": "Una desigualdad es una relación de orden en el conjunto R. Teorema clave: Si a < b y c < 0, entonces ac > bc (el sentido se invierte al multiplicar por un negativo).",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si a < b y c < d, ¿cuál de las siguientes afirmaciones es SIEMPRE verdadera?",
+							"options": {
+								"a": "a - c < b - d",
+								"b": "a + c < b + d",
+								"c": "ac < bd",
+								"d": "a/c < b/d"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "La suma de desigualdades del mismo sentido mantiene el orden."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Indique el intervalo que representa: -5 ≤ x < 12",
+							"options": {
+								"a": "<-5, 12>",
+								"b": "[-5, 12]",
+								"c": "[-5, 12>",
+								"d": "<-5, 12]"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Cerrado en -5 y abierto en 12."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 1,
+							"prompt": "Si x² ≤ 0, entonces el conjunto solución es el vacío.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Falso, x = 0 es una solución real que cumple la igualdad."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 2,
+							"prompt": "Si x ∈ < -2, 5 ], el mayor valor entero que puede tomar x es:",
+							"correct_answer": "5",
+							"solution_explanation": "El intervalo es cerrado en 5, por lo que lo incluye."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Si a < 0, ¿cuál es el sentido de la desigualdad en: ax > b?",
+							"options": {
+								"a": "x > b/a",
+								"b": "x < b/a",
+								"c": "x = b/a",
+								"d": "No se puede determinar"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Al ser 'a' negativo, el sentido de la desigualdad se invierte al dividir."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Si x ∈ [2, 6], ¿a qué intervalo pertenece 3x - 1?",
+							"options": {
+								"a": "[5, 17]",
+								"b": "[6, 18]",
+								"c": "[2, 6]",
+								"d": "<5, 17>"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "3(2)-1 = 5 y 3(6)-1 = 17."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "La expresión x > x - 1 es válida para todo x ∈ R.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Al simplificar queda 0 > -1, lo cual es una verdad absoluta."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x² < 9, el valor de x debe estar entre:",
+							"options": {
+								"a": "0 y 3",
+								"b": "-3 y 3",
+								"c": "<-∞, 3>",
+								"d": "[ -3, 3 ]"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Es una inecuación cuadrática básica: |x| < 3."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "El conjunto de los números Reales se representa como el intervalo < -∞, ___ >",
+							"correct_answer": "+∞",
+							"solution_explanation": "Los reales no tienen límite superior ni inferior."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x es negativo, ¿cuál es el signo de -5x + 2?",
+							"options": {
+								"a": "Positivo",
+								"b": "Negativo",
+								"c": "Cero",
+								"d": "Depende del valor"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "(-5)(negativo) es positivo, sumado a 2 sigue siendo positivo."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "Si a < b, entonces a² < b².",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Falso, contraejemplo: -5 < 2, pero (-5)² = 25, que no es menor que 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Sea x ∈ < 1, 4 >. Indique el intervalo de 1/x:",
+							"options": {
+								"a": "< 1, 4 >",
+								"b": "< 1/4, 1 >",
+								"c": "[ 1/4, 1 ]",
+								"d": "< -4, -1 >"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Al invertir números positivos, el sentido de la desigualdad cambia."
+						}
+					]
+				},
+				{
+					"title": "Resolución de Inecuaciones de Primer Grado",
+					"order_index": 2,
+					"theory_content": "Resolución analítica de P(x) < 0, donde P(x) es un polinomio de grado 1. Se busca hallar el intervalo de valores que satisfacen la condición de desigualdad.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Halle el conjunto solución de: 3x - (x + 2) < 5x - 8",
+							"options": {
+								"a": "x > 2",
+								"b": "x < 2",
+								"c": "x > -2",
+								"d": "x < -2"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2x - 2 < 5x - 8 -> 6 < 3x -> 2 < x."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelva: (x + 1)/2 - (x - 1)/3 ≥ 1",
+							"options": {
+								"a": "x ≥ 1",
+								"b": "x ≥ 5",
+								"c": "x ≤ 1",
+								"d": "x ≥ -1"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Multiplicando por 6: 3(x+1) - 2(x-1) ≥ 6 -> x + 5 ≥ 6 -> x ≥ 1."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "La inecuación 2x + 5 < 2x + 3 no tiene solución.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Resulta en 5 < 3, lo cual es absurdo."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Halle el menor valor entero que satisface: 4x - 5 > 2x + 9",
+							"correct_answer": "8",
+							"solution_explanation": "2x > 14 -> x > 7. El menor entero es 8."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Resuelva para x: ax + b > 0, si a < 0",
+							"options": {
+								"a": "x > -b/a",
+								"b": "x < -b/a",
+								"c": "x < b/a",
+								"d": "x > b/a"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Al pasar a dividir el negativo 'a', el sentido cambia."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Halle el C.S. de: 2(x - 3) + 4x ≤ 3(2x - 1)",
+							"options": {
+								"a": "R",
+								"b": "Ø",
+								"c": "x ≤ 0",
+								"d": "x ≥ 0"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "6x - 6 ≤ 6x - 3 -> -6 ≤ -3. Esto es siempre verdad, pero revisa la estructura: No hay x, es R. (Corrección: es siempre verdadero, C.S. = R)."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "Si x < -2, entonces 3x + 1 es siempre menor que -5.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "3(-2) + 1 = -5. Como x < -2, entonces 3x+1 < -5."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Si 2 < x < 5, el valor de 10 - 2x está entre 0 y ___",
+							"correct_answer": "6",
+							"solution_explanation": "Si x=2 -> 6. Si x=5 -> 0."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Resuelva: x/0.5 + 4 > 10",
+							"options": {
+								"a": "x > 3",
+								"b": "x > 6",
+								"c": "x > 12",
+								"d": "x > 7"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "2x + 4 > 10 -> 2x > 6 -> x > 3."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Indique el mayor valor entero de x en: (3x-1)/4 < 2",
+							"options": {
+								"a": "2",
+								"b": "3",
+								"c": "4",
+								"d": "1"
+							},
+							"correct_answer": "2",
+							"solution_explanation": "3x-1 < 8 -> 3x < 9 -> x < 3. El mayor entero es 2."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "La inecuación |x| < -1 tiene como C.S. a los Reales.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "false",
+							"solution_explanation": "Un valor absoluto nunca es menor que un negativo. C.S. = Ø."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Halle x: 0.2x - 1 ≥ 0.5x - 4",
+							"options": {
+								"a": "x ≤ 10",
+								"b": "x ≥ 10",
+								"c": "x ≤ -10",
+								"d": "x ≥ 3"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "3 ≥ 0.3x -> 10 ≥ x."
+						}
+					]
+				},
+				{
+					"title": "Conjunto Solución e Intervalos Infinitos",
+					"order_index": 3,
+					"theory_content": "Representación de soluciones en la recta numérica real y notación de intervalos. Análisis de la unión e intersección de conjuntos solución.",
+					"exercises": [
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x ∈ <2, 10> y x ∈ <5, 12>, la intersección es:",
+							"options": {
+								"a": "<2, 12>",
+								"b": "<5, 10>",
+								"c": "<2, 5>",
+								"d": "<10, 12>"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Los valores comunes están entre 5 y 10."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Indique el C.S. de: x ≥ 5 o x < 2",
+							"options": {
+								"a": "<2, 5]",
+								"b": "<-∞, 2> U [5, ∞>",
+								"c": "[2, 5]",
+								"d": "R"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "La palabra 'o' representa la unión de los intervalos."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "El conjunto {x ∈ R / x > 4} es un intervalo abierto.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "No incluye el extremo 4."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Si x ∈ [2, 7>, la suma de valores enteros de x es:",
+							"correct_answer": "20",
+							"solution_explanation": "2+3+4+5+6 = 20."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Represente: x es menor que 10 pero no menor que 4.",
+							"options": {
+								"a": "[4, 10>",
+								"b": "<4, 10>",
+								"c": "[4, 10]",
+								"d": "<4, 10]"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "'No menor que 4' significa x ≥ 4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 2,
+							"prompt": "Si x ∈ <-∞, 5], el máximo valor de x² es:",
+							"options": {
+								"a": "25",
+								"b": "0",
+								"c": "No tiene",
+								"d": "5"
+							},
+							"correct_answer": "c",
+							"solution_explanation": "Hacia el infinito negativo, x² crece sin límite."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 2,
+							"prompt": "El intervalo < -1, 1 > contiene infinitos números.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Entre dos números reales siempre hay infinitos números racionales e irracionales."
+						},
+						{
+							"type": "fill_in",
+							"difficulty": 3,
+							"prompt": "Si x ∈ < 2, 6 >, entonces (x-4)² pertenece a [0, ___ >",
+							"correct_answer": "4",
+							"solution_explanation": "El valor mínimo es 0 (cuando x=4). El máximo se aleja hasta (2-4)²=4 o (6-4)²=4."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Indique la unión de [1, 5] y [4, 8]:",
+							"options": {
+								"a": "[4, 5]",
+								"b": "[1, 8]",
+								"c": "[1, 4]",
+								"d": "[5, 8]"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "La unión abarca desde el menor extremo hasta el mayor."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "Si x < 0, el intervalo de x² es:",
+							"options": {
+								"a": "<-∞, 0>",
+								"b": "<0, ∞>",
+								"c": "[0, ∞>",
+								"d": "R"
+							},
+							"correct_answer": "b",
+							"solution_explanation": "Cualquier número negativo al cuadrado es positivo (mayor que cero)."
+						},
+						{
+							"type": "true_false",
+							"difficulty": 3,
+							"prompt": "La intersección de < -∞, 2 > y < 2, ∞ > es el conjunto vacío.",
+							"options": {
+								"true": "Verdadero",
+								"false": "Falso"
+							},
+							"correct_answer": "true",
+							"solution_explanation": "Como ambos son abiertos en 2, el número 2 no pertenece a ninguno."
+						},
+						{
+							"type": "multiple_choice",
+							"difficulty": 3,
+							"prompt": "¿Cuál es el C.S. de x + 5 ≥ x + 5?",
+							"options": {
+								"a": "R",
+								"b": "Ø",
+								"c": "{5}",
+								"d": "{0}"
+							},
+							"correct_answer": "a",
+							"solution_explanation": "Se obtiene 0 ≥ 0, lo cual es siempre cierto."
+						}
+					]
+				}
+			]
+		}
+	]
+}

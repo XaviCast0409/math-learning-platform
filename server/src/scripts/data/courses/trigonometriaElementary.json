@@ -1,0 +1,625 @@
+{
+    "title": "Trigonometría Básica",
+    "description": "El alfabeto trigonométrico. Domina el triángulo fundamental, las proporciones y los sistemas de medida para construir una base sólida que te prepare para cualquier problema de admisión.",
+    "level": "secundaria",
+    "institution_target": "UNMSM",
+    "img_url": "https://s1.significados.com/foto/trigonometria-og.jpg",
+    "units": [
+        {
+            "title": "Unidad 1: El Escenario de Juego (Prerrequisitos)",
+            "order_index": 1,
+            "description": "Antes de hablar de senos y cosenos, necesitas dominar el terreno donde viven: el triángulo rectángulo y la proporción entre sus lados.",
+            "lessons": [
+                {
+                    "title": "El Teorema de Pitágoras",
+                    "order_index": 1,
+                    "xp_reward": 50,
+                    "theory_content": "En todo triángulo rectángulo, el cuadrado de la longitud de la hipotenusa es igual a la suma de los cuadrados de las longitudes de los catetos: c² = a² + b². La hipotenusa siempre es el lado mayor y se opone al ángulo de 90°.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Una escalera de 5 m de largo está apoyada sobre una pared vertical. Si la base de la escalera está a 3 m de la pared, ¿a qué altura de la pared llega la escalera?",
+                            "options": {
+                                "a": "2 m",
+                                "b": "4 m",
+                                "c": "3.5 m",
+                                "d": "4.5 m"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Aplicando Pitágoras: 5² = 3² + x². 25 = 9 + x². x² = 16, por lo tanto x = 4 m."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si los catetos de un triángulo rectángulo miden 6 cm y 8 cm, ¿cuánto mide su hipotenusa?",
+                            "options": {
+                                "a": "10 cm",
+                                "b": "12 cm",
+                                "c": "14 cm",
+                                "d": "100 cm"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "h² = 6² + 8² -> h² = 36 + 64 -> h² = 100. La raíz cuadrada de 100 es 10."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un topógrafo mide un terreno triangular. Dos de los lados que forman un ángulo recto miden 5 m y 12 m. ¿Cuál es el perímetro del terreno?",
+                            "options": {
+                                "a": "17 m",
+                                "b": "30 m",
+                                "c": "13 m",
+                                "d": "25 m"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Primero hallamos la hipotenusa: h² = 5² + 12² = 25 + 144 = 169 -> h = 13. El perímetro es 5 + 12 + 13 = 30 m."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En un triángulo rectángulo, la hipotenusa mide 15 cm y uno de los catetos mide 9 cm. ¿Cuánto mide el otro cateto?",
+                            "options": {
+                                "a": "10 cm",
+                                "b": "11 cm",
+                                "c": "12 cm",
+                                "d": "13 cm"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "15² = 9² + x² -> 225 = 81 + x² -> x² = 144. Por lo tanto, x = 12 cm."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un poste de luz de 8 m proyecta una sombra en el suelo. Si la distancia desde la punta del poste hasta el extremo de la sombra es de 10 m, ¿cuánto mide la sombra?",
+                            "options": {
+                                "a": "4 m",
+                                "b": "6 m",
+                                "c": "7 m",
+                                "d": "5 m"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "El poste y la sombra forman los catetos. 10² = 8² + sombra². 100 = 64 + sombra². sombra² = 36 -> sombra = 6 m."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Puede existir un triángulo rectángulo cuyos lados midan 4, 5 y 6?",
+                            "options": {
+                                "a": "Sí",
+                                "b": "No, porque 6² no es igual a 4² + 5²",
+                                "c": "Sí, si el ángulo recto se opone a 5",
+                                "d": "No se puede determinar"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Comprobamos: 6² = 36. 4² + 5² = 16 + 25 = 41. Como 36 ≠ 41, no cumple el teorema de Pitágoras."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Una antena de 24 m está sujeta por un cable tensado desde su punto más alto hasta un punto en el suelo a 7 m de la base. ¿Cuál es la longitud del cable?",
+                            "options": {
+                                "a": "25 m",
+                                "b": "26 m",
+                                "c": "30 m",
+                                "d": "31 m"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Cable² = 24² + 7² = 576 + 49 = 625. La raíz de 625 es 25 m."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si en un triángulo rectángulo los catetos son iguales y miden 'a', ¿cuánto mide la hipotenusa?",
+                            "options": {
+                                "a": "2a",
+                                "b": "a√2",
+                                "c": "a²",
+                                "d": "a√3"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "h² = a² + a² = 2a². Al sacar raíz cuadrada a ambos lados, h = a√2."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un barco navega 15 km al norte y luego 8 km al este. ¿A qué distancia en línea recta se encuentra de su punto de partida?",
+                            "options": {
+                                "a": "17 km",
+                                "b": "20 km",
+                                "c": "23 km",
+                                "d": "16 km"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Los trayectos forman un ángulo recto. Distancia² = 15² + 8² = 225 + 64 = 289. Raíz de 289 = 17."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué terna de números NO representa un triángulo rectángulo?",
+                            "options": {
+                                "a": "3, 4, 5",
+                                "b": "5, 12, 13",
+                                "c": "7, 24, 25",
+                                "d": "6, 8, 12"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Para la opción d: 12² = 144. 6² + 8² = 36 + 64 = 100. 144 ≠ 100. No es rectángulo."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un rectángulo, la base mide 12 cm y la diagonal mide 15 cm. ¿Cuál es el área del rectángulo?",
+                            "options": {
+                                "a": "108 cm²",
+                                "b": "90 cm²",
+                                "c": "180 cm²",
+                                "d": "120 cm²"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Primero hallamos la altura (cateto): 15² = 12² + h². 225 = 144 + h². h² = 81 -> h = 9. Área = base × altura = 12 × 9 = 108."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Un cateto mide √7 y el otro cateto mide 3. ¿Cuánto mide la hipotenusa?",
+                            "options": {
+                                "a": "4",
+                                "b": "5",
+                                "c": "√10",
+                                "d": "16"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "h² = (√7)² + 3² = 7 + 9 = 16. h = √16 = 4."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "La hipotenusa de un triángulo rectángulo mide 2√5 cm y un cateto mide 2 cm. ¿Cuánto mide el otro cateto?",
+                            "options": {
+                                "a": "3 cm",
+                                "b": "4 cm",
+                                "c": "5 cm",
+                                "d": "6 cm"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "(2√5)² = 2² + x². 20 = 4 + x². x² = 16 -> x = 4 cm."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si en un triángulo se cumple que a² + b² < c², el triángulo es:",
+                            "options": {
+                                "a": "Rectángulo",
+                                "b": "Obtusángulo",
+                                "c": "Acutángulo",
+                                "d": "Equilátero"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Por propiedad geométrica, si el cuadrado del lado mayor es superior a la suma de los cuadrados de los otros dos, el ángulo opuesto a ese lado es obtuso (>90°)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un ciclista viaja en una rampa con una inclinación constante. Si avanza 13 m sobre la rampa y su elevación vertical fue de 5 m, ¿cuántos metros avanzó horizontalmente?",
+                            "options": {
+                                "a": "12 m",
+                                "b": "10 m",
+                                "c": "8 m",
+                                "d": "14 m"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "La rampa es la hipotenusa (13). La elevación es un cateto (5). 13² = 5² + x² -> 169 = 25 + x² -> x = 12 m."
+                        }
+                    ]
+                },
+                {
+                    "title": "Proporciones algebraicas",
+                    "order_index": 2,
+                    "xp_reward": 50,
+                    "theory_content": "Una razón geométrica es la comparación de dos cantidades mediante división (a/b). Una proporción es la igualdad de dos razones (a/b = c/d). En trigonometría, las razones trigonométricas son proporciones geométricas entre los lados de un triángulo respecto a un ángulo.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "En una receta, la relación de tazas de harina a tazas de azúcar es de 3 a 2. Si se usan 9 tazas de harina, ¿cuántas tazas de azúcar se necesitan?",
+                            "options": {
+                                "a": "4",
+                                "b": "5",
+                                "c": "6",
+                                "d": "8"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "3/2 = 9/x. Multiplicando en aspa: 3x = 18. x = 6 tazas de azúcar."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si a/b = 4/5, ¿cuál es el valor de 'a' si b = 20?",
+                            "options": {
+                                "a": "12",
+                                "b": "15",
+                                "c": "16",
+                                "d": "18"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Reemplazando: a/20 = 4/5. a = (4 × 20) / 5 = 80 / 5 = 16."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un triángulo rectángulo, la razón entre un cateto y la hipotenusa es 3/5. Si la hipotenusa mide 25 cm, ¿cuánto mide dicho cateto?",
+                            "options": {
+                                "a": "12 cm",
+                                "b": "15 cm",
+                                "c": "20 cm",
+                                "d": "10 cm"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Cateto/Hipotenusa = 3/5. Cateto/25 = 3/5. Cateto = (3 × 25) / 5 = 75 / 5 = 15 cm."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Para que la igualdad 2/x = x/18 sea una proporción correcta (con x positivo), el valor de x debe ser:",
+                            "options": {
+                                "a": "6",
+                                "b": "8",
+                                "c": "9",
+                                "d": "36"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Multiplicando en aspa: x² = 2 × 18 = 36. x = 6."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "La razón entre las sombras proyectadas por un poste y un árbol es 4/7. Si la sombra del árbol mide 14 m, ¿cuánto mide la sombra del poste?",
+                            "options": {
+                                "a": "6 m",
+                                "b": "8 m",
+                                "c": "10 m",
+                                "d": "12 m"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "S_poste / S_árbol = 4/7. S_poste / 14 = 4/7. S_poste = (4 × 14) / 7 = 56 / 7 = 8 m."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué significa que la proporción entre los catetos de un triángulo rectángulo es de 1 a 1?",
+                            "options": {
+                                "a": "Que un cateto es el doble del otro",
+                                "b": "Que la hipotenusa mide 1",
+                                "c": "Que ambos catetos miden lo mismo (isósceles)",
+                                "d": "Que el área es 1"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Una razón de 1/1 significa que el numerador es igual al denominador. Ambos catetos tienen la misma longitud."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si x/y = 3/4 y se sabe que x + y = 35. ¿Cuál es el valor de y?",
+                            "options": {
+                                "a": "15",
+                                "b": "20",
+                                "c": "25",
+                                "d": "10"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Podemos escribir x = 3k e y = 4k. 3k + 4k = 35 -> 7k = 35 -> k = 5. Como y = 4k, y = 4(5) = 20."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Un lado de un rectángulo mide '2k' y el otro '3k'. Si el perímetro es 40 cm, halla 'k'.",
+                            "options": {
+                                "a": "3",
+                                "b": "4",
+                                "c": "5",
+                                "d": "6"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Perímetro = 2(2k) + 2(3k) = 4k + 6k = 10k. 10k = 40, entonces k = 4."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un triángulo, la razón geométrica entre dos de sus lados es de 5 a 12. Si se le asocia una constante de proporcionalidad 'k', ¿cómo se representa Pitágoras si estos fueran los catetos?",
+                            "options": {
+                                "a": "h² = 5 + 12",
+                                "b": "h = 5k + 12k",
+                                "c": "h² = (5k)² + (12k)²",
+                                "d": "h² = 5k² + 12k²"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Los catetos serían 5k y 12k. Según Pitágoras, cada cateto debe ser elevado al cuadrado en su totalidad, incluyendo la constante: (5k)² y (12k)²."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Las edades de Ana y Luis están en relación de 2 a 5. Si Ana tiene 10 años, ¿cuántos años tiene Luis?",
+                            "options": {
+                                "a": "15",
+                                "b": "20",
+                                "c": "25",
+                                "d": "30"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "2/5 = 10/x. 2x = 50 -> x = 25 años."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si a/3 = b/4 = c/5, y se sabe que a + b + c = 60. ¿Cuál es el valor del mayor de ellos?",
+                            "options": {
+                                "a": "15",
+                                "b": "20",
+                                "c": "25",
+                                "d": "30"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Igualando a 'k': a=3k, b=4k, c=5k. 3k+4k+5k = 12k = 60 -> k=5. El mayor es c = 5(5) = 25."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Simplifica la proporción 18/24 a su mínima expresión.",
+                            "options": {
+                                "a": "2/3",
+                                "b": "3/4",
+                                "c": "9/12",
+                                "d": "6/8"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Dividiendo numerador y denominador entre 6 (su máximo común divisor): 18/6 = 3, 24/6 = 4. Queda 3/4."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En la construcción de una maqueta, 2 cm representan 5 m reales. Si un edificio mide 40 m de altura, ¿cuántos cm medirá en la maqueta?",
+                            "options": {
+                                "a": "10 cm",
+                                "b": "12 cm",
+                                "c": "14 cm",
+                                "d": "16 cm"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "2 cm / 5 m = x cm / 40 m. x = (2 × 40) / 5 = 80 / 5 = 16 cm."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si el lado 'A' es proporcional a 7 y el lado 'B' es proporcional a 24, ¿a qué número es proporcional la hipotenusa en un triángulo rectángulo?",
+                            "options": {
+                                "a": "25",
+                                "b": "31",
+                                "c": "17",
+                                "d": "30"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Como es un triángulo pitagórico, √(7² + 24²) = √(49 + 576) = √625 = 25."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si la proporción entre dos catetos es 1/2, y el área del triángulo es 18 cm². Halla la medida del cateto menor.",
+                            "options": {
+                                "a": "3 cm",
+                                "b": "4.24 cm",
+                                "c": "6 cm",
+                                "d": "No se puede determinar"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Los catetos son k y 2k. Área = (k × 2k)/2 = k² = 18. k = √18 = 3√2 ≈ 4.24 cm."
+                        }
+                    ]
+                },
+                {
+                    "title": "Elementos del triángulo rectángulo",
+                    "order_index": 3,
+                    "xp_reward": 50,
+                    "theory_content": "En un triángulo rectángulo, los lados que forman el ángulo de 90° son los catetos, y el lado opuesto es la hipotenusa. Para un ángulo agudo específico (θ), el cateto que está al frente es el Cateto Opuesto (CO), y el que forma parte del ángulo es el Cateto Adyacente (CA).",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Respecto a un ángulo agudo α en un triángulo rectángulo, ¿cómo se llama el lado que está exactamente frente a él?",
+                            "options": {
+                                "a": "Hipotenusa",
+                                "b": "Cateto Adyacente",
+                                "c": "Cateto Opuesto",
+                                "d": "Mediana"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Por definición, el lado que 'mira' al ángulo o está frente a él sin tocar su vértice se denomina Cateto Opuesto."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuál de los lados de un triángulo rectángulo no depende del ángulo agudo elegido para ser nombrado?",
+                            "options": {
+                                "a": "Cateto Opuesto",
+                                "b": "Cateto Adyacente",
+                                "c": "La altura relativa",
+                                "d": "La Hipotenusa"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "La hipotenusa siempre es el lado frente al ángulo de 90° y es el más largo, independientemente de qué ángulo agudo estemos analizando."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un triángulo rectángulo ABC (recto en B), ¿quién es el cateto adyacente para el ángulo C?",
+                            "options": {
+                                "a": "El lado AB",
+                                "b": "El lado BC",
+                                "c": "El lado AC",
+                                "d": "No tiene"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "El ángulo C está formado por la hipotenusa (AC) y el cateto BC. El cateto que 'toca' o forma parte del ángulo es el Cateto Adyacente, en este caso BC."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si en un triángulo rectángulo cambiamos nuestro análisis del ángulo α al ángulo β (el otro ángulo agudo), ¿qué sucede con los catetos?",
+                            "options": {
+                                "a": "Siguen siendo los mismos",
+                                "b": "La hipotenusa pasa a ser cateto",
+                                "c": "El Cateto Opuesto y el Cateto Adyacente se intercambian",
+                                "d": "Se multiplican por -1"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El lado que era opuesto a α, ahora está tocando a β, por lo que se convierte en el adyacente de β, y viceversa."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Dibuja mentalmente un triángulo rectángulo con hipotenusa c y catetos a, b. Si el ángulo θ está entre los lados c y a, ¿quién es el Cateto Opuesto de θ?",
+                            "options": {
+                                "a": "El lado a",
+                                "b": "El lado b",
+                                "c": "El lado c",
+                                "d": "Falta información"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Si θ está formado por la hipotenusa (c) y el lado (a), eso hace que (a) sea su cateto adyacente. El lado que queda al frente es (b), el cateto opuesto."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si un problema te pide hallar la medida del lado que forma parte del ángulo α (junto con la hipotenusa), te están pidiendo:",
+                            "options": {
+                                "a": "El Cateto Opuesto",
+                                "b": "El Cateto Adyacente",
+                                "c": "El baricentro",
+                                "d": "El área"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "El lado que es 'vecino' o adyacente al vértice del ángulo, y que no es la hipotenusa, es el Cateto Adyacente."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un triángulo de lados 3, 4 y 5, si el ángulo θ se opone al lado 4, ¿cuál es la razón entre su Cateto Opuesto y su Cateto Adyacente?",
+                            "options": {
+                                "a": "3/4",
+                                "b": "4/5",
+                                "c": "4/3",
+                                "d": "5/3"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Si θ mira al 4, entonces CO = 4. La hipotenusa es 5 (el mayor). El lado restante es 3, por lo que CA = 3. La razón CO/CA es 4/3."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Verdadero o Falso: La hipotenusa puede funcionar como Cateto Adyacente si el ángulo es muy pequeño.",
+                            "options": {
+                                "a": "Verdadero",
+                                "b": "Falso, porque la hipotenusa nunca cambia su función",
+                                "c": "Depende de la posición",
+                                "d": "Verdadero, solo en San Marcos"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La hipotenusa está definida rígidamente por estar frente al ángulo de 90°. Los roles de cateto adyacente u opuesto aplican única y exclusivamente a los catetos."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un poste proyecta una sombra. Desde la punta de la sombra, miras a la punta del poste con un ángulo de elevación θ. En este triángulo imaginario, el poste representa:",
+                            "options": {
+                                "a": "La hipotenusa",
+                                "b": "El Cateto Adyacente de θ",
+                                "c": "El Cateto Opuesto de θ",
+                                "d": "No forma un triángulo"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Estás en el suelo. El ángulo θ se forma entre el suelo (adyacente) y tu línea visual (hipotenusa). El poste está al frente, verticalmente, siendo el Cateto Opuesto."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuántos ángulos agudos posee un triángulo rectángulo para los cuales podemos definir Catetos Opuestos y Adyacentes?",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "Ninguno"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Todo triángulo tiene 3 ángulos. En un triángulo rectángulo, uno es de 90°, por lo que quedan exactamente 2 ángulos agudos (que suman 90°)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un triángulo rectángulo isósceles, si analizamos cualquiera de los dos ángulos agudos, ¿cómo es la medida de su CO comparada con su CA?",
+                            "options": {
+                                "a": "CO es mayor",
+                                "b": "CA es mayor",
+                                "c": "Son exactamente iguales",
+                                "d": "No tienen CO ni CA"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Al ser isósceles, los dos catetos miden lo mismo. Sin importar qué ángulo agudo elijas (ambos de 45°), la longitud del CO será igual a la del CA."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si en un problema identificas la hipotenusa con valor 13 y un ángulo α cuyo Cateto Opuesto es 5. ¿Qué debes usar para hallar el Cateto Adyacente?",
+                            "options": {
+                                "a": "La regla de tres simple",
+                                "b": "El Teorema de Pitágoras",
+                                "c": "El transportador",
+                                "d": "Sumar los ángulos"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Al tener dos lados de un triángulo rectángulo (la hipotenusa y un cateto), el Teorema de Pitágoras te dará el lado faltante: 13² = 5² + CA²."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Tienes un rectángulo ABCD. Trazas la diagonal AC formando un ángulo θ con el lado AB. Para el triángulo rectángulo ADC, respecto al ángulo en A, ¿quién es su Cateto Opuesto?",
+                            "options": {
+                                "a": "El lado AB",
+                                "b": "El lado DC",
+                                "c": "El lado AD",
+                                "d": "La diagonal AC"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "En el triángulo superior ADC, el ángulo en el vértice A mira directamente al lado opuesto del rectángulo, que es el lado DC."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "El Cateto Adyacente a un ángulo agudo siempre es de menor longitud que:",
+                            "options": {
+                                "a": "El Cateto Opuesto",
+                                "b": "El ángulo de 90 grados",
+                                "c": "La Hipotenusa",
+                                "d": "El radio"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Por regla general de los triángulos, la hipotenusa (que se opone al mayor ángulo, 90°) siempre es más larga que cualquier cateto, sea opuesto o adyacente."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si un estudiante dibuja un triángulo rectángulo donde el ángulo recto está arriba y la hipotenusa es la base apoyada en el suelo. Para el ángulo agudo de la izquierda, ¿dónde está su Cateto Opuesto?",
+                            "options": {
+                                "a": "Es la base del triángulo",
+                                "b": "Es el lado inclinado que sube por la izquierda",
+                                "c": "Es el lado inclinado que baja por la derecha",
+                                "d": "No existe"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El ángulo de la izquierda está formado por la hipotenusa (base) y el cateto izquierdo. Por lo tanto, el cateto opuesto es el otro lado, el que está al frente, que en este dibujo es el lado inclinado derecho."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

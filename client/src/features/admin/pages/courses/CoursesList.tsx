@@ -10,21 +10,28 @@ import { useDebounce } from '../../../../hooks/useDebounce';
 
 // Components
 import { Button } from '../../../../components/common/Button';
+import { Pagination } from '../../../../components/common/Pagination';
 import { toast } from 'react-hot-toast';
+import { useEffect } from 'react';
 
 export default function CoursesList() {
   const navigate = useNavigate();
 
   // Estado local de UI
-  const [page, /* setPage */] = useState(1);
+  const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [levelFilter, setLevelFilter] = useState('');
+
+  // Reset page to 1 whenever filters change
+  useEffect(() => {
+    setPage(1);
+  }, [searchTerm, levelFilter]);
 
   // Debounce de búsqueda para no machacar la API
   const debouncedSearch = useDebounce(searchTerm, 500);
 
   // Hook de Data Fetching (SWR)
-  const { courses, isLoading, mutate } = useCourses({
+  const { courses, pagination, isLoading, mutate } = useCourses({
     page,
     search: debouncedSearch,
     level: levelFilter
@@ -142,6 +149,15 @@ export default function CoursesList() {
           </div>
         )}
       </div>
+
+      {/* Paginación */}
+      {!isLoading && pagination.totalPages > 1 && (
+        <Pagination
+          currentPage={page}
+          totalPages={pagination.totalPages}
+          onPageChange={setPage}
+        />
+      )}
     </div>
   );
 }

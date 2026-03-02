@@ -1,151 +1,155 @@
-import fs from 'fs';
-import path from 'path';
 import sequelize from '../config/database';
-import { User, Course, Unit, Lesson, Exercise, Product, Deck, Flashcard } from '../models';
+import { User, Course, Unit, Lesson, Exercise } from '../models';
 import bcrypt from 'bcryptjs';
+import fs from 'fs/promises';
+import path from 'path';
 
 async function seedDatabase() {
   try {
-    // -------------------------------------------------------------------------
-    // 1. LIMPIEZA Y CONFIGURACIÓN INICIAL
-    // -------------------------------------------------------------------------
-    await sequelize.sync({ force: true });
-    console.log('🗑️  Base de datos limpiada y sincronizada.');
+    // 1. SINCRONIZACIÓN INICIAL SIN BORRAR TABLAS
+    // Usamos alter: true para actualizar las tablas estructurálmente sin perder la data actual (usuarios, progreso, etc).
+    await sequelize.sync({ alter: true });
+    console.log('🔄 Base de datos sincronizada (sin borrar datos).');
 
+    // 2. CREAR ÚNICAMENTE EL USUARIO ADMIN SI NO EXISTE
+    const adminEmail = 'admin@xaviplay.com';
     const passwordHash = await bcrypt.hash('123456', 10);
-
-    // -------------------------------------------------------------------------
-    // 2. USUARIOS GLOBALES DE PRUEBA
-    // -------------------------------------------------------------------------
-    await User.create({
-      username: 'XaviAdmin', email: 'admin@xaviplay.com', password_hash: passwordHash,
-      role: 'admin', full_name: 'Xavier Administrador', age: 30, phone: '987654321',
-      grade_level: '5to_secundaria', email_verified: true, xp_total: 99999, gems: 50000,
-      lives: 5, elo_rating: 2500, level: 99
+    const [adminUser, adminCreated] = await User.findOrCreate({
+      where: { email: adminEmail },
+      defaults: {
+        username: 'XaviAdmin',
+        password_hash: passwordHash,
+        role: 'admin',
+        full_name: 'Xavier Administrador',
+        age: 30,
+        phone: '987654321',
+        grade_level: '5to_secundaria',
+        email_verified: true,
+        xp_total: 99999,
+        gems: 50000,
+        lives: 5,
+        elo_rating: 2500,
+        level: 99
+      }
     });
 
-    await User.create({
-      username: 'EstudiantePRO', email: 'yo@test.com', password_hash: passwordHash,
-      role: 'student', full_name: 'Juan Carlos Pérez', age: 16, phone: '912345678',
-      grade_level: '5to_secundaria', email_verified: true, level: 5, xp_total: 1200,
-      gems: 500, lives: 5, elo_rating: 1000
-    });
-    console.log('👤 Usuarios creados.');
+    if (adminCreated) {
+      console.log('👤 Usuario admin creado exitosamente.');
+    } else {
+      console.log('👤 Usuario admin ya existía. Mantenido.');
+    }
 
-    // -------------------------------------------------------------------------
-    // 3. TIENDA BÁSICA
-    // -------------------------------------------------------------------------
-    await Product.bulkCreate([
-      { name: 'Poción de Salud', cost_gems: 50, category: 'instant', type: 'life_refill', image_url: '/assets/shop/heart.png', active: true, description: 'Rellena vidas.' },
-      { name: 'XP Boost (30m)', cost_gems: 150, category: 'inventory', type: 'xp_boost_time', effect_metadata: { duration_minutes: 30 }, image_url: '/assets/shop/xp.png', active: true, description: 'Doble XP por 30m.' },
-      { name: 'Gemas x2 (1h)', cost_gems: 200, category: 'inventory', type: 'gem_boost_time', effect_metadata: { duration_minutes: 60 }, image_url: '/assets/shop/gem.png', active: true, description: 'Doble Gemas por 1h.' }
-    ]);
-    console.log('🛒 Tienda inicializada.');
-
-    // -------------------------------------------------------------------------
-    // 4. MIGRACIÓN MODULAR: LECTURA DE CURSOS DESDE JSON
-    // -------------------------------------------------------------------------
+    // 3. SEED DE CURSOS DESDE JSON (LÓGICA IDEMPOTENTE)
     const coursesDir = path.join(__dirname, 'data', 'courses');
 
-    if (fs.existsSync(coursesDir)) {
-      const files = fs.readdirSync(coursesDir).filter(f => f.endsWith('.json'));
-      console.log(`📂 Encontrados ${files.length} archivos de cursos JSON. Procesando...`);
+    // Check if directory exists
+    try {
+      await fs.access(coursesDir);
+    } catch {
+      console.log('📦 Directorio de cursos no encontrado. Saltando la creación de cursos.');
+      return;
+    }
 
-      for (const file of files) {
-        const filePath = path.join(coursesDir, file);
-        const courseData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    const files = await fs.readdir(coursesDir);
 
-        // TRUCO AVANZADO: Iniciamos una transacción.
-        // O se sube TODO el curso perfecto sin errores, o no se sube NADA (Rollback).
-        const transaction = await sequelize.transaction();
+    for (const file of files) {
+      if (!file.endsWith('.json')) continue;
 
-        try {
-          // A. Crear Curso
-          const course = await Course.create({
-            title: courseData.title,
-            description: courseData.description,
-            level: courseData.level,
-            institution_target: courseData.institution_target,
-            img_url: courseData.img_url
-          }, { transaction });
+      const filePath = path.join(coursesDir, file);
+      const fileContent = await fs.readFile(filePath, 'utf-8');
+      const courseJson = JSON.parse(fileContent);
 
-          // B. Procesar Unidades Secuencialmente
-          if (courseData.units && Array.isArray(courseData.units)) {
-            for (const unitData of courseData.units) {
-              const unit = await Unit.create({
-                course_id: course.id,
-                title: unitData.title,
-                order_index: unitData.order_index,
-                description: unitData.description
-              }, { transaction });
+      console.log(`\n📚 Procesando curso: ${courseJson.title} (Archivo: ${file})`);
 
-              // C. Procesar Lecciones y Ejercicios dentro de la Unidad
-              if (unitData.lessons && Array.isArray(unitData.lessons)) {
-                for (const lessonData of unitData.lessons) {
-                  const lesson = await Lesson.create({
-                    unit_id: unit.id,
-                    title: lessonData.title,
-                    order_index: lessonData.order_index,
-                    xp_reward: lessonData.xp_reward,
-                    theory_content: lessonData.theory_content
-                  }, { transaction });
+      // Normalizar nivel (fix bug secundario -> secundaria)
+      let parsedLevel = courseJson.level || 'secundaria';
+      if (parsedLevel === 'secundario') parsedLevel = 'secundaria';
 
-                  // Crear ejercicios con bulkCreate para mejor performance
-                  if (lessonData.exercises && Array.isArray(lessonData.exercises)) {
-                    const exercisesToInsert = lessonData.exercises.map((ex: any) => ({
-                      ...ex,
-                      lesson_id: lesson.id
-                    }));
-                    await Exercise.bulkCreate(exercisesToInsert, { transaction });
-                  }
+      // Crear o actualizar Curso (buscando por title)
+      const [courseRecord] = await Course.findOrCreate({
+        where: { title: courseJson.title },
+        defaults: {
+          description: courseJson.description,
+          level: parsedLevel,
+          institution_target: courseJson.institution_target || 'General',
+          img_url: courseJson.img_url || ''
+        }
+      });
+      // Actualizamos siempre para reflejar los cambios en el JSON
+      await courseRecord.update({
+        description: courseJson.description,
+        level: parsedLevel,
+        institution_target: courseJson.institution_target || 'General',
+        img_url: courseJson.img_url || ''
+      });
+
+      // Crear o actualizar Unidades
+      if (courseJson.units && Array.isArray(courseJson.units)) {
+        for (const unit of courseJson.units) {
+          const [unitRecord] = await Unit.findOrCreate({
+            where: { course_id: courseRecord.id, title: unit.title },
+            defaults: {
+              description: unit.description || '',
+              order_index: unit.order_index || 1
+            }
+          });
+          await unitRecord.update({
+            description: unit.description || '',
+            order_index: unit.order_index || 1
+          });
+
+          // Crear o actualizar Lecciones
+          if (unit.lessons && Array.isArray(unit.lessons)) {
+            for (const lesson of unit.lessons) {
+              const [lessonRecord] = await Lesson.findOrCreate({
+                where: { unit_id: unitRecord.id, title: lesson.title },
+                defaults: {
+                  order_index: lesson.order_index || 1,
+                  xp_reward: lesson.xp_reward || 0,
+                  theory_content: lesson.theory_content || ''
                 }
-              }
+              });
+              await lessonRecord.update({
+                order_index: lesson.order_index || 1,
+                xp_reward: lesson.xp_reward || 0,
+                theory_content: lesson.theory_content || ''
+              });
 
-              // D. Procesar Decks de Flashcards de la Unidad (Memorización)
-              if (unitData.decks && Array.isArray(unitData.decks)) {
-                for (const deckData of unitData.decks) {
-                  const deck = await Deck.create({
-                    unit_id: unit.id,
-                    name: deckData.name,
-                    description: deckData.description,
-                    image_url: deckData.image_url,
-                    active: deckData.active
-                  }, { transaction });
-
-                  if (deckData.flashcards && Array.isArray(deckData.flashcards)) {
-                    // Mapeo ágil para asociar clave foránea
-                    const flashcardsToInsert = deckData.flashcards.map((fc: any) => ({
-                      ...fc,
-                      deck_id: deck.id
-                    }));
-                    await Flashcard.bulkCreate(flashcardsToInsert, { transaction });
-                  }
+              // Crear o actualizar Ejercicios
+              if (lesson.exercises && Array.isArray(lesson.exercises)) {
+                for (const exercise of lesson.exercises) {
+                  // Asumimos que el prompt identifíca al ejercicio temporalmente dentro de la lección
+                  const [exRecord] = await Exercise.findOrCreate({
+                    where: { lesson_id: lessonRecord.id, prompt: exercise.prompt },
+                    defaults: {
+                      type: exercise.type || 'multiple_choice',
+                      difficulty: exercise.difficulty || 1,
+                      options: exercise.options || {},
+                      correct_answer: exercise.correct_answer || '',
+                      solution_explanation: exercise.solution_explanation || ''
+                    }
+                  });
+                  await exRecord.update({
+                    type: exercise.type || 'multiple_choice',
+                    difficulty: exercise.difficulty || 1,
+                    options: exercise.options || {},
+                    correct_answer: exercise.correct_answer || '',
+                    solution_explanation: exercise.solution_explanation || ''
+                  });
                 }
               }
             }
           }
-
-          // Si llegamos hasta aquí, el JSON completo de este curso era válido
-          await transaction.commit();
-          console.log(`✅ Curso "${courseData.title}" [Cargado con Éxito]`);
-
-        } catch (error) {
-          // Si algo falla a mitad de curso, descartamos sus inserciones
-          await transaction.rollback();
-          console.error(`❌ Fallo crítico al procesar ${file}. Revirtiendo base de datos para este curso. Detalle:`, error);
         }
       }
-
-    } else {
-      console.log('⚠️ No se encontró la carpeta data/courses/. Crea la carpeta y coloca tus JSON.');
+      console.log(`✅ Curso ${courseJson.title} sincronizado correctamente.`);
     }
 
-    console.log('✅ SEED MODULAR COMPLETADO.');
-
   } catch (error) {
-    console.error('❌ Error crítico en el proceso general de validación:', error);
+    console.error('❌ Error crítico en el proceso de seed:', error);
   } finally {
     await sequelize.close();
+    console.log('\n✅ Proceso de seed terminado.');
   }
 }
 

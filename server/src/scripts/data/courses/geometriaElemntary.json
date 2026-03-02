@@ -1,0 +1,430 @@
+{
+    "title": "Trazos Básicos",
+    "description": "El curso esencial de geometría para construir tu visión espacial desde cero. Ideal para dominar las bases teóricas antes de enfrentarte a los problemas tipo DECO de la UNMSM.",
+    "level": "secundaria",
+    "institution_target": "General",
+    "img_url": "https://s1.significados.com/foto/geometria-og.jpg?class=ogImageWide",
+    "units": [
+        {
+            "title": "Unidad 1: Los Cimientos Geométricos (El vocabulario visual)",
+            "order_index": 1,
+            "description": "Aprende el lenguaje de la geometría. Entender qué es un punto, una recta y un plano es fundamental para no perderte en temas más complejos.",
+            "lessons": [
+                {
+                    "title": "Conceptos primitivos: Punto, recta, plano y espacio.",
+                    "order_index": 1,
+                    "xp_reward": 50,
+                    "theory_content": "En geometría, el punto, la recta y el plano son conceptos primitivos que no tienen una definición matemática estricta, pero sí una idea intuitiva. El punto indica posición y no tiene dimensiones. La recta es una sucesión infinita de puntos en una sola dimensión (longitud). El plano es una superficie plana infinita que posee dos dimensiones (longitud y anchura).",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuál de los siguientes conceptos geométricos carece completamente de dimensiones?",
+                            "options": {
+                                "a": "La recta",
+                                "b": "El plano",
+                                "c": "El espacio",
+                                "d": "El punto"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "El punto solo indica una posición en el espacio, por lo tanto, no tiene longitud, anchura ni profundidad."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuántas dimensiones tiene una recta geométrica?",
+                            "options": {
+                                "a": "Cero dimensiones",
+                                "b": "Una dimensión",
+                                "c": "Dos dimensiones",
+                                "d": "Tres dimensiones"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "La recta solo tiene longitud, extendiéndose infinitamente en ambos sentidos, por lo que es unidimensional."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué representa intuitivamente un plano?",
+                            "options": {
+                                "a": "El rastro que deja un lápiz",
+                                "b": "La marca de una aguja",
+                                "c": "La superficie de un lago en calma",
+                                "d": "El borde de una regla"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Un plano es una superficie llana con dos dimensiones. La superficie de un lago en calma es la mejor representación intuitiva de un plano."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cómo se denota matemáticamente un punto?",
+                            "options": {
+                                "a": "Con una letra minúscula",
+                                "b": "Con una letra mayúscula",
+                                "c": "Con números romanos",
+                                "d": "Con símbolos griegos"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Por convención matemática, los puntos se nombran utilizando letras mayúsculas del abecedario (A, B, C...)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "El espacio geométrico es el conjunto de todos los puntos posibles. ¿Cuántas dimensiones tiene?",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "Infinitas"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El espacio tridimensional posee longitud, anchura y profundidad (3 dimensiones)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si dibujas un punto con un plumón grueso en una pizarra, ¿es ese trazo un punto geométrico real?",
+                            "options": {
+                                "a": "Sí, porque marca una posición exacta.",
+                                "b": "No, porque la marca del plumón tiene medidas reales (área) y el punto geométrico no.",
+                                "c": "Sí, siempre y cuando sea redondo.",
+                                "d": "No, porque los puntos geométricos solo existen en el papel."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Cualquier marca física tiene dimensiones (grosor, área). El punto geométrico es un concepto abstracto ideal que carece por completo de dimensiones."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "¿Cuántos planos pueden contener a una sola recta?",
+                            "options": {
+                                "a": "Solo uno",
+                                "b": "Dos planos paralelos",
+                                "c": "Infinitos planos",
+                                "d": "Ninguno"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Imagina las páginas de un libro abierto: el lomo es la recta y cada página es un plano distinto. Hay infinitos planos que pueden pasar por una misma recta."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "¿Es posible medir la longitud total de una recta?",
+                            "options": {
+                                "a": "Sí, usando una regla muy larga.",
+                                "b": "No, porque carece de dimensiones.",
+                                "c": "Sí, si conocemos sus puntos extremos.",
+                                "d": "No, porque por definición se extiende infinitamente en ambos sentidos."
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Una recta es infinita. Solo podemos medir fragmentos de ella, los cuales llamamos 'segmentos de recta'."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Identifica la afirmación correcta sobre el plano geométrico:",
+                            "options": {
+                                "a": "Tiene límites bien definidos por sus cuatro bordes.",
+                                "b": "Se expande infinitamente, pero solo contiene una cantidad finita de puntos.",
+                                "c": "Se expande infinitamente en todas sus direcciones sobre su superficie.",
+                                "d": "Posee volumen pero no tiene forma."
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El plano es bidimensional y no tiene límites ni bordes; se extiende de forma ilimitada y contiene infinitos puntos e infinitas rectas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "¿Cuál de las siguientes relaciones de inclusión es correcta en el espacio geométrico?",
+                            "options": {
+                                "a": "El punto contiene a la recta.",
+                                "b": "La recta contiene al plano.",
+                                "c": "El plano está contenido en una recta.",
+                                "d": "La recta está formada por infinitos puntos."
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Una recta se define como una sucesión infinita de puntos continuos en una misma dirección."
+                        }
+                    ]
+                },
+                {
+                    "title": "Relaciones básicas: Puntos colineales y puntos coplanares.",
+                    "order_index": 2,
+                    "xp_reward": 50,
+                    "theory_content": "Puntos colineales son aquellos que pertenecen a una misma línea recta. Por regla general, dos puntos siempre son colineales porque por ellos siempre puede pasar una recta. Puntos coplanares son aquellos que están ubicados en un mismo plano. Tres puntos no colineales siempre serán coplanares y determinan un único plano.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué nombre reciben tres o más puntos que se encuentran sobre una misma línea recta?",
+                            "options": {
+                                "a": "Coplanares",
+                                "b": "Colineales",
+                                "c": "Paralelos",
+                                "d": "Secantes"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "El prefijo 'co-' significa 'juntos' o 'compartido', y 'lineales' viene de línea. Puntos en la misma línea son colineales."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si varios puntos pertenecen a un mismo plano, se dice que son:",
+                            "options": {
+                                "a": "Coplanares",
+                                "b": "Concurrentes",
+                                "c": "Colineales",
+                                "d": "Equidistantes"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Los puntos que comparten un mismo plano geométrico se denominan coplanares."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si tomamos dos puntos cualesquiera en el espacio, ¿siempre serán colineales?",
+                            "options": {
+                                "a": "No, depende de la distancia.",
+                                "b": "Sí, siempre.",
+                                "c": "Solo si están en el mismo plano.",
+                                "d": "Nunca."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Por dos puntos distintos siempre se puede trazar una recta que los una, por lo tanto, dos puntos siempre son colineales."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuál de las siguientes figuras siempre está formada por puntos coplanares?",
+                            "options": {
+                                "a": "Una esfera",
+                                "b": "Un cubo",
+                                "c": "Un triángulo dibujado en una hoja",
+                                "d": "Un cilindro"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Las figuras planas (como un triángulo bidimensional) están contenidas enteramente en un solo plano."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Tengo 4 puntos ubicados en diferentes paredes y techo de una habitación. Estos puntos son:",
+                            "options": {
+                                "a": "No coplanares",
+                                "b": "Siempre coplanares",
+                                "c": "Colineales",
+                                "d": "Concurrentes"
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Al estar distribuidos en diferentes planos que no convergen en una sola superficie plana, son puntos no coplanares."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "¿Cuál es el número mínimo de puntos NO colineales necesarios para definir un plano único?",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "4"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Dos puntos solo definen una recta. Se necesita un tercer punto que no esté en esa recta para crear una 'superficie' o plano único."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si los puntos A, B y C son colineales, y los puntos B, C y D también son colineales. ¿Qué podemos afirmar de A y D?",
+                            "options": {
+                                "a": "Que son coplanares pero no colineales.",
+                                "b": "Que A, B, C y D son colineales.",
+                                "c": "Que forman un triángulo.",
+                                "d": "No hay relación entre ellos."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Si A, B y C comparten una recta, y B, C y D comparten una recta, dado que B y C son comunes a ambas, todos deben estar en la misma y única recta."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Una mesa de 4 patas a veces cojea, pero una mesa de 3 patas nunca lo hace, sin importar el suelo. ¿Qué principio geométrico explica esto?",
+                            "options": {
+                                "a": "Tres puntos no colineales siempre determinan un único plano.",
+                                "b": "Tres puntos siempre son colineales.",
+                                "c": "La intersección de dos planos es una recta.",
+                                "d": "Cuatro puntos siempre son coplanares."
+                            },
+                            "correct_answer": "a",
+                            "solution_explanation": "Los tres extremos de las patas de la mesa actúan como tres puntos no colineales, los cuales siempre formarán un plano perfecto con el suelo, evitando el desnivel."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Se tienen los puntos P, Q, R y S. Si P, Q y R son no colineales pero sí coplanares con S, entonces:",
+                            "options": {
+                                "a": "P, Q, R y S forman necesariamente una recta.",
+                                "b": "Los cuatro puntos pertenecen al mismo plano.",
+                                "c": "S debe estar entre P y Q.",
+                                "d": "R y S determinan planos diferentes."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Si P, Q y R determinan un plano, y se dice que son coplanares con S, significa que S también vive dentro de ese mismo plano bidimensional."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si una recta L cruza un plano P en un solo punto, los puntos de la recta L (excepto la intersección) y los puntos del plano P son:",
+                            "options": {
+                                "a": "Todos coplanares.",
+                                "b": "No coplanares.",
+                                "c": "Todos colineales.",
+                                "d": "Paralelos."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Como la recta atraviesa el plano y sale de él, la mayoría de sus puntos están fuera del plano P. Por tanto, el conjunto de todos esos puntos no comparte un mismo plano."
+                        }
+                    ]
+                },
+                {
+                    "title": "Postulados fundamentales: Por dos puntos pasa una única recta, intersección de rectas y planos.",
+                    "order_index": 3,
+                    "xp_reward": 50,
+                    "theory_content": "Los postulados son verdades matemáticas evidentes que se aceptan sin necesidad de demostración. 1) Postulado de la recta: Por dos puntos distintos pasa una y solo una recta. 2) Intersección de rectas: Si dos rectas distintas se intersecan, lo hacen exactamente en un punto. 3) Intersección de planos: Si dos planos distintos se intersecan, su intersección es una línea recta.",
+                    "exercises": [
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Cuántas rectas diferentes pueden pasar simultáneamente por los puntos A y B?",
+                            "options": {
+                                "a": "Ninguna",
+                                "b": "Una sola",
+                                "c": "Dos",
+                                "d": "Infinitas"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "El postulado fundamental de la recta establece que dos puntos distintos determinan una y solo una recta."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si la Recta 1 y la Recta 2 se cruzan (son secantes), ¿cuántos puntos tienen en común?",
+                            "options": {
+                                "a": "Cero puntos",
+                                "b": "Un punto",
+                                "c": "Dos puntos",
+                                "d": "Infinitos puntos"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Dos rectas distintas, al intersecarse, solo pueden coincidir en un único punto. Si coincidieran en dos, serían la misma recta."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si la pared de tu cuarto (Plano 1) se encuentra con el piso (Plano 2), ¿qué forma geométrica crea su intersección?",
+                            "options": {
+                                "a": "Un punto",
+                                "b": "Un ángulo",
+                                "c": "Una recta",
+                                "d": "Un segmento"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "El postulado de intersección de planos dicta que si dos planos se cortan, su intersección forma una recta (geométricamente infinita)."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "¿Qué es un postulado en geometría?",
+                            "options": {
+                                "a": "Un problema matemático complejo",
+                                "b": "Una teoría que necesita ser demostrada con ecuaciones",
+                                "c": "Una verdad evidente que se acepta sin demostración",
+                                "d": "Una figura de cuatro lados"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Los postulados o axiomas son los bloques de construcción lógicos; son premisas que aceptamos como verdaderas para poder demostrar teoremas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 1,
+                            "prompt": "Si dos rectas no se intersecan en ningún punto y están en el mismo plano, ¿cómo se llaman?",
+                            "options": {
+                                "a": "Secantes",
+                                "b": "Perpendiculares",
+                                "c": "Concurrentes",
+                                "d": "Paralelas"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Por definición, las rectas coplanares que nunca se intersecan (cero puntos en común) son rectas paralelas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "En un problema de geometría de la UNMSM se te indica que los planos P y Q se intersecan. ¿Qué elemento geométrico auxiliar puedes trazar con total seguridad en esa intersección?",
+                            "options": {
+                                "a": "Un único punto de apoyo",
+                                "b": "Una recta común a ambos planos",
+                                "c": "Un plano paralelo adicional",
+                                "d": "Un tercer plano secante"
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Basado en el postulado de intersección de planos, siempre que dos planos se cortan, generan una recta que pertenece a ambos planos."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si tienes una recta L contenida en un plano P, y un punto A exterior a la recta L pero dentro del plano P. ¿Cuántas rectas que pasen por A y corten a L puedes trazar en ese plano?",
+                            "options": {
+                                "a": "Una sola",
+                                "b": "Ninguna",
+                                "c": "Dos",
+                                "d": "Infinitas"
+                            },
+                            "correct_answer": "d",
+                            "solution_explanation": "Desde un punto exterior a una recta (en un mismo plano), puedes trazar infinitas rectas secantes hacia los infinitos puntos que componen la recta L."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Si tres rectas distintas se intersecan dos a dos (la 1 con la 2, la 2 con la 3, y la 1 con la 3), ¿cuántos puntos de intersección se pueden generar como máximo?",
+                            "options": {
+                                "a": "1",
+                                "b": "2",
+                                "c": "3",
+                                "d": "Infinitos"
+                            },
+                            "correct_answer": "c",
+                            "solution_explanation": "Al intersecarse dos a dos formando una figura similar a un triángulo, cada par de rectas forma un punto distinto, generando un máximo de 3 puntos de intersección."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Imagina dos rectas que no son paralelas pero que jamás se intersecan. ¿Cómo es esto posible?",
+                            "options": {
+                                "a": "Es imposible matemáticamente.",
+                                "b": "Sucede cuando las rectas están en planos distintos (rectas alabeadas).",
+                                "c": "Sucede cuando son rectas perpendiculares.",
+                                "d": "Ocurre solo en geometría bidimensional."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "En el espacio tridimensional, dos rectas pueden no cruzarse nunca y no ser paralelas si no comparten el mismo plano. A estas se les llama rectas alabeadas o cruzadas."
+                        },
+                        {
+                            "type": "multiple_choice",
+                            "difficulty": 2,
+                            "prompt": "Un teorema clásico afirma que una recta y un punto exterior a ella determinan un plano. ¿Qué postulados sustentan esto?",
+                            "options": {
+                                "a": "El postulado de intersección de planos.",
+                                "b": "Que la recta tiene infinitos puntos, tomando dos de ella más el punto exterior tenemos tres puntos no colineales.",
+                                "c": "Que dos rectas se cruzan en un punto.",
+                                "d": "Que un plano contiene infinitas rectas."
+                            },
+                            "correct_answer": "b",
+                            "solution_explanation": "Sabemos que tres puntos no colineales determinan un plano. Como la recta tiene al menos dos puntos, al combinarlos con el punto exterior, formamos la base exacta para definir el plano."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
